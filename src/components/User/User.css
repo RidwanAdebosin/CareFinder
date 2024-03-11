@@ -1,0 +1,71 @@
+/* STYLING THE USER COMPONENT */
+.users-card {
+  margin-block-end: 5rem;
+  padding-inline: 1rem;
+}
+.user-card-header {
+  display: flex;
+  align-items: center;
+  margin-block-end: -30px;
+}
+.users-card p {
+  margin-block-end: 2rem;
+}
+
+.bluestroke {
+  margin-block-start: 3.5rem;
+  margin-inline-start: 1rem;
+}
+
+ul,
+li {
+  list-style-type: none;
+  list-style: none;
+}
+
+.review-content-card {
+  list-style-type: none;
+  display: flex;
+  overflow: hidden;
+  gap: 2rem;
+}
+
+.wrapper {
+  height: 250px;
+  animation: card-movement ease-in-out 20s infinite;
+  display: flex;
+  min-width: 500px;
+  background-color: rgb(50, 48, 48);
+  border-radius: 25px;
+}
+
+@keyframes card-movement {
+  0% {
+    transform: translateX(-500px);
+  }
+}
+.userImg {
+  height: 100%;
+}
+
+.userImage {
+  inline-size: 169px;
+  height: 100%;
+  border-bottom-left-radius: 25px;
+  border-top-left-radius: 25px;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  padding-inline: 1rem;
+  padding-top: 1rem;
+}
+
+.content {
+  font-size: clamp(1rem, 10vw, 1rem);
+}
+
+.user-card-header {
+  margin-block-end: 1rem;
+}

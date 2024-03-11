@@ -1,0 +1,51 @@
+/* STYLING THE LISTYOURHOSPITAL COMPONENT */
+article {
+  margin-block-end: 3rem;
+  padding-inline: 1rem;
+}
+
+article .btn {
+  display: flex;
+  margin: 0 auto;
+  padding: 10px 30px;
+  margin-block-end: 0.5rem;
+}
+
+.main-article span p {
+  text-align: center;
+}
+.main-article {
+  padding: 2rem;
+  border-radius: 15px;
+  background-color: #1f1f1f;
+  margin: 0 auto;
+}
+.list-hospital-info {
+  margin: 0 auto;
+  max-width: 500px;
+  text-align: center;
+  margin-block-end: 5rem;
+}
+
+.list-hospital {
+  display: flex;
+  justify-content: space-between;
+}
+.features {
+  margin: 0 auto;
+  max-width: 300px;
+  text-align: center;
+  margin-block-end: 3rem;
+}
+
+@media (max-width: 800px) {
+  .list-hospital {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+  }
+
+  .main-article {
+    width: fit-content;
+  }
+}

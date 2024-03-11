@@ -1,0 +1,94 @@
+.hospital-landing-page-container {
+  padding-top: 5rem;
+  padding-inline: 1rem;
+  width: 100%;
+}
+
+.hospital-landing-page-hospital-image {
+  width: 100%;
+  margin-block-end: 2rem;
+  block-size: 50vh;
+}
+
+.hospital-landing-page-hospital-name,
+.hospital-landing-page-hospital-intro {
+  margin-block-end: 1rem;
+}
+
+.single-hospital-landing-page-details {
+  display: flex;
+  justify-content: space-between;
+  margin-block-end: 2rem;
+}
+
+.single-hospital-landing-page-department-images {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.department-image {
+  border-radius: 10px;
+}
+
+.hospital-department {
+  width: 100%;
+}
+
+.hospital-active-departmments-intro {
+  text-align: center;
+  line-height: 1.5;
+  margin-block-end: 1rem;
+}
+
+.active-department-images {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  width: fit-content;
+  margin: 0 auto;
+  margin-block-end: 2rem;
+}
+
+.active-department-image {
+  block-size: 242px;
+  inline-size: 300px;
+  border-radius: 5px;
+}
+
+@media (max-width: 820px) {
+  .hospital-landing-page-hospital-image {
+    width: 100%;
+    margin-block-end: 2rem;
+    block-size: 30vh;
+  }
+
+  .single-hospital-landing-page-department-images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .single-hospital-landing-page-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .department-image {
+    width: 150px;
+  }
+
+  .active-department-images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .active-department-image {
+    block-size: 140px;
+    inline-size: 130px;
+    border-radius: 5px;
+  }
+}

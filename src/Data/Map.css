@@ -1,0 +1,11 @@
+.mapContainer {
+  position: relative;
+  z-index: 1;
+  padding-top: 2rem;
+}
+
+.map {
+  height: 50vh;
+  width: 100%;
+}
+
