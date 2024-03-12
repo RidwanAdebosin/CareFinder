@@ -15,5 +15,5 @@ body {
 
 body p {
   font-size: 1rem;
-  text-wrap: balance;
+  /* text-wrap: balance; */
 }
