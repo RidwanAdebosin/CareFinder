@@ -37,8 +37,9 @@ function SignUpForm() {
             className="signup-input"
           />
         </div>
-
+<Link to="/add-hospitals">
         <button className="signup-btn">SignUp</button>
+</Link>
         <p>Or sign up with</p>
         <span className="signup-socials">
           <FaFacebook />

@@ -1,10 +1,12 @@
 import Navigation from "../../components/Navigation/Navigation";
 import Footer from "../../components/Footer/Footer";
+import "./AddHospitals.css"
 
 function AddHospitals(){
 return(
     <>
     <Navigation/>
+    <div className="add-hospital-container">
     <main>
         <p>Edit text</p>
         <span>
@@ -12,7 +14,7 @@ return(
             <button className="btn">Post to public</button>
         </span>
     </main>
-    <div className="add-hospital-container">
+    <div className="add-hospital-wrapper">
         <div className="add-hospital-details">
             <form>
                 <label>Name of hospital</label>
@@ -27,6 +29,7 @@ return(
         <div className="add-hospital-image">
 
         </div>
+    </div>
     </div>
     <Footer/>
     </>
