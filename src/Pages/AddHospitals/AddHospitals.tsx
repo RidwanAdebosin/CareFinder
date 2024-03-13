@@ -25,23 +25,23 @@ return(
             <form className="add-hospital-form" action="">
                 <p className="full-width">
                 <label>Name of hospital</label>
-                <input type="text" placeholder="Type here"/>
+                <input type="text" placeholder="Type here" className="add-hospital-input"/>
                 </p>
                 
                 <p>
                 <label className="number-label">Phone Number</label>
-                <input type="number" placeholder="Type here" />
+                <input type="number" placeholder="Type here" className="add-hospital-input"/>
                 </p>
 
                 <p>
                 <label className="email-label">Company email</label>
-                <input type="email" placeholder="Type here" />
+                <input type="email" placeholder="Type here" className="add-hospital-input"/>
                 </p>
                                 
 
                 <p className="full-width">
                     <label>Write a short bio</label>
-                    <textarea name="" id="" placeholder="write a short bio about your facility here"></textarea>
+                    <textarea name="" id="" placeholder="write a short bio about your facility here" className="add-hospital-textarea"></textarea>
                     
                 </p>
             </form>

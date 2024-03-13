@@ -77,22 +77,21 @@ textarea:focus {
   outline: 3px solid gold;
 }
 
-input,
-textarea,
-button {
+.add-hospital-input,
+.add-hospital-textarea {
   width: 100%;
-  border: 1px solid #000;
+  /* border: 1px solid #000; */
 }
 
-form {
+.add-hospital-form {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 20px;
 }
-form label {
+.add-hospital-form label {
   display: block;
 }
-form p {
+.add-hospital-form p {
   margin: 0;
 }
 
@@ -100,7 +99,7 @@ form p {
   grid-column: 1 / 3;
 }
 
-input {
+.add-hospital-input {
   inline-size: 100%;
   background-color: transparent;
   border: 2px solid #ccc;

@@ -5,11 +5,27 @@ import HospitalLandingPage from "./Pages/HospitalLandPage/HospitalLandingPage";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import HospitalList from "./Pages/HospitalList/HospitalList";
 import AddHospitals from "./Pages/AddHospitals/AddHospitals";
-// import { hospitalsInfo } from "./Data/hospitals";
+// import db from "./config";
+// import { useEffect, useState } from "react";
+// import { collection, onSnapshot } from "firebase/firestore";
+
+
 
 function App() {
+//   const [users, setUsers] = useState([]);
+// console.log(users);
+
+//  useEffect(
+//   () =>
+//   onSnapshot(collection(db, "users"),(snapshot)=>{
+//     setUsers(snapshot.docs.map((doc) => ({...doc.data(), id: doc.id})))
+//   }),
+//  []
+//  );
+  
   return (
     <BrowserRouter>
+  
       <Routes>
         <Route index element={<LandingPage />} />
         <Route path="signupform" element={<SignUpForm />} />
@@ -29,3 +45,4 @@ function App() {
 }
 
 export default App;
+
