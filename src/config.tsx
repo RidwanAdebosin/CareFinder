@@ -1,23 +1,22 @@
+// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
-
+import {getAuth, createUserWithEmailAndPassword} from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAN_01TvjH6DugRDir28o1LY3NfIvfYoJI",
-  authDomain: "care-finder-d6042.firebaseapp.com",
-  projectId: "care-finder-d6042",
-  storageBucket: "care-finder-d6042.appspot.com",
-  messagingSenderId: "243543500498",
-  appId: "1:243543500498:web:c34d13eff51e0ba96caf0b"
+  apiKey: "AIzaSyBKcd4gHXfxqOxgwhVSZFiZQ4KDUEeDdJ0",
+  authDomain: "form-auth-2a01d.firebaseapp.com",
+  projectId: "form-auth-2a01d",
+  storageBucket: "form-auth-2a01d.appspot.com",
+  messagingSenderId: "861832840764",
+  appId: "1:861832840764:web:4a0f6eccab4ef1d941a539"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 
-export default getFirestore();
 export function signup(email, password){
-  return createUserWithEmailAndPassword(auth, email, password);
+  return
+createUserWithEmailAndPassword(auth, email, password);
 }
