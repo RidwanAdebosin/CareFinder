@@ -131,6 +131,16 @@ textarea {
   margin: 0;
 }
 
+.avatar {
+  vertical-align: middle;
+  width: 100px;
+  height: 10vh;
+  border-radius: 5px;
+  border-width: 5px;
+  border-color: gray;
+  border-style: outset;
+}
+
 @media (max-width: 700px) {
   .add-hospital-details {
     display: grid;

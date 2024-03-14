@@ -4,6 +4,13 @@ import "./AddHospitals.css"
 import { FaPen } from "react-icons/fa";
 
 function AddHospitals(){
+    function handleChange(){
+
+    }
+
+    function handleClick(){
+
+    }
 return(
     <>
     <Navigation/>
@@ -46,7 +53,10 @@ return(
                 </p>
             </form>
         <div className="add-hospital-drop-zone">
-        <p>Drag and drop file here or <a>Browse files</a></p>
+        <p>Drag and drop file here or  </p>
+            <input type="file" onChange={handleChange}/>
+            <button onClick={handleClick}>Upload</button>
+            <img src="https://media.istockphoto.com/id/1223671392/vector/default-profile-picture-avatar-photo-placeholder-vector-illustration.jpg?s=612x612&w=0&k=20&c=s0aTdmT5aU6b8ot7VKm11DeID6NctRCpB755rA1BIP0=https://media.istockphoto.com/id/1223671392/vector/default-profile-picture-avatar-photo-placeholder-vector-illustration.jpg?s=612x612&w=0&k=20&c=s0aTdmT5aU6b8ot7VKm11DeID6NctRCpB755rA1BIP0=" alt="Avatar" className="avatar"/>
         </div>
         </div>
     </div>
