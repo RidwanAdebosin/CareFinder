@@ -69,8 +69,7 @@ function SignUpForm() {
           <input
             ref={emailRef}
             type="email"
-            placeholder="&#9993; 
-              Email"
+            placeholder="&#9993;Email"
             className="signup-input"
           />
 

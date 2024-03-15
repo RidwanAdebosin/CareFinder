@@ -52,6 +52,7 @@
   height: 100%;
   width: 211px;
   border-radius: 10px;
+  margin-block-end: 1rem;
 }
 
 .single-hospital-details {
