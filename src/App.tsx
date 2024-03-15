@@ -12,16 +12,7 @@ import AddHospitals from "./Pages/AddHospitals/AddHospitals";
 
 
 function App() {
-//   const [users, setUsers] = useState([]);
-// console.log(users);
 
-//  useEffect(
-//   () =>
-//   onSnapshot(collection(db, "users"),(snapshot)=>{
-//     setUsers(snapshot.docs.map((doc) => ({...doc.data(), id: doc.id})))
-//   }),
-//  []
-//  );
   
   return (
     <BrowserRouter>
