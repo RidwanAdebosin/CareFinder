@@ -1,7 +1,7 @@
 import Map from "../../Data/Map";
 import { BiDownload, BiShareAlt, BiFilter } from "react-icons/bi";
 import Navigation from "../../components/Navigation/Navigation";
-import SingleHospitalData from "./SingleHopstitalData";
+import SingleHospitalData from "./SingleHopspitalData.tsx";
 import { Link } from "react-router-dom";
 import "./HospitalList.css";
 import Footer from "../../components/Footer/Footer";
@@ -22,11 +22,6 @@ function HospitalList() {
 
   return (
     <>
-   
-
-  
-
-
       <Navigation />
     <div className="hospital-list-wrapper">
       <div className="hospital-list-map-container">
@@ -56,7 +51,7 @@ function HospitalList() {
         </ul>
         <Pagination
           disabledPrev={page === 1}
-          disabledNext={indexOfLastHospital === hospitalsInfo.length}
+          disabledNext={indexOfLastHospital === hospitalsInfo.length-1}
           page={page}
           setPage={setPage}
           indexOfLastHospital={indexOfLastHospital}

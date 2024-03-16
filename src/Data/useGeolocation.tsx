@@ -1,67 +1,74 @@
-import { useState } from "react";
+import React, { useState, useEffect } from 'react';
 
-function GeoLocation() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [position, setPosition] = useState({});
-  const [error, setError] = useState("");
+function UserLocation() {
+  const [location, setLocation] = useState(null);
+  const [weather, setWeather] = useState(null);
+  const [hospitals, setHospitals] = useState([]);
 
-  function getPosition() {
-    if (!navigator.geolocation)
-      return setError("Your browser does not support geolocation");
+  useEffect(() => {
+    if (location) {
+      // Calculate hospital proximity when location is available
+      updateHospitalProximity(location.latitude, location.longitude);
+    }
+  }, [location]);
 
-    setIsLoading(true);
-    navigator.geolocation.getCurrentPosition(
-      (pos) => {
-        setPosition({
-          lat: pos.coords.latitude,
-          lng: pos.coords.longitude,
-        });
-        setIsLoading(false);
-      },
-      (error) => {
-        setError(error.message);
-        setIsLoading(false);
-      }
-    );
+  function handleLocationClick() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(success, error);
+    } else {
+      console.log("Geolocation not supported");
+    }
   }
 
-  return { isLoading, position, error, getPosition };
+  function success(position) {
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
+    setLocation({ latitude, longitude });
+    console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+
+    // Make API call to OpenWeatherMap
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=<YOUR_API_KEY>&units=metric`)
+      .then(response => response.json())
+      .then(data => {
+        setWeather(data);
+        console.log(data);
+      })
+      .catch(error => console.log(error));
+  }
+
+  function error() {
+    console.log("Unable to retrieve your location");
+  }
+
+  function updateHospitalProximity(userLat, userLon) {
+    const updatedHospitals = hospitals.map(hospital => {
+      const distance = calculateDistance(userLat, userLon, hospital.coordinates.latitude, hospital.coordinates.longitude);
+      return {
+        ...hospital,
+        hospitalProximity: `${distance.toFixed(2)} km away`
+      };
+    });
+    setHospitals(updatedHospitals);
+  }
+
+  // Function to calculate distance between two coordinates using Haversine formula
+  function calculateDistance(lat1, lon1, lat2, lon2) {
+    const R = 6371; // Radius of the Earth in kilometers
+    const dLat = (lat2 - lat1) * (Math.PI / 180);
+    const dLon = (lon2 - lon1) * (Math.PI / 180);
+    const a =
+      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+      Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const distance = R * c; // Distance in kilometers
+    return distance;
+  }
+
+  return (
+    <div>
+      {!location ? <a onClick={handleLocationClick}>use my location</a> : null}
+    </div>
+  );
 }
 
-export default function useMyLocation() {
-  // const {
-  //   isLoading,
-  //   position: { lat, lng },
-  //   error,
-  //   getPosition,
-  // } = GeoLocation();
-
-  // function handleClick() {
-  //   getPosition();
-  // }
-
-  return null
-
-  // return (
-  //   <div>
-  //     <button onClick={handleClick} disabled={isLoading}>
-  //       Get my position
-  //     </button>
-
-  //     {isLoading && <p>Loading position...</p>}
-  //     {error && <p>{error}</p>}
-  //     {!isLoading && !error && lat && lng && (
-  //       <p>
-  //         Your GPS position:{" "}
-  //         <a
-  //           target="_blank"
-  //           rel="noreferrer"
-  //           href={`https://www.openstreetmap.org/#map=16/${lat}/${lng}`}
-  //         >
-  //           {lat}, {lng}
-  //         </a>
-  //       </p>
-  //     )}
-  //   </div>
-  // );
-}
+export default UserLocation;

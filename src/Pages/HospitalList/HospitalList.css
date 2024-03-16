@@ -36,11 +36,10 @@
 }
 
 .single-hospital-wrapper {
-  display: grid;
-  grid-template-columns: 211px 1fr;
-  inline-size: 1100px;
-  height: 200px;
+  display: flex;
+  margin-inline: 1rem;
   margin-block-end: 2.5rem;
+  gap: 20px;
 }
 
 .hospital-image-container {
@@ -48,17 +47,16 @@
 }
 
 .hospital-image {
-  inline-size: 169px;
-  height: 100%;
-  width: 211px;
+  /* inline-size: 169px; */
+  height: 200px;
+  width: 200px;
   border-radius: 10px;
-  margin-block-end: 1rem;
 }
 
 .single-hospital-details {
   display: flex;
   flex-direction: column;
-  padding: 1rem;
+  justify-content: center;
 }
 
 .hospital-name {
@@ -79,41 +77,24 @@
 }
 
 .hospital-intro {
-  max-width: 797px;
   text-wrap: balance;
-  margin-block-end: 4rem;
+  /* margin-block-end: 4rem; */
 }
 
 @media (max-width: 820px) {
   .single-hospital-wrapper {
-    display: grid;
-    grid-template-columns: 169px 1fr;
-    inline-size: 28rem;
-    height: 240px;
+    gap: 1rem;
     padding: 1rem;
+    margin-bottom: 20px;
   }
 
   .hospital-image-container {
     height: 100%;
   }
   .hospital-image {
-    inline-size: 169px;
-    height: 100%;
-    width: 9rem;
+    /* inline-size: 169px; */
+    height: 200px;
+    width: 200px;
     border-radius: 10px;
-  }
-
-  .hospital-intro {
-    width: 11.5rem;
-    text-wrap: balance;
-    margin-block-start: 1px;
-    margin-block-end: 5px;
-  }
-
-  .hospital-intro,
-  .hospital-name,
-  .hospital-socials,
-  .hospital-proximity {
-    margin-inline-start: -20px;
   }
 }

@@ -7,7 +7,7 @@ import Navigation from "../Navigation/Navigation";
 import Footer from "../Footer/Footer";
 import Map from "../../Data/Map";
 import { NavLink } from "react-router-dom";
-import useMyLocation from "../../Data/useGeolocation";
+import UserLocation from "../../Data/useGeolocation";
 
 function LandingPage() {
   return (
@@ -43,9 +43,8 @@ function LandingPage() {
               </NavLink>
             </div>
             <p>- or </p>
-            <a href="g" onClick={useMyLocation}>
-              Use my location
-            </a>
+        
+            <UserLocation/>
           </form>
         </div>
       </div>

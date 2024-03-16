@@ -19,8 +19,8 @@ function SignUpForm() {
     }
     try {
       setLoading(true);
-      await signup(emailRef.current.value, passwordRef.current.value);
-
+      const signUp = await signup(emailRef.current.value, passwordRef.current.value);
+console.log(signUp)
     } catch {
       alert("Error!")
     }
@@ -40,7 +40,8 @@ function SignUpForm() {
   async function handleLogin() {
     setLoading(true);
     try {
-      await login(emailRef.current.value, passwordRef.current.value);
+      const logIn =await login(emailRef.current.value, passwordRef.current.value);
+      console.log(logIn)
     } catch {
       alert("Welcome {currentUser.email}")
     }
