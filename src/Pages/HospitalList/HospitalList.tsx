@@ -38,7 +38,7 @@ function HospitalList() {
       <div className="hospital-list-container">
         <div className="no-of-hospitals-found">
           <p>
-            <span>20</span> facilities found
+            <span>{hospitalsInfo.length}</span> facilities found
           </p>
           <div className="hospitals-found-logos">
             <BiFilter className="filter-hospital-result" />
