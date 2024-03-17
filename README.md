@@ -1,30 +1,18 @@
-# React + TypeScript + Vite
+We all know that access to healthcare in Nigeria can be challenging and thorough. It is absurd that the first thing to living is being healthy. Carefinder is a simple tool that aims to help users find, export, and share hospitals within the region.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Carefinder Features
 
-Currently, two official plugins are available:
+– Hospital Search: Carefinder allows users to search for hospitals within their region. Users can input their location or select from a list of nearby cities to find hospitals in their area. The platform will list hospitals and their respective contact details, including address, phone number, and email.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+– Export Hospitals: Carefinder allows users to export the list of hospitals to a CSV file, making it easy to save and share the information. This feature will be implemented using Firebase’s built-in file storage.
 
-## Expanding the ESLint configuration
+– Share Hospitals: Carefinder also allows users to share the list of hospitals with others. Users can share the information via email or by generating a shareable link. This feature will be implemented using Firebase’s built-in email and link-sharing functionalities.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+– User Authentication: Carefinder requires admin users to create an account to access the platform’s admin features. This feature will be implemented using Firebase’s built-in authentication feature, which supports multiple authentication methods, including email/password and social media logins.
 
-- Configure the top-level `parserOptions` property like this:
+– Markdown Support: Carefinder allows admin users to write content(create hospital entries and corresponding details) with a markdown. This feature makes it easy for users to format their content, add links, and insert images. The platform will provide a simple text editor that supports markdown syntax.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Built with
+- React
+- TypeScript
+- Vite
