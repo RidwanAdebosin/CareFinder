@@ -5,15 +5,9 @@ import HospitalLandingPage from "./Pages/HospitalLandPage/HospitalLandingPage";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import HospitalList from "./Pages/HospitalList/HospitalList";
 import AddHospitals from "./Pages/AddHospitals/AddHospitals";
-// import db from "./config";
-// import { useEffect, useState } from "react";
-// import { collection, onSnapshot } from "firebase/firestore";
-
 
 
 function App() {
-
-  
   return (
     <BrowserRouter>
   
