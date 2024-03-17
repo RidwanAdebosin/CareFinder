@@ -14,29 +14,31 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-initializeApp(firebaseConfig);
-export const auth = getAuth();
+const app = initializeApp(firebaseConfig);
+const auth = getAuth();
 
-export async function signup(email: string, password: string){
- await createUserWithEmailAndPassword(auth, email, password);
-}
+export default auth;
 
-export async function login(email: string, password: string){
-  await signInWithEmailAndPassword(auth, email, password);
-  }
+// export async function signup(email: string, password: string){
+//  await createUserWithEmailAndPassword(auth, email, password);
+// }
 
-export function logout(){
-return signOut(auth)
-}
-//custom hook
-export function useAuth(){
-  const [currentUser, setCurrentUser] = useState();
-  useEffect(() => {
-    const unsub =onAuthStateChanged(auth, user => setCurrentUser(user));
-    return unsub;
-  }, [])
+// export async function login(email: string, password: string){
+//   await signInWithEmailAndPassword(auth, email, password);
+//   }
 
-  return currentUser;
+// export function logout(){
+// return signOut(auth)
+// }
+// //custom hook
+// export function useAuth(){
+//   const [currentUser, setCurrentUser] = useState();
+//   useEffect(() => {
+//     const unsub =onAuthStateChanged(auth, user => setCurrentUser(user));
+//     return unsub;
+//   }, [])
 
-}
+//   return currentUser;
+
+// }
 
