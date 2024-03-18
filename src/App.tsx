@@ -12,8 +12,8 @@ function App() {
     <BrowserRouter>
   
       <Routes>
-        <Route index element={<LandingPage />} />
-        <Route path="signupform" element={<SignUpForm />} />
+        <Route index element={<SignUpForm />} />
+        <Route path="landing-page" element={<LandingPage />} />
         <Route
           path="hospital-list"
           element={<HospitalList/>}
@@ -25,6 +25,7 @@ function App() {
         <Route
         path="add-hospitals" element={<AddHospitals/>}/>
       </Routes>
+
     </BrowserRouter>
   );
 }
