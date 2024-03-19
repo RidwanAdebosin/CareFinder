@@ -16,11 +16,11 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-      <Route path="/" element={<SignUpForm />} />
+      <Route index element={<SignUpForm />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<PrivateRoute>
           <Profile />
-          <Route path="landing-page" element={<LandingPage />} />
+          <Route index path="/" element={<LandingPage />} />
           <Route path="hospital-list" element={<HospitalList />} />
           <Route path="hospital-list/:hospitalId" element={<HospitalLandingPage />} />
           <Route path="add-hospitals" element={<AddHospitals />} />

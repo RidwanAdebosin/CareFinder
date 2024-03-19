@@ -1,8 +1,7 @@
 import { FaFacebook, FaGoogle, FaApple } from "react-icons/fa";
 import "./SignUp.css";
-// import { redirect } from "react-router-dom";
 import CareFinderLogo from ".//careFinderLogo.png"
-import { useContext } from "react";
+import {useContext } from "react";
 import { AuthContext } from "../../AuthProvider";
 import { updateProfile } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
@@ -23,7 +22,7 @@ function SignUpForm() {
 
     // If the user is already authenticated, redirect to the home page
     if (user) {
-      navigate("/");
+      navigate("/landing-page");
     }
   
     // Handle form submission for user registration
@@ -59,7 +58,6 @@ function SignUpForm() {
           className="signup-carefinder-logo"
         />
       </div>
-      {/* Currently logged in as: {currentUser?.email} */}
 
 
       <div className="signup-form">
