@@ -27,7 +27,7 @@ function OAuth(){
             timestamp: serverTimestamp(),
         });
     }
-
+//navigate to homepage after user succesfully signed in
         navigate("/");
         }catch(error){
         toast.error("Could not authorize with Google");

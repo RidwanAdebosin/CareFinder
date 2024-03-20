@@ -53,8 +53,8 @@ function Profile(){
     }
     return(
 <>
-<Navigation/>
 <section className="profile-container">
+
     <div className="profile-form-wrapper">
     <h1 className="profile-h1"> User Profile</h1>
         <form>

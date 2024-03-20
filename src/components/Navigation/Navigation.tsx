@@ -24,7 +24,7 @@ function Navigation() {
         <li>
             <NavLink
               style={({ isActive }) =>
-                isActive ? { color: "blue" } : { color: "#fff" }
+                isActive ? { color: "black" } : { color: "#fff" }
               }
               className="navigate"
               to="/profile"
@@ -35,7 +35,7 @@ function Navigation() {
           <li>
             <NavLink
               style={({ isActive }) =>
-                isActive ? { color: "blue" } : { color: "#fff" }
+                isActive ? { color: "black" } : { color: "#fff" }
               }
               className="navigate"
               to="/resources"
@@ -51,10 +51,10 @@ function Navigation() {
           <li>
             <NavLink
               style={({ isActive }) =>
-                isActive ? { color: "blue" } : { color: "#fff" }
+                isActive ? { color: "black" } : { color: "#fff" }
               }
               className="navigate"
-              to="/about"
+              to="/footer"
             >
               About
             </NavLink>
@@ -62,17 +62,17 @@ function Navigation() {
           <li>
             <NavLink
               style={({ isActive }) =>
-                isActive ? { color: "blue" } : { color: "#fff" }
+                isActive ? { color: "black" } : { color: "#fff" }
               }
               className="navigate"
-              to="/contact"
+              to="/footer"
             >
               Contact us
             </NavLink>
           </li>
           <NavLink
             style={({ isActive }) =>
-              isActive ? { color: "blue" } : { color: "#fff" }
+              isActive ? { color: "black" } : { color: "#fff" }
             }
             className="navigate"
             to="/sign-in"
@@ -81,7 +81,7 @@ function Navigation() {
           </NavLink>
           <NavLink
             style={({ isActive }) =>
-              isActive ? { color: "blue" } : { color: "#fff" }
+              isActive ? { color: "black" } : { color: "#fff" }
             }
             className="navigate"
             to="/sign-up"

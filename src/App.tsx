@@ -10,15 +10,20 @@ import PrivateRoute from "./Pages/UserAuthentication/PrivateRouting";
 import Navigation from "./components/Navigation/Navigation";
 import SignIn from "./Pages/UserAuthentication/SignIn";
 import ForgotPassword from "./Pages/UserAuthentication/ForgotPassword";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import Footer from "./components/Footer/Footer";
+
 
 
 function App() {
   return (
+    <>
     <BrowserRouter>
     <Navigation/>
        <Routes>
         <Route path="/" element={<LandingPage />} />
-
+        <Route path="footer" element={<Footer/>} />
         <Route path="/profile" element={<PrivateRoute/>}>
 
         <Route path="/profile" element={<Profile/>}/>
@@ -40,7 +45,19 @@ function App() {
         path="add-hospitals" element={<AddHospitals/>}/>
       </Routes>
     </BrowserRouter> 
-  
+    <ToastContainer
+      position="bottom-center"
+      autoClose={5000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      closeOnClick
+      rtl={false}
+      pauseOnFocusLoss
+      draggable
+      pauseOnHover
+      theme="dark"
+      />
+  </>
   );
 }
 

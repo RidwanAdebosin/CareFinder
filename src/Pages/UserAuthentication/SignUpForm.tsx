@@ -42,7 +42,7 @@ function SignUpForm() {
       const formDataCopy = {...formData};
       delete formDataCopy.password;
       formDataCopy.timestamp = serverTimestamp();
-
+     
       await setDoc(doc(db, "users", user.uid), formDataCopy);
       navigate("/")
     } catch(error){
@@ -89,12 +89,12 @@ function SignUpForm() {
             )}
           </div>
          
-        <div>
-          <p>Already have an account?
-          <Link to="/sign-in">Sign In</Link>
+        <div className="account-options">
+          <p className="flex-option">Already have an account?
+          <Link to="/sign-in" className="link">Log In</Link>
           </p>
           <p>
-          <Link to="/forgot-password">
+          <Link to="/forgot-password" className="link">
             Forgot password?
           </Link>
           </p>
@@ -102,7 +102,7 @@ function SignUpForm() {
         <div className="forgot-password-btn">
         <button className="btn" type="submit">Sign Up</button>
         <div>
-          <p>OR</p>
+          <p>Or</p>
         </div>
        <OAuth/>
         </div>

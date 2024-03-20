@@ -24,6 +24,18 @@
   width: 100%;
 }
 
+.account-options {
+  display: flex;
+  justify-content: space-between;
+  padding-inline: 50px;
+  flex-wrap: wrap;
+}
+
+.flex-option {
+  display: flex;
+  gap: 2px;
+}
+
 .signup-input {
   background-color: #1f1f1f;
   color: #fff;
