@@ -1,5 +1,5 @@
-import { doc } from "firebase/firestore";
-import {db, colRef, singleDoc, getSingleDoc} from "../Data/FirebaseConfig";
+
+import { colRef, singleDoc, getSingleDoc} from "../Data/FirebaseConfig";
 
 
 interface HospitalsInfo {
