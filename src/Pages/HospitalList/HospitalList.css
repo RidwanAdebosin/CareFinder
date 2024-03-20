@@ -20,18 +20,15 @@
   display: flex;
   gap: 1rem;
 }
-.filter-hospital-result,
-.share-hospital-search-result,
-.download-hospital-details {
+.hospital-result-logo {
   background-color: transparent;
   cursor: pointer;
   border: 1px solid transparent;
   transition: border-color 1s ease-in;
+  color: white;
 }
 
-.filter-hospital-result:hover,
-.share-hospital-search-result:hover,
-.download-hospital-details:hover {
+.hospital-result-logo:hover {
   border-color: blue;
 }
 

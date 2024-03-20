@@ -46,7 +46,7 @@ function SignUpForm() {
       await setDoc(doc(db, "users", user.uid), formDataCopy);
       navigate("/")
     } catch(error){
-      toast.error("Something went wrong with the registration");
+      toast.error("Email already exist, please log in or check the email again");
       }
     }
 

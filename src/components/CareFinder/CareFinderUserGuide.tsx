@@ -1,5 +1,6 @@
 import FrameImage from "./Frame 1000005594.png";
 import "./CareFinder.css";
+import { Link } from "react-router-dom";
 
 function CareFinderUserGuide() {
   return (
@@ -53,7 +54,10 @@ function CareFinderUserGuide() {
             </p>
           </div>
         </div>
-        <button className="btn">Try it now &rarr;</button>
+        <Link to="/sign-up" className="link">
+        <button className="btn">Try it now &rarr; </button>
+        
+        </Link>
       </div>
       <div className="frame">
         <img

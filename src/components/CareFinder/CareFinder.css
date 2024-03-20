@@ -21,6 +21,10 @@
   margin-block-end: 1rem;
 }
 
+.link {
+  text-decoration: none;
+}
+
 .steps {
   margin-block-end: 5rem;
 }

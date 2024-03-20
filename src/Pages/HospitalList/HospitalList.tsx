@@ -1,6 +1,7 @@
 import React from "react";
 import Map from "../../Data/Map";
 import { BiDownload, BiShareAlt, BiFilter } from "react-icons/bi";
+import { FaPlus } from "react-icons/fa";
 import Navigation from "../../components/Navigation/Navigation";
 import SingleHospitalData from "./SingleHopspitalData.tsx";
 import { Link } from "react-router-dom";
@@ -10,6 +11,7 @@ import { hospitalsInfo } from "../../Data/hospitals.tsx";
 import { useState } from "react";
 import Pagination from "./Pagination";
 import { CSVLink } from "react-csv";
+
 
 const headers = [
   { label: "Hospital Name", key: "hospitalName"},
@@ -72,11 +74,14 @@ function HospitalList() {
               <span>{hospitalsInfo.length}</span> facilities found
             </p>
             <div className="hospitals-found-logos">
-              <BiFilter className="filter-hospital-result" />
-              <BiShareAlt className="share-hospital-search-result" />
+              <BiFilter className="hospital-result-logo" />
+              <BiShareAlt className="hospital-result-logo" />
               <CSVLink {...csvReport}>
-                <BiDownload className="download-hospital-details" onClick={handleDownloadHospitalsData}/>
+                <BiDownload className="hospital-result-logo" onClick={handleDownloadHospitalsData}/>
               </CSVLink>
+              <Link to="/add-hospitals" className="hospital-result-logo">
+              <FaPlus />
+              </Link>
             </div>
           </div>
           <ul className="singlehospital-details">

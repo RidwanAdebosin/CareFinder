@@ -4,7 +4,7 @@ import "./User.css";
 const initialFriends = [
   {
     id: 118836,
-    userName: "Clark",
+    userName: "Ayomide",
     userImage: "https://i.pravatar.cc/48?u=933372",
 
     userComment:
@@ -12,7 +12,7 @@ const initialFriends = [
   },
   {
     id: 933372,
-    userName: "Sarah",
+    userName: "Jolayemi",
     userImage:
       "https://media.istockphoto.com/id/1432249453/photo/a-male-programmer-shows-a-female-colleague-a-coding-technique-the-codes-are-visible-on-the.jpg?s=612x612&w=is&k=20&c=vmc95VMacoArLbStnKZ2MLGIG3co7mu1ICkSf1xMSn4=",
     userComment:
@@ -21,7 +21,7 @@ const initialFriends = [
 
   {
     id: 938372,
-    userName: "Sarah",
+    userName: "Mark",
     userImage:
       "https://media.istockphoto.com/id/1432249453/photo/a-male-programmer-shows-a-female-colleague-a-coding-technique-the-codes-are-visible-on-the.jpg?s=612x612&w=is&k=20&c=vmc95VMacoArLbStnKZ2MLGIG3co7mu1ICkSf1xMSn4=",
     userComment:
@@ -29,7 +29,7 @@ const initialFriends = [
   },
   {
     id: 933772,
-    userName: "Sarah",
+    userName: "Anthony J",
     userImage:
       "https://media.istockphoto.com/id/1432249453/photo/a-male-programmer-shows-a-female-colleague-a-coding-technique-the-codes-are-visible-on-the.jpg?s=612x612&w=is&k=20&c=vmc95VMacoArLbStnKZ2MLGIG3co7mu1ICkSf1xMSn4=",
     userComment:
@@ -37,7 +37,7 @@ const initialFriends = [
   },
   {
     id: 499476,
-    userName: "Anthony",
+    userName: "Ilumoka",
     userImage:
       "https://media.istockphoto.com/id/1432257450/photo/a-smaller-group-of-new-programmers-learn-coding-programming-languages-and-computer-science.jpg?s=612x612&w=0&k=20&c=8tpt1mRL6HyORnh3IH7o3gd9JpwC6IXOqMtORPusIKc=",
     userComment:
