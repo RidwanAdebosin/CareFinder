@@ -1,15 +1,17 @@
 import Navigation from "../components/Navigation/Navigation"
 import "./Profile.css"
 import { useState } from "react"
-import  auth  from "../FirebaseConfig"
 import Footer from "../components/Footer/Footer"
 import { useNavigate } from "react-router-dom"
-import { updateProfile,  } from "firebase/auth"
+import { getAuth, updateProfile,  } from "firebase/auth"
 import { doc, updateDoc } from "firebase/firestore"
+import {toast} from "react-toastify";
+import { db } from "../FirebaseConfig"
 
 
 
 function Profile(){
+    const auth = getAuth()
     const navigate = useNavigate();
     const [changeDetail, setChangeDetail]= useState(false);
     const [formData, setFormData] = useState({
@@ -31,8 +33,8 @@ function Profile(){
 
     async function onSubmit(){
         try{
-if(auth.currentUser.displayName !== name){
-    //update the display name in Firebase autthentication
+    if(auth.currentUser.displayName !== name){
+    //update the display name in Firebase authentication
     await updateProfile(auth.currentUser, {
         displayName: name,
     })
@@ -43,7 +45,7 @@ if(auth.currentUser.displayName !== name){
     await updateDoc(docRef, {
         name,
     });
-    toast.succes("Profile details updated")
+    toast.success("Profile details updated")
 }
         }catch(error){
     toast.error("Could not update profile details");

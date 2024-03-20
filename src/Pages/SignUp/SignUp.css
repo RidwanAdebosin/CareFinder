@@ -71,6 +71,17 @@
   color: blue;
 }
 
+.password-input {
+  position: relative;
+  margin-bottom: 6px;
+}
+
+.ai-fill-eye {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+}
+
 @media (max-width: 820px) {
   .signup-input {
     width: 50%;
@@ -93,5 +104,11 @@
     margin: 0 auto;
     border-radius: 25px;
     margin-block-end: 10px;
+  }
+
+  .ai-fill-eye {
+    position: absolute;
+    right: 140px;
+    top: 10px;
   }
 }

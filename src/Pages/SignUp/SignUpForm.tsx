@@ -31,6 +31,7 @@ type SignUpResult = Promise<object>;
   setLoading(false);
   }
 
+
   return (
     <div>
       <div className="signup-form">
@@ -55,7 +56,9 @@ type SignUpResult = Promise<object>;
       </div>
         <span className="signup-socials">
           <FaFacebook />
+          
           <FaGoogle />
+         
           <FaApple />
         </span>
     </div>
