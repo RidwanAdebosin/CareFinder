@@ -8,6 +8,7 @@ import AddHospitals from "./Pages/AddHospitals/AddHospitals";
 import Profile from "./Pages/Profile";
 import PrivateRoute from "./Pages/SignUp/PrivateRouting";
 import Navigation from "./components/Navigation/Navigation";
+import Login from "./Pages/SignUp/Login";
 
 
 function App() {
@@ -16,10 +17,15 @@ function App() {
     <Navigation/>
        <Routes>
         <Route path="/" element={<LandingPage />} />
+
         <Route path="/profile" element={<PrivateRoute/>}>
+
         <Route path="/profile" element={<Profile/>}/>
+        
         </Route>
+
         <Route path="sign-up" element={<SignUpForm />} />
+        <Route path="log-in" element={<Login/>} />
         <Route
           path="hospital-list"
           element={<HospitalList/>}

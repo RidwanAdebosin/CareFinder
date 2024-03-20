@@ -1,5 +1,5 @@
 import careFinderLogo from "./careFinderLogo.png";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import Hamburger from "hamburger-react";
 import { useState } from "react";
 import dropDownBtn from "./CaretDown.png";
@@ -15,7 +15,9 @@ function Navigation() {
   return (
     <div className="navBar">
       <div className="navbar-carefinder-logo">
+      <Link to="/">
         <img src={careFinderLogo} alt="CareFinder Logo" />
+      </Link>
       </div>
       <div className={`nav-list-wrapper ${hamburgerIsOpen ? "nav-listA" : ""}`}>
         <ul className="nav-list">
@@ -68,7 +70,15 @@ function Navigation() {
               Contact us
             </NavLink>
           </li>
+          <NavLink
+            style={({ isActive }) =>
+              isActive ? { color: "blue" } : { color: "#fff" }
+            }
+            className="navigate"
+            to="/log-in"
+          >
           <button className="btn">Login</button>
+          </NavLink>
           <NavLink
             style={({ isActive }) =>
               isActive ? { color: "blue" } : { color: "#fff" }

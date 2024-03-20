@@ -1,14 +1,12 @@
 import Navigation from "../components/Navigation/Navigation"
 import "./Profile.css"
-import { getAuth } from "firebase/auth"
 import { useState } from "react"
-// import { auth } from "../FirebaseConfig"
+import  auth  from "../FirebaseConfig"
 import Footer from "../components/Footer/Footer"
 import { useNavigate } from "react-router-dom"
 
 
 function Profile(){
-    const auth = getAuth()
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: auth.currentUser.displayName,
@@ -24,7 +22,7 @@ function Profile(){
 <>
 <Navigation/>
 <section className="profile-container">
-    <div className="form-wrapper">
+    <div className="profile-form-wrapper">
     <h1 className="profile-h1">My Profile</h1>
         <form>
         <input type="text" id="name" value={name} disabled className="profile-input"/>

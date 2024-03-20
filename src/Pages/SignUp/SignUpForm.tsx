@@ -1,68 +1,57 @@
 import { FaFacebook, FaGoogle, FaApple } from "react-icons/fa";
 import "./SignUp.css";
-import CareFinderLogo from ".//careFinderLogo.png"
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-
+import { useRef, useState } from "react";
+import  auth  from "../../FirebaseConfig"
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 
 function SignUpForm() {
-  const [showPassword, setShowPassword] = useState(false);
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
-  const {email, password} = formData;
-  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
-  function onChange(e){
-    setFormData((prevState) => ({
-      ...prevState,
-      [e.target.id]: e.target.value,
-    }))
+type Email = string;
+type Password = string;
+
+type SignUpResult = Promise<object>;
+
+ function signup(email: Email, password: Password): SignUpResult {
+    return createUserWithEmailAndPassword(auth, email, password);
+}
+
+  const emailRef = useRef();
+  const passwordRef = useRef();
+
+  async function handleSignUp(){
+    setLoading(true);
+    try{
+      await signup(emailRef.current.value, passwordRef.current.value);
+    }catch {
+      alert("Email already used by a user");
+    }
+  setLoading(false);
   }
 
   return (
     <div>
-      <div className="signup-careFinder-logo">
-        <img
-          src={CareFinderLogo}
-          alt="CareFinder"
-          className="signup-carefinder-logo"
-        />
-      </div>
-
       <div className="signup-form">
         <h1>Create Account</h1>
         <p>Sign up to get search for hospitals near you super fast!</p>
         <form className="signup-input-container" >
-
           <input
-            value={email}
+            ref={emailRef}
             type="email"
             placeholder="&#9993;Email"
             className="signup-input"
           />
-
           <input
-            value={password}
+            ref={passwordRef}
             type="password"
             placeholder="&#42;&#42;&#42; password..."
             className="signup-input"
           />
+        <button className="signup-btn" disabled={loading} onClick={handleSignUp}>SignUp</button>
         </form>
-
-        <button className="signup-btn">SignUp</button>
-
-        <button className="signup-btn">Log Out</button>
-
-        <button className="signup-btn">Log In</button>
-
-
         <p>Or sign up with</p>
-        
       </div>
-
         <span className="signup-socials">
           <FaFacebook />
           <FaGoogle />
@@ -74,11 +63,7 @@ function SignUpForm() {
 export default SignUpForm;
 
 
-{/* <span className="go-back-to-homepage">
-  <Link to="/" className="go-back-to-homepage">
-    &larr;
-  </Link>
-</span> */}
+
 
 
 

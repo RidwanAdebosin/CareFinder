@@ -1,73 +1,69 @@
-import { useContext, FormEvent } from "react";
-import { AuthContext } from "../../AuthProvider";
-import { useNavigate } from "react-router-dom";
+import { FaFacebook, FaGoogle, FaApple } from "react-icons/fa";
+import "./SignUp.css";
+import { useRef, useState } from "react";
+import  auth  from "../../FirebaseConfig"
+import { signInWithEmailAndPassword } from "firebase/auth";
 
-const Login: React.FC = () => {
-  const { loginUser, loading, user } = useContext(AuthContext);
-  const navigate = useNavigate();
 
-  // If authentication is still loading, display a loading indicator
-  if (loading) {
-    return (
-      <span className="loading loading-dots loading-lg flex item-center mx-auto"></span>
-    );
+function Login() {
+  const [loading, setLoading] = useState(false);
+
+type Email = string;
+type Password = string;
+
+type SignUpResult = Promise<object>;
+
+ function login(email: Email, password: Password): SignUpResult {
+    return signInWithEmailAndPassword (auth, email, password);
+}
+
+  const emailRef = useRef();
+  const passwordRef = useRef();
+
+  async function handleLogIn(){
+    setLoading(true);
+    try{
+      await login(emailRef.current.value, passwordRef.current.value);
+    }catch {
+      alert("welcome {current}");
+    }
+  setLoading(false);
   }
 
-  // If the user is already authenticated, redirect to the home page
-  if (user) {
-    navigate("/");
-    return null; // Ensure no content is rendered before redirection
-  }
-
-  // Handle form submission for user login
-  const handleFormSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const email = (e.currentTarget.elements.namedItem(
-      "email"
-    ) as HTMLInputElement).value;
-    const password = (e.currentTarget.elements.namedItem(
-      "password"
-    ) as HTMLInputElement).value;
-    loginUser(email, password)
-      .then((result) => {
-        console.log(result);
-        navigate("/");
-      })
-      .catch((error) => console.log(error.message));
-
-    e.currentTarget.reset();
-  };
-
-  // Render the login form
   return (
     <div>
-      <form onSubmit={handleFormSubmit}>
-        <div>
-          <label className="label">
-            <span className="label-text">Email</span>
-          </label>
+      <div className="signup-form">
+        <h1>Already have an acoount?</h1>
+        <p>Log in to get search for hospitals near you super fast!</p>
+        <form className="signup-input-container" >
           <input
-            type="text"
-            name="email"
-            placeholder="Email"
+            ref={emailRef}
+            type="email"
+            placeholder="&#9993;Email"
+            className="signup-input"
           />
-        </div>
-        <div className="form-control">
-          <label className="label">
-            <span className="label-text">Password</span>
-          </label>
           <input
+            ref={passwordRef}
             type="password"
-            name="password"
-            placeholder="Password"
+            placeholder="&#42;&#42;&#42; password..."
+            className="signup-input"
           />
-        </div>
-        <div>
-          <button type="submit" className="btn">Login</button>
-        </div>
-      </form>
+        <button className="signup-btn" disabled={loading} onClick={handleLogIn}>Log In</button>
+        </form>
+        <p>Or Log in with</p>
+      </div>
+        <span className="signup-socials">
+          <FaFacebook />
+          <FaGoogle />
+          <FaApple />
+        </span>
     </div>
   );
-};
-
+}
 export default Login;
+
+
+
+
+
+
