@@ -8,6 +8,7 @@ import OAuth from "./OAuth";
 import { db } from "../../Data/FirebaseConfig";
 import {doc, serverTimestamp, setDoc} from "firebase/firestore";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -20,7 +21,7 @@ function SignUpForm() {
    
   });
   const {name, email, password} = formData;
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   function onChange(e){
     setFormData((prevState) => ({
     ...prevState,
@@ -43,6 +44,7 @@ function SignUpForm() {
       formDataCopy.timestamp = serverTimestamp();
 
       await setDoc(doc(db, "users", user.uid), formDataCopy);
+      navigate("/")
     } catch(error){
       toast.error("Something went wrong with the registration");
       }
