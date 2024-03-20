@@ -1,4 +1,3 @@
-import { FaFacebook, FaGoogle, FaApple } from "react-icons/fa";
 import {AiFillEyeInvisible, AiFillEye} from "react-icons/ai";
 import "./SignUp.css";
 import { useState } from "react";
@@ -76,11 +75,13 @@ function SignIn() {
           </Link>
           </p>
         </div>
+        <div className="forgot-password-btn">
         <button className="btn" type="submit">Sign In</button>
         <div>
           <p>OR</p>
         </div>
        <OAuth/>
+        </div>
         </form>
         
       </section>
@@ -89,9 +90,3 @@ function SignIn() {
 }
 
 export default SignIn;
-
-<span className="signup-socials">
-<FaFacebook />
-<FaGoogle />
-<FaApple />
-</span>

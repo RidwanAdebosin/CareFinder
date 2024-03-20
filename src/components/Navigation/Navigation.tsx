@@ -75,7 +75,7 @@ function Navigation() {
               isActive ? { color: "blue" } : { color: "#fff" }
             }
             className="navigate"
-            to="/log-in"
+            to="/sign-in"
           >
           <button className="btn">Login</button>
           </NavLink>

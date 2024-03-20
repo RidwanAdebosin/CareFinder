@@ -64,11 +64,6 @@
   border: 3px solid #4a4848;
 }
 
-form:has(input:focus) {
-  background-color: #4a4848;
-  border-color: rgb(51, 52, 53);
-}
-
 .inputField {
   display: flex;
   align-items: center;

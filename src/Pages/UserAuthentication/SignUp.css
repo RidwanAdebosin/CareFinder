@@ -18,6 +18,7 @@
 .signup-form p {
   margin-block-end: 1rem;
 }
+
 .signup-input-container {
   height: fit-content;
   width: 100%;
@@ -36,6 +37,7 @@
   margin-block-end: 1rem;
   /* text-align: center; */
   align-items: center;
+  transition: 0.3s ease-in-out;
 }
 
 .signup-btn {
@@ -50,14 +52,6 @@
   cursor: pointer;
 }
 
-.signup-socials {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  cursor: pointer;
-  margin-block-end: 3rem;
-}
-
 .go-back-to-homepage {
   display: flex;
   justify-content: center;
@@ -65,10 +59,6 @@
   font-size: 2rem;
   font-weight: bold;
   font-style: normal;
-}
-
-.go-back-to-homepage:hover {
-  color: blue;
 }
 
 .password-input {
@@ -80,6 +70,51 @@
   position: absolute;
   right: 20px;
   top: 10px;
+}
+
+.container-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  gap: 3rem;
+  margin-block-start: 3rem;
+}
+
+.forgot-password-header {
+  margin-block-end: 3rem;
+}
+
+.forgot-password-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.signup-form .link {
+  text-decoration: none;
+}
+
+.signup-form .link:hover {
+  font-weight: bold;
+  transition: 0.5s ease-in;
+}
+
+.autho-btn {
+  border-radius: 25px;
+  width: 50%;
+  height: 40px;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  background-color: blue;
+  margin-block-end: 1.5rem;
+  cursor: pointer;
+}
+
+.autho-btn:hover {
+  transition: 0.3s ease-in-out;
+  background-color: rgb(4, 4, 198);
 }
 
 @media (max-width: 820px) {

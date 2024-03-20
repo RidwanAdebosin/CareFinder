@@ -1,14 +1,15 @@
 import "./App.css";
 import LandingPage from "./components/LandingPage/LandingPage";
-import SignUpForm from "./Pages/SignUp/SignUpForm";
+import SignUpForm from "./Pages/UserAuthentication/SignUpForm";
 import HospitalLandingPage from "./Pages/HospitalLandPage/HospitalLandingPage";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import HospitalList from "./Pages/HospitalList/HospitalList";
 import AddHospitals from "./Pages/AddHospitals/AddHospitals";
-import Profile from "./Pages/Profile";
-import PrivateRoute from "./Pages/SignUp/PrivateRouting";
+import Profile from "./Pages/UserProfile/Profile";
+import PrivateRoute from "./Pages/UserAuthentication/PrivateRouting";
 import Navigation from "./components/Navigation/Navigation";
-import Login from "./Pages/SignUp/SignIn";
+import SignIn from "./Pages/UserAuthentication/SignIn";
+import ForgotPassword from "./Pages/UserAuthentication/ForgotPassword";
 
 
 function App() {
@@ -25,7 +26,8 @@ function App() {
         </Route>
 
         <Route path="sign-up" element={<SignUpForm />} />
-        <Route path="log-in" element={<Login/>} />
+        <Route path="sign-in" element={<SignIn/>} />
+        <Route path="forgot-password" element={<ForgotPassword/>} />
         <Route
           path="hospital-list"
           element={<HospitalList/>}

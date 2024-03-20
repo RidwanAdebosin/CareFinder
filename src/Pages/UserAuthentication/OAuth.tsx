@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import {FcGoogle} from "react-icons/fc";
 import { doc, getDoc, serverTimestamp, setDoc } from "firebase/firestore";
-import {db} from "../../FirebaseConfig";
+import {db} from "../../Data/FirebaseConfig";
 import { useNavigate } from "react-router-dom";
 
 
@@ -34,7 +34,9 @@ function OAuth(){
     }
 }
     return(
-        <button type="button"
+        <button 
+        className="autho-btn"
+        type="button"
             onClick={onGoogleClick}>
             <FcGoogle/>
             Continue with Google

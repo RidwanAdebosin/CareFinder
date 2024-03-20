@@ -1,12 +1,12 @@
-import Navigation from "../components/Navigation/Navigation"
+import Navigation from "../../components/Navigation/Navigation"
 import "./Profile.css"
 import { useState } from "react"
-import Footer from "../components/Footer/Footer"
+import Footer from "../../components/Footer/Footer"
 import { useNavigate } from "react-router-dom"
 import { getAuth, updateProfile,  } from "firebase/auth"
 import { doc, updateDoc } from "firebase/firestore"
 import {toast} from "react-toastify";
-import { db } from "../FirebaseConfig"
+import { db } from "../../Data/FirebaseConfig"
 
 
 
@@ -56,7 +56,7 @@ function Profile(){
 <Navigation/>
 <section className="profile-container">
     <div className="profile-form-wrapper">
-    <h1 className="profile-h1">My Profile</h1>
+    <h1 className="profile-h1"> User Profile</h1>
         <form>
         <input type="text" id="name" value={name} disabled={!changeDetail} 
         onChange={onChange} className="profile-input"/>
