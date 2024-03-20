@@ -2,6 +2,7 @@
 
 .social-media-proof {
   display: flex;
+  flex-wrap: wrap;
   padding-inline: 1rem;
   align-items: center;
   justify-content: space-between;

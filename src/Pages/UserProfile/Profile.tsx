@@ -1,4 +1,3 @@
-import Navigation from "../../components/Navigation/Navigation"
 import "./Profile.css"
 import { useState } from "react"
 import Footer from "../../components/Footer/Footer"
