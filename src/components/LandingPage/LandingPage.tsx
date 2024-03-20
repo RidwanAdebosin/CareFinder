@@ -9,7 +9,9 @@ import Map from "../../Data/Map";
 import { NavLink } from "react-router-dom";
 import UserLocation from "../../Data/useGeolocation";
 
+
 function LandingPage() {
+
   return (
     <>
       <Navigation />
