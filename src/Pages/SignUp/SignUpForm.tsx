@@ -23,7 +23,8 @@ type SignUpResult = Promise<object>;
   async function handleSignUp(){
     setLoading(true);
     try{
-      await signup(emailRef.current.value, passwordRef.current.value);
+      const result = await signup(emailRef.current.value, passwordRef.current.value);
+      console.log(result);
     }catch {
       alert("Email already used by a user");
     }
