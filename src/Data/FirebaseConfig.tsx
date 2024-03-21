@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { collection, doc, getDoc, getDocs, getFirestore } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, getFirestore, onSnapshot } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -14,11 +14,23 @@ const firebaseConfig = {
 
 // Initialize Firebase
 initializeApp(firebaseConfig);
+
 export const db = getFirestore();
 export const colRef = collection(db, "hospitalList");
-// console.log(colRef)
 export const getAllData = getDocs;
 export const singleDoc = doc;
 export const getSingleDoc = getDoc;
-
+export const trackDataInDB = onSnapshot;
 export default firebaseConfig;
+
+export const getHospitalData = () => {
+  trackDataInDB(colRef, (snapshot) => {
+    const hospitalList = snapshot.docs.map((each) => {
+      return {
+        ...each.data(),
+        id: each.id,
+      };
+    });
+    console.log(hospitalList);
+  });
+};

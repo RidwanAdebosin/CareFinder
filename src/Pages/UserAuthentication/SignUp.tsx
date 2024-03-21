@@ -12,6 +12,7 @@ interface FormData {
   name: string;
   email: string;
   password: string;
+  timestamp: any;
 }
 
 function SignUpForm(): JSX.Element {
@@ -20,6 +21,7 @@ function SignUpForm(): JSX.Element {
     name: "",
     email: "",
     password: "",
+    timestamp: null, // Provide an initial value that aligns with the type
   });
   const { name, email, password } = formData;
   const navigate = useNavigate();

@@ -1,5 +1,5 @@
 
-import { colRef, singleDoc, getSingleDoc} from "../Data/FirebaseConfig";
+import { getHospitalData} from "../Data/FirebaseConfig";
 
 
 interface HospitalsInfo {
@@ -278,17 +278,5 @@ export const hospitalsInfo: HospitalsInfo[] = [
 ];
 
 
-   
-    // await setDoc(doc(db, "hospitallist", hospitalsInfo), formDataCopy);
-
-      //check for hospitals
-      async function getHospitals(){
-        // const docRef = await doc(db, "hospitalList");
-        // const docSnap = await getDoc(docRef);
-        // console.log(docSnap);
-        const docRef = singleDoc(colRef, "WjPDxEjoT0Gtwyvr9T2k")
-        console.log(colRef)
-        const hospitalsDatabase = await getSingleDoc(docRef);
-        console.log(hospitalsDatabase)
-      }
-  getHospitals();
+  
+  getHospitalData();

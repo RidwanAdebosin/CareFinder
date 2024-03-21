@@ -1,5 +1,4 @@
 import { toast } from "react-toastify";
-// import { FaGoogle } from "react-icons/fa";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import {FcGoogle} from "react-icons/fc";
 import { doc, getDoc, serverTimestamp, setDoc } from "firebase/firestore";

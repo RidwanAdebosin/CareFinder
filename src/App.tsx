@@ -1,6 +1,6 @@
 import "./App.css";
 import LandingPage from "./components/LandingPage/LandingPage";
-import SignUpForm from "./Pages/UserAuthentication/SignUpForm";
+import SignUpForm from "./Pages/UserAuthentication/SignUp";
 import HospitalLandingPage from "./Pages/HospitalLandPage/HospitalLandingPage";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import HospitalList from "./Pages/HospitalList/HospitalList";

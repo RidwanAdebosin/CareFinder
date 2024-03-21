@@ -2,41 +2,10 @@ import Navigation from "../../components/Navigation/Navigation";
 import Footer from "../../components/Footer/Footer";
 import "./AddHospitals.css"
 import { FaPen } from "react-icons/fa";
-import { useState } from "react";
 
 
 function AddHospitals() {
-    const [geolocationEnabled, setGeolocationEnabled] = useState(true);
-const [formData, setFormData] = useState({
-    hospitalName: "",
-    phoneNumber: Number,
-    companyEmail: "",
-    hospitalIntro: "",
-    coordinates:{
-        latitude: 0,
-        longitude: 0,
-    }
 
-})
-
-const{type, hospitalName, phoneNumber,
-companyEmail, hospitalIntro, latitude, longitude} = formData;
-
-
-    function onChange(e){
-        if(e.target.files){
-        setFormData((prevState) => ({
-        ...prevState,
-        images: e.target.files
-    }))
-}
-        if(!e.target.files){
-        setFormData((prevState) => ({
-        ...prevState,
-        [e.targe.id]: boolean ?? e.target.value,
-    }))
-}
-    }
     return (
         <>
             <Navigation />
@@ -80,7 +49,7 @@ companyEmail, hospitalIntro, latitude, longitude} = formData;
                         </form>
                         <div className="add-hospital-drop-zone">
 
-                            <input type="file" placeholder="Drag and drop file here or" value={onChange}/>
+                            <input type="file" placeholder="Drag and drop file here or" />
 
 
                         </div>
