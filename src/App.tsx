@@ -25,24 +25,23 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="footer" element={<Footer/>} />
         <Route path="/profile" element={<PrivateRoute/>}>
-
         <Route path="/profile" element={<Profile/>}/>
-
         </Route>
-
         <Route path="sign-up" element={<SignUpForm />} />
         <Route path="sign-in" element={<SignIn/>} />
         <Route path="forgot-password" element={<ForgotPassword/>} />
+        <Route path="add-hospitals" element={<PrivateRoute/>}>
         <Route
-          path="hospital-list"
+        path="/add-hospitals" element={<AddHospitals/>}/>
+        </Route>
+        <Route
+          path="/hospital-list"
           element={<HospitalList/>}
         />
         <Route
           path="hospital-list/:hospitalId"
           element={<HospitalLandingPage />}
         />
-        <Route
-        path="add-hospitals" element={<AddHospitals/>}/>
       </Routes>
     </BrowserRouter> 
     <ToastContainer
