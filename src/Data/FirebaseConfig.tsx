@@ -20,3 +20,5 @@ export const colRef = collection(db, "hospitalList");
 export const getAllData = getDocs;
 export const singleDoc = doc;
 export const getSingleDoc = getDoc;
+
+export default firebaseConfig;

@@ -24,14 +24,14 @@ companyEmail, hospitalIntro, latitude, longitude} = formData;
 
 
     function onChange(e){
-if(e.target.files){
-    setFormData((prevState) => ({
+        if(e.target.files){
+        setFormData((prevState) => ({
         ...prevState,
         images: e.target.files
     }))
 }
-if(!e.target.files){
-    setFormData((prevState) => ({
+        if(!e.target.files){
+        setFormData((prevState) => ({
         ...prevState,
         [e.targe.id]: boolean ?? e.target.value,
     }))
@@ -80,7 +80,7 @@ if(!e.target.files){
                         </form>
                         <div className="add-hospital-drop-zone">
 
-                            <input type="file" placeholder="Drag and drop file here or" />
+                            <input type="file" placeholder="Drag and drop file here or" value={onChange}/>
 
 
                         </div>
