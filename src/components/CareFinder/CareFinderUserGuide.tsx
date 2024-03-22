@@ -56,7 +56,7 @@ function CareFinderUserGuide() {
         </div>
         <Link to="/sign-up" className="link">
         <button className="btn">Try it now &rarr; </button>
-        
+  
         </Link>
       </div>
       <div className="frame">

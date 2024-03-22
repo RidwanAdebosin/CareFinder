@@ -15,7 +15,7 @@ function SingleHospitalData({ hospitalsData }) {
           />
         </div>
         <div className="single-hospital-details">
-          <Link to={`/hospital-list/${hospitalsData.id}`}>
+          <Link to={`/hospital-list/${hospitalsData.id}`} className="hospital-name">
             <h3 className="hospital-name">{hospitalsData.hospitalName}</h3>
           </Link>
           <p className="hospital-intro">{hospitalsData.hospitalIntro}</p>

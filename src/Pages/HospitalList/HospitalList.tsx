@@ -1,7 +1,7 @@
 import React from "react";
 import Map from "../../Data/Map";
 import { BiDownload, BiShareAlt, BiFilter } from "react-icons/bi";
-import { FaPlus } from "react-icons/fa";
+import { FaDownload, FaFilter, FaPlus, FaShareAlt } from "react-icons/fa";
 import Navigation from "../../components/Navigation/Navigation";
 import SingleHospitalData from "./SingleHopspitalData.tsx";
 import { Link } from "react-router-dom";
@@ -74,10 +74,10 @@ function HospitalList() {
               <span>{hospitalsInfo.length}</span> facilities found
             </p>
             <div className="hospitals-found-logos">
-              <BiFilter className="hospital-result-logo" />
-              <BiShareAlt className="hospital-result-logo" />
+              <FaFilter className="hospital-result-logo" />
+              <FaShareAlt className="hospital-result-logo" />
               <CSVLink {...csvReport}>
-                <BiDownload className="hospital-result-logo" onClick={handleDownloadHospitalsData}/>
+                <FaDownload className="hospital-result-logo" onClick={handleDownloadHospitalsData}/>
               </CSVLink>
               <Link to="/add-hospitals" className="hospital-result-logo">
               <FaPlus />

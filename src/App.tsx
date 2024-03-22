@@ -36,10 +36,11 @@ function App() {
         <Route path="sign-up" element={<SignUpForm />} />
         <Route path="sign-in" element={<SignIn/>} />
         <Route path="forgot-password" element={<ForgotPassword/>} />
-        
+        <Route path="/add-hospitals" element={<PrivateRoute/>}>
         <Route
         path="/add-hospitals" element={<AddHospitals/>}/>
-    
+        </Route>
+
         <Route
           path="hospital-list/:hospitalId"
           element={<HospitalLandingPage />}
