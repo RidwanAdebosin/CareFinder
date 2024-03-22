@@ -1,5 +1,5 @@
 import {AiFillEyeInvisible, AiFillEye} from "react-icons/ai";
-import "./SignUp.css";
+import "./UserAuth.css";
 import { useState } from "react";
 import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";

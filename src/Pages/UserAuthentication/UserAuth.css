@@ -47,7 +47,6 @@
   box-sizing: border-box;
   resize: vertical;
   margin-block-end: 1rem;
-  /* text-align: center; */
   align-items: center;
   transition: 0.3s ease-in-out;
 }
