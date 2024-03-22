@@ -93,11 +93,6 @@ function HospitalLandingPage() {
   </div>
 </div>
 </div>
-      <span className="go-back-to-homepage">
-        <Link to="/" className="go-back-to-homepage">
-          &larr;
-        </Link>
-      </span>
       <Footer />
     </div>
   );
