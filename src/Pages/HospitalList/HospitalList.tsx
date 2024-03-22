@@ -1,6 +1,5 @@
 import React from "react";
 import Map from "../../Data/Map";
-import { BiDownload, BiShareAlt, BiFilter } from "react-icons/bi";
 import { FaDownload, FaFilter, FaPlus, FaShareAlt } from "react-icons/fa";
 import Navigation from "../../components/Navigation/Navigation";
 import SingleHospitalData from "./SingleHopspitalData.tsx";
@@ -67,8 +66,7 @@ function HospitalList() {
             <Map />
           </span>
         </div>
-
-        <div className="hospital-list-container">
+       
           <div className="no-of-hospitals-found">
             <p>
               <span>{hospitalsInfo.length}</span> facilities found
@@ -84,6 +82,8 @@ function HospitalList() {
               </Link>
             </div>
           </div>
+
+        <div className="hospital-list-container">
           <ul className="singlehospital-details">
             {currentHospitals.map((hospital) => (
               <SingleHospitalData
@@ -99,11 +99,6 @@ function HospitalList() {
             setPage={setPage}
             indexOfLastHospital={indexOfLastHospital}
           />
-          <span className="go-back-to-homepage">
-            <Link to="/" className="go-back-to-homepage">
-              &larr;
-            </Link>
-          </span>
           <Footer />
         </div>
       </div>

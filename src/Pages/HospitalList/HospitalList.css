@@ -1,7 +1,6 @@
 .hospital-list-map-container {
   width: 100%;
   padding-top: 3rem;
-  margin-block-end: 5rem;
 }
 
 .hospital-list-iframe {
@@ -11,6 +10,7 @@
 
 .no-of-hospitals-found {
   display: flex;
+  gap: 1rem;
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
@@ -36,7 +36,7 @@
 .single-hospital-wrapper {
   display: flex;
   margin-inline: 1rem;
-  margin-block-end: 2.5rem;
+  margin-block-end: 2rem;
   gap: 20px;
 }
 
@@ -45,7 +45,6 @@
 }
 
 .hospital-image {
-  /* inline-size: 169px; */
   height: 200px;
   width: 200px;
   border-radius: 10px;
@@ -77,23 +76,27 @@
 
 .hospital-intro {
   text-wrap: balance;
-  /* margin-block-end: 4rem; */
 }
 
 @media (max-width: 820px) {
   .single-hospital-wrapper {
+    display: flex;
+    flex-wrap: wrap;
     gap: 1rem;
     padding: 1rem;
-    margin-bottom: 20px;
   }
 
   .hospital-image-container {
     height: 100%;
   }
   .hospital-image {
-    /* inline-size: 169px; */
     height: 200px;
     width: 200px;
     border-radius: 10px;
+  }
+
+  .no-of-hospitals-found {
+    flex-direction: column;
+    margin: 0 auto;
   }
 }

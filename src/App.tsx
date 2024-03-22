@@ -2,7 +2,7 @@ import "./App.css";
 import LandingPage from "./components/LandingPage/LandingPage";
 import SignUpForm from "./Pages/UserAuthentication/SignUp";
 import HospitalLandingPage from "./Pages/HospitalLandPage/HospitalLandingPage";
-import { Routes, Route, BrowserRouter, Switch } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import HospitalList from "./Pages/HospitalList/HospitalList";
 import AddHospitals from "./Pages/AddHospitals/AddHospitals";
 import Profile from "./Pages/UserProfile/Profile";
