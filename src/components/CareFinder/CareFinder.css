@@ -43,22 +43,21 @@
 .circle {
   border-radius: 50%;
   padding: 15px;
-  background: transparent;
+  width: 50px;
   border: 1px solid #fff;
-  display: flex;
   text-align: center;
-  font: 20px;
 }
 
 .link-line {
   display: flex;
-  margin-inline-start: 20px;
+  margin-inline-start: 25px;
 }
 
 .frame {
   position: relative;
   width: 50%;
 }
+
 .doctor {
   position: absolute;
   width: 100%;
