@@ -63,24 +63,13 @@
   cursor: pointer;
 }
 
-.go-back-to-homepage {
-  display: flex;
-  justify-content: center;
-  text-decoration: none;
-  font-size: 2rem;
-  font-weight: bold;
-  font-style: normal;
-}
-
 .password-input {
   position: relative;
-  margin-bottom: 6px;
 }
 
 .ai-fill-eye {
-  position: absolute;
-  right: 20px;
-  top: 10px;
+  position: static;
+  right: 50;
 }
 
 .container-wrapper {
@@ -150,11 +139,5 @@
     margin: 0 auto;
     border-radius: 25px;
     margin-block-end: 10px;
-  }
-
-  .ai-fill-eye {
-    position: absolute;
-    right: 140px;
-    top: 10px;
   }
 }

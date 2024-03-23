@@ -16,7 +16,7 @@ function Navigation() {
     <div className="navBar">
       <div className="navbar-carefinder-logo">
       <Link to="/">
-        <img src={careFinderLogo} alt="CareFinder Logo" />
+        <img src={careFinderLogo} alt="CareFinder Logo" className="carefinder-logo"/>
       </Link>
       </div>
       <div className={`nav-list-wrapper ${hamburgerIsOpen ? "nav-listA" : ""}`}>
