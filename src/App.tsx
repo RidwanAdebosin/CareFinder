@@ -5,7 +5,7 @@ import HospitalLandingPage from "./Pages/HospitalLandPage/HospitalLandingPage";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import HospitalList from "./Pages/HospitalList/HospitalList";
 import AddHospitals from "./Pages/AddHospitals/AddHospitals";
-import Profile from "./Pages/UserProfile/Profile";
+import Profile from "./Pages/UserAuthentication/UserProfile/Profile";
 import PrivateRoute from "./Pages/UserAuthentication/PrivateRouting";
 import Navigation from "./components/Navigation/Navigation";
 import SignIn from "./Pages/UserAuthentication/SignIn";
