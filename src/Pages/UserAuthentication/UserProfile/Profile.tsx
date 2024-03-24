@@ -1,7 +1,7 @@
 import "./Profile.css"
 import { useState } from "react"
 import Footer from "../../../components/Footer/Footer"
-import { useNavigate } from "react-router-dom"
+// import { useNavigate } from "react-router-dom"
 import { getAuth, updateProfile,  } from "firebase/auth"
 import { doc, updateDoc } from "firebase/firestore"
 import {toast} from "react-toastify";
@@ -11,7 +11,7 @@ import { db } from "../../../Data/FirebaseConfig"
 
 function Profile(){
     const auth = getAuth()
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const [changeDetail, setChangeDetail]= useState(false);
     const [formData, setFormData] = useState({
         name: auth.currentUser.displayName,
@@ -19,10 +19,10 @@ function Profile(){
     })
 
     const {name, email} = formData
-    function onLogOut(){
-        auth.signOut()
-        navigate("/")
-    }
+    // function onLogOut(){
+    //     auth.signOut()
+    //     navigate("/")
+    // }
 
     function onChange(e){
     setFormData((prevState) => ({
@@ -39,7 +39,6 @@ function Profile(){
     })
 
     //update the name in the firestore
-
     const docRef = doc(db, "users", auth.currentUser.uid);
     await updateDoc(docRef, {
         name,
@@ -62,14 +61,14 @@ function Profile(){
         <input type="email" id="email" value={email} disabled className="profile-input"/>
         <div className="form-extras">
             <p className="form-extras-p">Do you want to change your name? 
-            <span 
+            <span className="edit-action"
             
             onClick={() => {
                 changeDetail && onSubmit();
                 setChangeDetail((prevState) => !prevState);
             }}>
                 {changeDetail ? "Apply change" : "Edit"}</span></p>
-            <p onClick={onLogOut}>Sign Out</p>
+            {/* <p onClick={onLogOut}>Sign Out</p> */}
         </div>
 
         </form>

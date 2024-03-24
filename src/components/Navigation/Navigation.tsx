@@ -1,16 +1,31 @@
 import careFinderLogo from "./careFinderLogo.png";
 import { NavLink, Link } from "react-router-dom";
 import Hamburger from "hamburger-react";
+import { useNavigate } from "react-router-dom"
+import { getAuth} from "firebase/auth"
 import { useState } from "react";
 import dropDownBtn from "./CaretDown.png";
 import "./Navigation.css";
 
+import {useAuthStatus} from "../../Pages/UserAuthentication/useAuthStatus";
+
 function Navigation() {
+  const {loggedIn, checkingStatus} = useAuthStatus();
   const [hamburgerIsOpen, sethamburgerIsOpen] = useState(false);
+  
   //creating a function for toggling the nav on a smaller screen
   const handleHamburgerToggle = () => {
     sethamburgerIsOpen(!hamburgerIsOpen);
   };
+
+  // creteing a function to allow a user to log out
+  const auth = getAuth()
+  const navigate = useNavigate();
+
+  function onLogOut(){
+    auth.signOut()
+    navigate("/")
+}
 
   return (
     <div className="navBar">
@@ -70,6 +85,9 @@ function Navigation() {
               Contact us
             </NavLink>
           </li>
+          {/* to know if user is not checking in or logged in */}
+          {!checkingStatus && !loggedIn &&(
+          <>
           <NavLink
             style={({ isActive }) =>
               isActive ? { color: "black" } : { color: "#fff" }
@@ -88,6 +106,15 @@ function Navigation() {
           >
             <button className="btn">SignUp</button>
           </NavLink>
+          </>
+          )}
+          {/* Rendering the logout button if a user is logged in */}
+          {loggedIn && ( 
+            <li>
+              <button className="btn" onClick={onLogOut}>Log Out</button>
+            </li>
+          )
+          }
         </ul>
       </div>
       <div
@@ -102,3 +129,4 @@ function Navigation() {
 }
 
 export default Navigation;
+

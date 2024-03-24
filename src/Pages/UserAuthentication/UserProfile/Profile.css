@@ -35,6 +35,7 @@ section {
 }
 .profile-input:focus {
   background-color: blue;
+  color: white;
 }
 
 .form-extras-p {
@@ -55,13 +56,7 @@ section {
   cursor: pointer;
 }
 
-.form-extras p:last-child {
-  color: blue;
-  font-weight: 600;
-}
-
-.form-extras p:last-child:hover {
-  color: blue;
+.edit-action:hover {
   font-weight: 800;
   transition: 0.3s ease-in-out;
   cursor: pointer;
