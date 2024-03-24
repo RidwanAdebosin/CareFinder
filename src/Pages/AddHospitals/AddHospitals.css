@@ -71,6 +71,7 @@ main {
 
 .add-hospital-form {
   inline-size: 50%;
+  padding-inline: 1rem;
 }
 
 input:focus,
@@ -143,6 +144,10 @@ textarea {
 }
 
 @media (max-width: 700px) {
+  .add-hospital-wrapper {
+    width: fit-content;
+  }
+
   .add-hospital-details {
     display: grid;
   }

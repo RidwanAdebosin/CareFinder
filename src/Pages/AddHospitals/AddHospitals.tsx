@@ -26,7 +26,7 @@ const [markdowntext, setMarkdowntext] = useState("");
                         </span>
                     </main>
                     <div className="add-hospital-details">
-                        <form className="add-hospital-form" action="">
+                        <form className="add-hospital-form" action="submit">
                             <p className="full-width">
                                 <label>Name of hospital</label>
                                 <input type="text" placeholder="Type here" className="add-hospital-input" />
