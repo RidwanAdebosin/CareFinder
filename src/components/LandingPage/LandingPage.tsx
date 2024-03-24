@@ -8,9 +8,15 @@ import Footer from "../Footer/Footer";
 import Map from "../../Data/Map";
 import { NavLink } from "react-router-dom";
 import UserLocation from "../../Data/useGeolocation";
+import { useState } from "react";
 
 
 function LandingPage() {
+const [inputValue, setInputValue] = useState("");
+
+const handleInputChange = (e) => {
+  setInputValue(e.target.value)
+};
 
   return (
     <>
@@ -29,17 +35,20 @@ function LandingPage() {
             <label>Enter your location, a zip code, city or state</label>
             <div className="inputField">
               <input
+                required
                 type="text"
                 id="iconified"
                 placeholder="&#128269; Your location..."
                 className="landingpage-input"
+                value={inputValue}
+                onChange={handleInputChange}
               />
               <NavLink
                 style={({ isActive }) =>
                   isActive ? { color: "blue" } : { color: "#fff" }
                 }
                 className="navigate"
-                to="/hospital-list"
+                to={inputValue ? '/hospital-list' : '#'}
               >
                 <button className="btn">Search</button>
               </NavLink>

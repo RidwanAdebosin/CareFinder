@@ -90,13 +90,23 @@
     height: 100%;
   }
   .hospital-image {
-    height: 200px;
-    width: 200px;
-    border-radius: 10px;
+    width: 400px;
   }
 
   .no-of-hospitals-found {
     flex-direction: column;
     margin: 0 auto;
+  }
+}
+
+@media (max-width: 420px) {
+  .hospital-image-container {
+    height: 100%;
+    width: 100%;
+    border: 3px solid red;
+  }
+
+  .hospital-image {
+    width: 100%;
   }
 }
