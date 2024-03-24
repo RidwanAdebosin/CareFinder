@@ -24,7 +24,15 @@ function Navigation() {
 
   function onLogOut(){
     auth.signOut()
+    .then(() => {
+      // reload the page when logged out
+      window.location.reload();
+    })
+    .catch((error) => {
+      console.error("Error Signing Out:", error);
+    })
     navigate("/")
+    return;
 }
 
   return (
@@ -110,9 +118,11 @@ function Navigation() {
           )}
           {/* Rendering the logout button if a user is logged in */}
           {loggedIn && ( 
-            <li>
-              <button className="btn" onClick={onLogOut}>Log Out</button>
-            </li>
+            <NavLink className="navigate" to="./" onClick={onLogOut}>
+              <button className="btn" 
+              // onClick={onLogOut}
+              >Log Out</button>
+            </NavLink>
           )
           }
         </ul>
