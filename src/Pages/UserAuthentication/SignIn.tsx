@@ -42,6 +42,7 @@ function SignIn() {
         <p>Log in to get search for hospitals near you super fast!</p>
         <form className="signup-input-container" onSubmit={onSubmit}>
           <input
+          required
             value={email}
             onChange={onChange}
             type="email"
@@ -51,6 +52,7 @@ function SignIn() {
           />
           <div className="password-input">
             <input
+            required
               type={showPassword ? "text" : "password"}
               id="password"
               placeholder="Password"
@@ -58,32 +60,34 @@ function SignIn() {
               value={password}
               onChange={onChange}
             /> 
+            <div className="eye-icon">
             {showPassword ? (
-              <AiFillEyeInvisible className="ai-fill-eye" onClick={() => setShowPassword((prevState) => !prevState)}/>
+              <AiFillEyeInvisible onClick={() => setShowPassword((prevState) => !prevState)}/>
             ) : (
-              <AiFillEye className="ai-fill-eye" onClick={() => setShowPassword((prevState) => !prevState)}/>
+              <AiFillEye onClick={() => setShowPassword((prevState) => !prevState)}/>
             )}
+            </div>
           </div>
          
-        <div>
-          <p>Don't have an account?
-          <Link to="/sign-up">Register</Link>
-          </p>
+        <div style={{marginBlockEnd: '20px'}}>
           <p>
-          <Link to="/forgot-password">
+          <Link to="/forgot-password" style={{textDecoration: 'none', display: 'flex', textAlign: 'start', color: 'grey'}}>
             Forgot password?
           </Link>
           </p>
-        </div>
         <div className="forgot-password-btn">
-        <button className="btn" type="submit">Sign In</button>
-        <div>
-          <p>OR</p>
-        </div>
+        <button type="submit" className="signup-input-btn">Sign In</button>
+          <p>Or</p>
        <OAuth/>
         </div>
+        </div>
+        <hr/>
         </form>
-        
+        <div className="signIn-extras">
+          <p>Don't have an account?
+          </p>
+          <Link to="/sign-up" className="alternative-signIn-option">Register</Link>
+        </div>
       </section>
     </div>
   )

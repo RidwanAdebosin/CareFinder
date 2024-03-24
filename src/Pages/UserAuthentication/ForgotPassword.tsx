@@ -29,6 +29,7 @@ export default function ForgotPassword() {
         
           <form onSubmit={onSubmit} className="signup-input-container">
             <input
+              required
               type="email"
               id="email"
               value={email}
@@ -36,25 +37,6 @@ export default function ForgotPassword() {
               placeholder="Email address"
               className="signup-input"
             />
-
-           
-              <p>
-                Don't have a account?
-                <Link
-                  to="/sign-up"
-                  className="link"
-                >
-                  Register
-                </Link>
-              </p>
-              <p>
-                <Link
-                  to="/sign-in"
-                  className="link"
-                >
-                  Sign in instead
-                </Link>
-              </p>
             <div className="forgot-password-btn">
             <button
               className="btn"
@@ -62,11 +44,18 @@ export default function ForgotPassword() {
             >
               Send reset password
             </button>
-            <div>
-              <p>OR</p>
             </div>
-            <OAuth />
+            <div className="signIn-extras">
+            <p> Already have an account?
+            </p>
+            <Link to="/sign-in" className="alternative-signIn-option">Log In</Link>
             </div>
+            <div className="signIn-extras">
+          <p>Don't have an account?
+          </p>
+          <Link to="/sign-up" className="alternative-signIn-option">Register</Link>
+        </div>
+           
           </form>
        
       

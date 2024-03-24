@@ -61,6 +61,7 @@ function SignUpForm(): JSX.Element {
 
       <form className="signup-input-container" onSubmit={onSubmit}>
         <input
+        required
           value={name}
           onChange={onChange}
           type="text"
@@ -69,6 +70,7 @@ function SignUpForm(): JSX.Element {
           className="signup-input"
         />
         <input
+        required
           value={email}
           onChange={onChange}
           type="email"
@@ -77,44 +79,39 @@ function SignUpForm(): JSX.Element {
           className="signup-input"
         />
         <div className="password-input">
-          <input
-            type={showPassword ? "text" : "password"}
-            id="password"
-            placeholder="Password"
-            className="signup-input"
-            value={password}
-            onChange={onChange}
-          />
-          {showPassword ? (
-            <AiFillEyeInvisible className="ai-fill-eye" onClick={() => setShowPassword((prevState) => !prevState)} />
-          ) : (
-            <AiFillEye className="ai-fill-eye" onClick={() => setShowPassword((prevState) => !prevState)} />
-          )}
-        </div>
+            <input
+            required
+              type={showPassword ? "text" : "password"}
+              id="password"
+              placeholder="Password"
+              className="signup-input"
+              value={password}
+              onChange={onChange}
+            /> 
+            <div className="eye-icon">
+            {showPassword ? (
+              <AiFillEyeInvisible onClick={() => setShowPassword((prevState) => !prevState)}/>
+            ) : (
+              <AiFillEye onClick={() => setShowPassword((prevState) => !prevState)}/>
+            )}
+            </div>
+          </div>
 
-        <div className="account-options">
-          <p className="flex-option">
-            Already have an account?
-            <Link to="/sign-in" className="link">
-              Log In
-            </Link>
-          </p>
-          <p>
-            <Link to="/forgot-password" className="link">
-              Forgot password?
-            </Link>
-          </p>
-        </div>
-        <div className="forgot-password-btn">
-          <button className="btn" type="submit">
+        <div className="forgot-password-btn" style={{marginBlockEnd: '20px'}}>
+          <button className="signup-input-btn">
             Sign Up
           </button>
-          <div>
             <p>Or</p>
-          </div>
           <OAuth />
         </div>
+        <hr/>
       </form>
+
+      <div className="signIn-extras">
+          <p> Already have an account?
+          </p>
+          <Link to="/sign-in" className="alternative-signIn-option">Log In</Link>
+        </div>
     </section>
   );
 }

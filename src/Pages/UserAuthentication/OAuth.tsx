@@ -4,6 +4,7 @@ import {FcGoogle} from "react-icons/fc";
 import { doc, getDoc, serverTimestamp, setDoc } from "firebase/firestore";
 import {db} from "../../Data/FirebaseConfig";
 import { useNavigate } from "react-router-dom";
+import "./UserAuth.css"
 
 
 function OAuth(){
@@ -33,13 +34,16 @@ function OAuth(){
     }
 }
     return(
-        <button 
-        className="autho-btn"
+        <a className="alternative-signIn-option"
         type="button"
-            onClick={onGoogleClick}>
-            <FcGoogle/>
-            Continue with Google
-        </button>
+            onClick={onGoogleClick} style={{color: 'grey'}}>
+                <span style={{marginInlineEnd: '4px'}}>
+                <FcGoogle/>
+                </span>
+                <p>
+                Continue with Google
+                </p>
+        </a>
     );
 }
 
