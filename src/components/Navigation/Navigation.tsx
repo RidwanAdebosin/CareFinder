@@ -6,8 +6,8 @@ import { getAuth} from "firebase/auth"
 import { useState } from "react";
 import dropDownBtn from "./CaretDown.png";
 import "./Navigation.css";
-
 import {useAuthStatus} from "../../Pages/UserAuthentication/useAuthStatus";
+import { toast } from "react-toastify";
 
 function Navigation() {
   const {loggedIn, checkingStatus} = useAuthStatus();
@@ -25,14 +25,14 @@ function Navigation() {
   function onLogOut(){
     auth.signOut()
     .then(() => {
+      toast.success("User logged out successfully");
       // reload the page when logged out
       window.location.reload();
     })
     .catch((error) => {
       console.error("Error Signing Out:", error);
     })
-    navigate("/")
-    return;
+    navigate("/");
 }
 
   return (
