@@ -2,10 +2,12 @@ import Navigation from "../../components/Navigation/Navigation";
 import Footer from "../../components/Footer/Footer";
 import "./AddHospitals.css"
 import { FaPen } from "react-icons/fa";
+import {Remarkable} from "remarkable";
+import {useState} from "react"
 
-
+const md = new Remarkable();
 function AddHospitals() {
-
+const [markdowntext, setMarkdowntext] = useState("");
     return (
         <>
             <Navigation />
@@ -43,15 +45,23 @@ function AddHospitals() {
 
                             <p className="full-width">
                                 <label>Write a short bio</label>
-                                <textarea name="" id="" placeholder="write a short bio about your facility here" className="add-hospital-textarea"></textarea>
+                                <textarea 
+                                autoFocus
+                                name="markdown" 
+                                id="markdown" 
+                                placeholder="write a short bio about your facility here" className="add-hospital-textarea"
+                                value={markdowntext}
+                                onChange={(e) => setMarkdowntext(e.target.value)}
+                                
+                                ></textarea>
 
                             </p>
                         </form>
                         <div className="add-hospital-drop-zone">
-
                             <input type="file" placeholder="Drag and drop file here or" />
-
-
+                        </div>
+                        <div dangerouslySetInnerHTML={{__html: md.render(markdowntext)}}>
+                            
                         </div>
                     </div>
                 </div>

@@ -13,6 +13,7 @@ header {
   background-color: #1f1f1f;
   margin-block-end: 5rem;
   padding: 2rem 1rem;
+  width: fit-content;
 }
 
 main {
