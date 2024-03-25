@@ -46,7 +46,6 @@ const [markdowntext, setMarkdowntext] = useState("");
                             <p className="full-width">
                                 <label>Write a short bio</label>
                                 <textarea 
-                                autoFocus
                                 name="markdown" 
                                 id="markdown" 
                                 placeholder="write a short bio about your facility here" className="add-hospital-textarea"
@@ -60,9 +59,8 @@ const [markdowntext, setMarkdowntext] = useState("");
                         <div className="add-hospital-drop-zone">
                             <input type="file" placeholder="Drag and drop file here or" />
                         </div>
-                        <div dangerouslySetInnerHTML={{__html: md.render(markdowntext)}}>
-                            
-                        </div>
+                        {/* <div dangerouslySetInnerHTML={{__html: md.render(markdowntext)}}>
+                        </div> */}
                     </div>
                 </div>
             </div>

@@ -82,7 +82,7 @@ textarea:focus {
 .add-hospital-input,
 .add-hospital-textarea {
   width: 100%;
-  /* border: 1px solid #000; */
+  color: white;
 }
 
 .add-hospital-form {
@@ -118,6 +118,7 @@ textarea {
   border-radius: 4px;
   background-color: transparent;
   resize: none;
+  color: white;
 }
 
 .add-hospital-drop-zone {
