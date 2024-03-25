@@ -1,5 +1,34 @@
-
+import axios from 'axios';
 import { getHospitalData} from "../Data/FirebaseConfig";
+
+
+componentDisMount(){
+  this.getHospitals()
+  this.renderMap()
+}
+
+renderMap = () => {
+  loadScript("https://maps.google.com/maps?%20Nigeria+(CareFinder)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed")
+}
+
+getHospitals = () => {
+  const endPoint = "https://api.foursquare.com/v2/venues/explore"
+  const parameters = {
+    client_id: "QHYPHQW2ZHJDZJSK3S3TY3MIBMXDN0BQLFHL0CQBNIQVGTGV",
+    client_secret:
+    "PZGV1OVAUYL0ZM4ONA0HG5NBTSSMCSF4DDWMY4HZS45PMNQE",
+    query: "hospitals",
+    near: "Nigeria"
+  }
+
+  axios.get(endPoint + new URLSearchParams(parameters))
+  .then(response => {
+    console.log(response)
+  })
+  .catch(error => {
+    console.log('ERROR!!' + error)
+  })
+}
 
 
 interface HospitalsInfo {
@@ -18,6 +47,8 @@ interface HospitalsInfo {
     longitude: number;
   } | string;
 }
+
+
 
 
 export const hospitalsInfo: HospitalsInfo[] = [
