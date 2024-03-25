@@ -1,16 +1,15 @@
-import Navigation from "../../components/Navigation/Navigation";
+
 import Footer from "../../components/Footer/Footer";
 import "./AddHospitals.css"
 import { FaPen } from "react-icons/fa";
-import {Remarkable} from "remarkable";
+// import {Remarkable} from "remarkable";
 import {useState} from "react"
 
-const md = new Remarkable();
+// const md = new Remarkable();
 function AddHospitals() {
 const [markdowntext, setMarkdowntext] = useState("");
     return (
         <>
-            <Navigation />
             <div className="add-hospital-container">
                 <header>
 
@@ -34,7 +33,7 @@ const [markdowntext, setMarkdowntext] = useState("");
 
                             <p>
                                 <label className="number-label">Phone Number</label>
-                                <input type="number" placeholder="Type here" className="add-hospital-input" />
+                                <input type="text" placeholder="Type here" className="add-hospital-input" />
                             </p>
 
                             <p>
@@ -56,9 +55,11 @@ const [markdowntext, setMarkdowntext] = useState("");
 
                             </p>
                         </form>
+                        
                         <div className="add-hospital-drop-zone">
-                            <input type="file" placeholder="Drag and drop file here or" />
+                            <input type="file" placeholder="Drag and drop file here or" className="dropzone-input"/>
                         </div>
+                      
                         {/* <div dangerouslySetInnerHTML={{__html: md.render(markdowntext)}}>
                         </div> */}
                     </div>
