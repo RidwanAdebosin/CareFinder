@@ -1,30 +1,30 @@
 import { Link } from "react-router-dom";
-import { FaEnvelope, FaInstagram, FaLinkedin }
- from "react-icons/fa";
+// import { FaEnvelope, FaInstagram, FaLinkedin }
+//  from "react-icons/fa";
 
 
 function SingleHospitalData({ hospitalsData }) {
   return (
     <div>
       <div className="single-hospital-wrapper">
-        <div className="hospital-image-container">
+        {/* <div className="hospital-image-container">
           <img
             src={hospitalsData.hospitalImage}
-            alt={hospitalsData.hospitalName}
+            alt={hospitalsData.name}
             className="hospital-image"
           />
-        </div>
+        </div> */}
         <div className="single-hospital-details">
-          <Link to={`/hospital-list/${hospitalsData.id}`} className="hospital-name">
-            <h3 className="hospital-name">{hospitalsData.hospitalName}</h3>
+          <Link to={`/hospital-list/${hospitalsData.fsq_id}`} className="hospital-name">
+            <h3 className="hospital-name">{hospitalsData.name}</h3>
           </Link>
-          <p className="hospital-intro">{hospitalsData.hospitalIntro}</p>
+          {/* <p className="hospital-intro">{hospitalsData.hospitalIntro}</p>
           <p className="hospital-proximity">
             <span>🏃🏻</span>
             {hospitalsData.hospitalProximity}
-          </p>
+          </p> */}
 
-          <span className="hospital-socials">
+          {/* <span className="hospital-socials">
             {hospitalsData.hospitalSocials.instagram && (
               <a href={hospitalsData.hospitalSocials.instagram}>
                 <FaInstagram />
@@ -40,7 +40,7 @@ function SingleHospitalData({ hospitalsData }) {
                 <FaLinkedin />
               </a>
             )}
-          </span>
+          </span> */}
 
 
         </div>

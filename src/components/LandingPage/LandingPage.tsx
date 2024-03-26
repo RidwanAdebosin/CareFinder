@@ -9,14 +9,41 @@ import Map from "../../Data/Map";
 import { NavLink } from "react-router-dom";
 import UserLocation from "../../Data/useGeolocation";
 import { useState } from "react";
+import { fetchHospitals } from "../../Data/hospitals";
+import {toast} from "react-toastify"
 
+export interface HospitalsFetched  {
+name: string,
+address: string,
+country: string,
+// results: string
 
-function LandingPage() {
+}
+
+function LandingPage({hospitalResult, setHospitalResult}) {
 const [inputValue, setInputValue] = useState("");
+const [isLoading, setIsLoading] = useState(false);
 
 const handleInputChange = (e) => {
   setInputValue(e.target.value)
 };
+
+const handleSearchHospitals = async () => {
+  try{
+    if(!inputValue){
+    toast.error("Search field can't be empty")
+    } else{
+      setIsLoading(true)
+      const hospitalsfetched: HospitalsFetched[] = await fetchHospitals(inputValue);
+      setHospitalResult(hospitalsfetched);
+      setIsLoading(false)
+      console.log(hospitalResult)
+    }
+  } catch(error){
+console.log(error)
+  }
+}
+
 
   return (
     <>
@@ -48,9 +75,9 @@ const handleInputChange = (e) => {
                   isActive ? { color: "blue" } : { color: "#fff" }
                 }
                 className="navigate"
-                to={inputValue ? '/hospital-list' : '#'}
+                to={!isLoading && inputValue ? '/hospital-list' : '/'}
               >
-                <button className="btn">Search</button>
+                <button className="btn" onClick={handleSearchHospitals}>Search</button>
               </NavLink>
             </div>
             <p>- or </p>

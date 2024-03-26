@@ -13,16 +13,18 @@ import ForgotPassword from "./Pages/UserAuthentication/ForgotPassword";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import Footer from "./components/Footer/Footer";
+import { useState } from "react";
 
 
 
 function App() {
+const [hospitalResult, setHospitalResult] = useState([]);
   return (
     <>
     <BrowserRouter>
     <Navigation/>
        <Routes>
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/" element={<LandingPage hospitalResult={hospitalResult} setHospitalResult={setHospitalResult}/>} />
         <Route path="footer" element={<Footer/>} />
         <Route path="/profile" element={<PrivateRoute/>}>
         <Route path="/profile" element={<Profile/>}/>
@@ -30,7 +32,7 @@ function App() {
         <Route path="/hospital-list" element={<PrivateRoute/>}>
           <Route
             path="/hospital-list"
-            element={<HospitalList/>}
+            element={<HospitalList hospitalResult={hospitalResult}/>}
           />
         </Route>
         <Route path="sign-up" element={<SignUpForm />} />

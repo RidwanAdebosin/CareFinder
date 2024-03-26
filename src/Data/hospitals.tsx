@@ -1,24 +1,46 @@
 import axios from 'axios';
 
+export const fetchHospitals = async(search) => {
+  const searchParams = new URLSearchParams({
+    near: search,
+    categories: '15014',
+    sort: 'DISTANCE'
+  })
 
-const fetchHospitals = {
-    method: 'GET',
-    url: 'https://api.foursquare.com/v3/places/search',
-    params: {categories: '15014', near: 'Yaba', sort: 'DISTANCE'},
-    headers: {
-      accept: 'application/json',
-      Authorization: 'fsq32+urLJrVe9vIXAJyiXgkhxhmdEf8TsdndodPTEH8A90='
-    }
-  };
+  const response = await axios.get(`https://api.foursquare.com/v3/places/search?${searchParams}`,
+
+  {headers: {
+    "Content-Type": 'application/json',
+    Authorization: 'fsq32+urLJrVe9vIXAJyiXgkhxhmdEf8TsdndodPTEH8A90='
+  }})
   
-  axios
-    .request(fetchHospitals)
-    .then(function (response) {
-      console.log(response.data);
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
+  console.log(response.data.results)
+  return response.data.results
+}
+
+
+// fetchHospitals();
+
+
+
+// const fetchHospitals = {
+//     method: 'GET',
+//     url: 'https://api.foursquare.com/v3/places/search',
+//     params: {categories: '15014', near: 'Yaba', sort: 'DISTANCE'},
+//     headers: {
+//       accept: 'application/json',
+//       Authorization: 'fsq32+urLJrVe9vIXAJyiXgkhxhmdEf8TsdndodPTEH8A90='
+//     }
+//   };
+  
+//   axios
+//     .request(fetchHospitals)
+//     .then(function (response) {
+//       console.log(response.data);
+//     })
+//     .catch(function (error) {
+//       console.error(error);
+//     });
 
 
     // export default fetchHospitals;

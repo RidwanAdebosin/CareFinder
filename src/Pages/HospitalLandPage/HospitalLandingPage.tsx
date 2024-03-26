@@ -1,6 +1,6 @@
 import Navigation from "../../components/Navigation/Navigation";
 import Footer from "../../components/Footer/Footer";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { hospitalsInfo } from "../../Data/hospitals";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
