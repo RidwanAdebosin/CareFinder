@@ -3,7 +3,7 @@ import { NavLink, Link } from "react-router-dom";
 import Hamburger from "hamburger-react";
 import { useNavigate } from "react-router-dom"
 import { getAuth} from "firebase/auth"
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import dropDownBtn from "./CaretDown.png";
 import "./Navigation.css";
 import {useAuthStatus} from "../../Pages/UserAuthentication/useAuthStatus";
@@ -12,15 +12,34 @@ import { toast } from "react-toastify";
 function Navigation() {
   const {loggedIn, checkingStatus} = useAuthStatus();
   const [hamburgerIsOpen, sethamburgerIsOpen] = useState(false);
-  
-  //creating a function for toggling the nav on a smaller screen
-  const handleHamburgerToggle = () => {
-    sethamburgerIsOpen(!hamburgerIsOpen);
+  // const [open, setOpen] = useState(false);
+  const menuRef = useRef();
+  const navigate = useNavigate();
+
+  //creating a side hook to close the dropdown whenever a suer clicked outside the box
+useEffect(() => {
+  const handleClickOutside = (event) => {
+    if (menuRef.current && !menuRef.current.contains(event.target)) {
+      sethamburgerIsOpen(false);
+    }
+  };
+
+  document.addEventListener("mousedown", handleClickOutside);
+
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside);
+  };
+}, [menuRef]);
+
+
+//creating a function for toggling the nav on a smaller screen
+const handleHamburgerToggle = () => {
+  sethamburgerIsOpen(!hamburgerIsOpen);
   };
 
   // creating a function to allow a user to log out
   const auth = getAuth()
-  const navigate = useNavigate();
+ 
 
   //creating a LogOut function for the user using the .signOut authentication from firebase
   function onLogOut(){
@@ -37,7 +56,7 @@ function Navigation() {
 }
 
   return (
-    <div className="navBar">
+    <div className="navBar" ref={menuRef}>
       <div className="navbar-carefinder-logo">
       <Link to="/">
         <img src={careFinderLogo} alt="CareFinder Logo" className="carefinder-logo"/>
