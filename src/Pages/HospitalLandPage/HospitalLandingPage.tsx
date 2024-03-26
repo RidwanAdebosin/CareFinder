@@ -1,7 +1,7 @@
 import Navigation from "../../components/Navigation/Navigation";
 import Footer from "../../components/Footer/Footer";
 // import { Link } from "react-router-dom";
-import { hospitalsInfo } from "../../Data/hospitals";
+// import { hospitalsInfo } from "../../Data/hospitals";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./HospitalLandPage.css";
@@ -17,8 +17,8 @@ import ActiveDepartmentImage4 from "./gettyimages-157279602-612x612 1.jpg"
 import ActiveDepartmentImage5 from "./gettyimages-173799627-612x612 1.jpg"
 
 
-function HospitalLandingPage() {
-  const { hospitalId } = useParams();
+function HospitalLandingPage({hospitalResult}) {
+  const { hospitalsData.fsq_id } = useParams();
   const [hospitalDetails, setHospitalDetails] = useState<{
     hospitalName?: string;
     hospitalIntro?: string;
@@ -26,11 +26,11 @@ function HospitalLandingPage() {
   }>({});
 
   useEffect(() => {
-    const newHospitalsInfo = hospitalsInfo.find(
-      (hospital) => String(hospital.id) == hospitalId
+    const newHospitalsInfo = hospitalResult.find(
+      (hospital) => String(hospital.id) == hospitalsData.fsq_id
     );
     setHospitalDetails(newHospitalsInfo);
-  }, [hospitalId]);
+  }, [hospitalsData.fsq_id]);
 
   return (
     <div>
