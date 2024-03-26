@@ -1,55 +1,47 @@
 import axios from 'axios';
-import { getHospitalData} from "../Data/FirebaseConfig";
 
 
-componentDisMount(){
-  this.getHospitals()
-  this.renderMap()
-}
-
-renderMap = () => {
-  loadScript("https://maps.google.com/maps?%20Nigeria+(CareFinder)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed")
-}
-
-getHospitals = () => {
-  const endPoint = "https://api.foursquare.com/v2/venues/explore"
-  const parameters = {
-    client_id: "QHYPHQW2ZHJDZJSK3S3TY3MIBMXDN0BQLFHL0CQBNIQVGTGV",
-    client_secret:
-    "PZGV1OVAUYL0ZM4ONA0HG5NBTSSMCSF4DDWMY4HZS45PMNQE",
-    query: "hospitals",
-    near: "Nigeria"
-  }
-
-  axios.get(endPoint + new URLSearchParams(parameters))
-  .then(response => {
-    console.log(response)
-  })
-  .catch(error => {
-    console.log('ERROR!!' + error)
-  })
-}
-
-
-interface HospitalsInfo {
-  id: number;
-  hospitalName: string;
-  hospitalImage: string;
-  hospitalProximity: string;
-  hospitalIntro: string;
-  hospitalSocials: {
-    instagram: string;
-    email: string;
-    linkedin: string;
+const fetchHospitals = {
+    method: 'GET',
+    url: 'https://api.foursquare.com/v3/places/search',
+    params: {categories: '15014', near: 'Yaba', sort: 'DISTANCE'},
+    headers: {
+      accept: 'application/json',
+      Authorization: 'fsq32+urLJrVe9vIXAJyiXgkhxhmdEf8TsdndodPTEH8A90='
+    }
   };
-  coordinates:{
-    latitude: number;
-    longitude: number;
-  } | string;
-}
+  
+  axios
+    .request(fetchHospitals)
+    .then(function (response) {
+      console.log(response.data);
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
 
 
-
+    // export default fetchHospitals;
+    
+    
+    
+    
+    interface HospitalsInfo {
+      id: number;
+      hospitalName: string;
+      hospitalImage: string;
+      hospitalProximity: string;
+      hospitalIntro: string;
+      hospitalSocials: {
+        instagram: string;
+        email: string;
+        linkedin: string;
+      };
+      coordinates:{
+        latitude: number;
+        longitude: number;
+      } | string;
+    }
 
 export const hospitalsInfo: HospitalsInfo[] = [
   {
@@ -308,6 +300,7 @@ export const hospitalsInfo: HospitalsInfo[] = [
 
 ];
 
+export default hospitalsInfo;
+
 
   
-  getHospitalData();
