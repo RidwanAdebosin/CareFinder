@@ -18,16 +18,17 @@ function Navigation() {
     sethamburgerIsOpen(!hamburgerIsOpen);
   };
 
-  // creteing a function to allow a user to log out
+  // creating a function to allow a user to log out
   const auth = getAuth()
   const navigate = useNavigate();
 
+  //creating a LogOut function for the user using the .signOut authentication from firebase
   function onLogOut(){
     auth.signOut()
     .then(() => {
-      toast.success("User logged out successfully");
       // reload the page when logged out
       window.location.reload();
+      toast.success("User logged out successfully");
     })
     .catch((error) => {
       console.error("Error Signing Out:", error);
@@ -93,7 +94,7 @@ function Navigation() {
               Contact us
             </NavLink>
           </li>
-          {/* to know if user is not checking in or logged in */}
+          {/* to know if user is not checking in or logged in then conditionally render the signup and signin button*/}
           {!checkingStatus && !loggedIn &&(
           <>
           <NavLink
