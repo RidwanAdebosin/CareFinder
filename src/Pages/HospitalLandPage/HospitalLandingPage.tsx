@@ -1,15 +1,12 @@
 import Navigation from "../../components/Navigation/Navigation";
 import Footer from "../../components/Footer/Footer";
-// import { Link } from "react-router-dom";
 // import { hospitalsInfo } from "../../Data/hospitals";
-
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./HospitalLandPage.css";
 import DepartmentImage1 from "./Frame 1000005648.jpg"
 import DepartmentImage2 from "./Frame 1000005649.jpg"
 import  DepartmentImage3 from "./gettyimages-1293918380-612x612 1.jpg"
-
 import ActiveDepartmentImage from "./gettyimages-1293918380-612x612 1.jpg"
 import ActiveDepartmentImage1 from "./gettyimages-1293918380-612x612 12.jpg"
 import ActiveDepartmentImage2 from "./gettyimages-1453876840-1024x1024 1.jpg"
@@ -18,20 +15,20 @@ import ActiveDepartmentImage4 from "./gettyimages-157279602-612x612 1.jpg"
 import ActiveDepartmentImage5 from "./gettyimages-173799627-612x612 1.jpg"
 
 
-function HospitalLandingPage({hospitalsData}) {
-  const { hospitalsData.fsq_id } = useParams();
+function HospitalLandingPage() {
+  const { hospitalId } = useParams();
   const [hospitalDetails, setHospitalDetails] = useState<{
-    name?: string;
+    hospitalName?: string;
     hospitalIntro?: string;
     hospitalImage?: string;
   }>({});
 
   useEffect(() => {
-    const newHospitalsInfo = hospitalResult.find(
-      (hospital) => String(hospitalsData.fsq_id) == hospitalsData.fsq_id
+    const newHospitalsInfo = hospitalsInfo.find(
+      (hospital) => String(hospital.id) == hospitalId
     );
     setHospitalDetails(newHospitalsInfo);
-  }, [hospitalsData.fsq_id]);
+  }, [hospitalId]);
 
   return (
     <div>
@@ -40,7 +37,7 @@ function HospitalLandingPage({hospitalsData}) {
         <div className="hospital-landing-page-image-container">
           <img
             src={hospitalDetails?.hospitalImage}
-            alt={hospitalDetails?.name}
+            alt={hospitalDetails?.hospitalName}
             className="hospital-landing-page-hospital-image"
           />
         </div>
@@ -48,7 +45,7 @@ function HospitalLandingPage({hospitalsData}) {
           <div className="single-hospital-landing-page-info">
 
           <h3 className="hospital-landing-page-hospital-name">
-            {hospitalDetails?.name}
+            {hospitalDetails?.hospitalName}
           </h3>
           <p className="hospital-landing-page-hospital-intro">
             {hospitalDetails?.hospitalIntro}

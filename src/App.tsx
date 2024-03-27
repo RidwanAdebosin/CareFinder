@@ -45,7 +45,7 @@ const [hospitalResult, setHospitalResult] = useState([]);
 
         <Route
           path="hospital-list/:hospitalsData.fsq_id"
-          element={<HospitalLandingPage hospitalsData={hospitalsData}/>}
+          element={<HospitalLandingPage />}
         />
          {/* hospitalsData={hospital}
                 key={hospital.fsq_id} */}

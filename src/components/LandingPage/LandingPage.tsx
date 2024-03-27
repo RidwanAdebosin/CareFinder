@@ -12,11 +12,11 @@ import { useState } from "react";
 import { fetchHospitals } from "../../Data/hospitals";
 import {toast} from "react-toastify"
 
+
 export interface HospitalsFetched  {
 name: string,
 address: string,
 country: string,
-// results: string
 
 }
 

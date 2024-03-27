@@ -9,6 +9,7 @@ import Footer from "../../components/Footer/Footer";
 // import { hospitalResult } from "../../Data/hospitals.tsx";
 import { useState } from "react";
 import Pagination from "./Pagination";
+import Spinner from "../Spinner.tsx";
 // import { CSVLink } from "react-csv";
 // import { HospitalsFetched } from "../../components/LandingPage/LandingPage.tsx";
 
@@ -36,6 +37,8 @@ function HospitalList({hospitalResult}){
     indexOfFirstHospital,
     indexOfLastHospital
   );
+  //Loading state to manage the spinner visibility
+  const [loading, setLoading] = useState(true);
 
   // const handleDownloadHospitalsData = () => {
   //   // Creating a CSV file containing all hospitals information
@@ -59,6 +62,10 @@ function HospitalList({hospitalResult}){
   //   link.click();
   //   document.body.removeChild(link);
   // };
+
+  setTimeout(() => {
+    setLoading(false);
+  }, 1000);
 
   return (
     <>
@@ -85,6 +92,11 @@ function HospitalList({hospitalResult}){
               </Link>
             </div>
           </div>
+{/* consitionally render the spinner while loading */}
+{loading ? (
+  <Spinner/>
+): (
+
 
         <div className="hospital-list-container">
           <ul className="singlehospital-details">
@@ -105,6 +117,7 @@ function HospitalList({hospitalResult}){
           />
           <Footer />
         </div>
+        )}
       </div>
     </>
   );
