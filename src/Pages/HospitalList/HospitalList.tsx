@@ -15,6 +15,7 @@ import Pagination from "./Pagination";
 
 
 // const headers = [
+
 //   { label: "Hospital Name", key: "hospitalName"},
 //   { label: "Hospital Intro", key: "hospitalIntro"},
 //   { label: "Hospital Location", key: "coordinates"}
@@ -100,6 +101,7 @@ function HospitalList({hospitalResult}){
             page={page}
             setPage={setPage}
             indexOfLastHospital={indexOfLastHospital}
+            hospitalResult={hospitalResult}
           />
           <Footer />
         </div>

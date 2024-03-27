@@ -2,6 +2,7 @@ import Navigation from "../../components/Navigation/Navigation";
 import Footer from "../../components/Footer/Footer";
 // import { Link } from "react-router-dom";
 // import { hospitalsInfo } from "../../Data/hospitals";
+
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./HospitalLandPage.css";
@@ -17,17 +18,17 @@ import ActiveDepartmentImage4 from "./gettyimages-157279602-612x612 1.jpg"
 import ActiveDepartmentImage5 from "./gettyimages-173799627-612x612 1.jpg"
 
 
-function HospitalLandingPage({hospitalResult}) {
+function HospitalLandingPage({hospitalsData}) {
   const { hospitalsData.fsq_id } = useParams();
   const [hospitalDetails, setHospitalDetails] = useState<{
-    hospitalName?: string;
+    name?: string;
     hospitalIntro?: string;
     hospitalImage?: string;
   }>({});
 
   useEffect(() => {
     const newHospitalsInfo = hospitalResult.find(
-      (hospital) => String(hospital.id) == hospitalsData.fsq_id
+      (hospital) => String(hospitalsData.fsq_id) == hospitalsData.fsq_id
     );
     setHospitalDetails(newHospitalsInfo);
   }, [hospitalsData.fsq_id]);
@@ -39,7 +40,7 @@ function HospitalLandingPage({hospitalResult}) {
         <div className="hospital-landing-page-image-container">
           <img
             src={hospitalDetails?.hospitalImage}
-            alt={hospitalDetails?.hospitalName}
+            alt={hospitalDetails?.name}
             className="hospital-landing-page-hospital-image"
           />
         </div>
@@ -47,7 +48,7 @@ function HospitalLandingPage({hospitalResult}) {
           <div className="single-hospital-landing-page-info">
 
           <h3 className="hospital-landing-page-hospital-name">
-            {hospitalDetails?.hospitalName}
+            {hospitalDetails?.name}
           </h3>
           <p className="hospital-landing-page-hospital-intro">
             {hospitalDetails?.hospitalIntro}

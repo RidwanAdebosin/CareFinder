@@ -44,9 +44,11 @@ const [hospitalResult, setHospitalResult] = useState([]);
         </Route>
 
         <Route
-          path="hospital-list/:hospitalId"
-          element={<HospitalLandingPage hospitalResult={hospitalResult}/>}
+          path="hospital-list/:hospitalsData.fsq_id"
+          element={<HospitalLandingPage hospitalsData={hospitalsData}/>}
         />
+         {/* hospitalsData={hospital}
+                key={hospital.fsq_id} */}
       </Routes>
     </BrowserRouter> 
   

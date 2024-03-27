@@ -1,46 +1,41 @@
 import { Link } from "react-router-dom";
-// import { FaEnvelope, FaInstagram, FaLinkedin }
-//  from "react-icons/fa";
+import { FaEnvelope, FaInstagram, FaLinkedin }
+ from "react-icons/fa";
+import hospitalImage from "../HospitalLandPage/gettyimages-173799627-612x612 1.jpg"
 
 
 function SingleHospitalData({ hospitalsData }) {
   return (
     <div>
       <div className="single-hospital-wrapper">
-        {/* <div className="hospital-image-container">
+        <div className="hospital-image-container">
           <img
-            src={hospitalsData.hospitalImage}
+            src={hospitalImage}
             alt={hospitalsData.name}
             className="hospital-image"
           />
-        </div> */}
+        </div>
         <div className="single-hospital-details">
           <Link to={`/hospital-list/${hospitalsData.fsq_id}`} className="hospital-name">
             <h3 className="hospital-name">{hospitalsData.name}</h3>
           </Link>
-          {/* <p className="hospital-intro">{hospitalsData.hospitalIntro}</p>
+          <p className="hospital-intro">{hospitalsData.name} runs Pathology Services. Clinical pathologists in Africa are capable to connect the most appropriate diagnostic healthcare pathway. We offer wide range of clinical diagnosis from Haematology to Sonography.</p>
           <p className="hospital-proximity">
             <span>🏃🏻</span>
-            {hospitalsData.hospitalProximity}
-          </p> */}
+            {hospitalsData.distance} Km
+          </p>
 
-          {/* <span className="hospital-socials">
-            {hospitalsData.hospitalSocials.instagram && (
-              <a href={hospitalsData.hospitalSocials.instagram}>
+          <span className="hospital-socials">
+              <a>
                 <FaInstagram />
               </a>
-            )}
-            {hospitalsData.hospitalSocials.email && (
-              <a href={hospitalsData.hospitalSocials.email}>
+              <a>
                 <FaEnvelope />
               </a>
-            )}
-            {hospitalsData.hospitalSocials.linkedin && (
-              <a href={hospitalsData.hospitalSocials.linkedin}>
+              <a>
                 <FaLinkedin />
               </a>
-            )}
-          </span> */}
+          </span>
 
 
         </div>
