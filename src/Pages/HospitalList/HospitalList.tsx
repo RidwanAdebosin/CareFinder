@@ -6,27 +6,16 @@ import SingleHospitalData from "./SingleHopspitalData.tsx";
 import { Link } from "react-router-dom";
 import "./HospitalList.css";
 import Footer from "../../components/Footer/Footer";
-// import { hospitalResult } from "../../Data/hospitals.tsx";
+// import  {hospitalResult}  from "../../Data/hospitals.tsx";
 import { useState } from "react";
 import Pagination from "./Pagination";
 import Spinner from "../Spinner.tsx";
-// import { CSVLink } from "react-csv";
+import { CSVLink } from "react-csv";
 // import { HospitalsFetched } from "../../components/LandingPage/LandingPage.tsx";
 
 
 
-// const headers = [
 
-//   { label: "Hospital Name", key: "hospitalName"},
-//   { label: "Hospital Intro", key: "hospitalIntro"},
-//   { label: "Hospital Location", key: "coordinates"}
-// ];
-
-// const csvReport = {
-//   data: hospitalResult,
-//   headers: headers,
-//   filename: "Hospitals_Search_Report.csv"
-// }
 
 function HospitalList({hospitalResult}){
   const [hospitalListPerPage] = useState(3);
@@ -40,32 +29,45 @@ function HospitalList({hospitalResult}){
   //Loading state to manage the spinner visibility
   const [loading, setLoading] = useState(true);
 
-  // const handleDownloadHospitalsData = () => {
-  //   // Creating a CSV file containing all hospitals information
-  //   const csvData = hospitalResult.map(hospital => ({
-  //     hospitalName: hospital.hospitalName,
-  //     hospitalIntro: hospital.hospitalIntro,
-  //     coordinates: hospital.coordinates
-  //   }));
+  const headers = [
 
-  //   // Generate CSV file and trigger download
-  //   const csvContent = [
-  //     headers.map(header => header.label).join(','),
-  //     ...csvData.map(row => Object.values(row).join(','))
-  //   ].join('\n');
+    { label: "Hospital Name", key: "name"},
+    { label: "Hospital Intro", key: "hospitalIntro"},
+    { label: "Hospital Location", key: "geocodes.main"}
+  ];
+  
+  const csvReport = {
+    data: hospitalResult,
+    headers: headers,
+    filename: "Hospitals_Search_Report.csv"
+  }
 
-  //   const encodedUri = encodeURI('data:text/csv;charset=utf-8,' + csvContent);
-  //   const link = document.createElement('a');
-  //   link.setAttribute('href', encodedUri);
-  //   link.setAttribute('download', csvReport.filename);
-  //   document.body.appendChild(link);
-  //   link.click();
-  //   document.body.removeChild(link);
-  // };
+  const handleDownloadHospitalsData = () => {
+    // Creating a CSV file containing all hospitals information
+    const csvData = hospitalResult.map(hospital => ({
+      hospitalName: hospital.name,
+      hospitalIntro: hospital.hospitalIntro,
+      coordinates: hospital.geocodes.main
+    }));
+
+    // Generate CSV file and trigger download
+    const csvContent = [
+      headers.map(header => header.label).join(','),
+      ...csvData.map(row => Object.values(row).join(','))
+    ].join('\n');
+
+    const encodedUri = encodeURI('data:text/csv;charset=utf-8,' + csvContent);
+    const link = document.createElement('a');
+    link.setAttribute('href', encodedUri);
+    link.setAttribute('download', csvReport.filename);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   setTimeout(() => {
     setLoading(false);
-  }, 1000);
+  }, 2000);
 
   return (
     <>
@@ -84,9 +86,9 @@ function HospitalList({hospitalResult}){
             <div className="hospitals-found-logos">
               <FaFilter className="hospital-result-logo" />
               <FaShareAlt className="hospital-result-logo" />
-              {/* <CSVLink {...csvReport}> */}
-                {/* <FaDownload className="hospital-result-logo" onClick={handleDownloadHospitalsData}/> */}
-              {/* </CSVLink> */}
+              <CSVLink {...csvReport}> 
+                <FaDownload className="hospital-result-logo" onClick={handleDownloadHospitalsData}/> 
+              </CSVLink>
               <Link to="/add-hospitals" className="hospital-result-logo">
               <FaPlus />
               </Link>

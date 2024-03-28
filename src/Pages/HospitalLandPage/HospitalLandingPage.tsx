@@ -15,7 +15,7 @@ import ActiveDepartmentImage4 from "./gettyimages-157279602-612x612 1.jpg"
 import ActiveDepartmentImage5 from "./gettyimages-173799627-612x612 1.jpg"
 
 
-function HospitalLandingPage() {
+function HospitalLandingPage({hospitalResult}) {
   const { hospitalId } = useParams();
   const [hospitalDetails, setHospitalDetails] = useState<{
     hospitalName?: string;
@@ -24,7 +24,7 @@ function HospitalLandingPage() {
   }>({});
 
   useEffect(() => {
-    const newHospitalsInfo = hospitalsInfo.find(
+    const newHospitalsInfo = hospitalResult.find(
       (hospital) => String(hospital.id) == hospitalId
     );
     setHospitalDetails(newHospitalsInfo);
@@ -37,7 +37,7 @@ function HospitalLandingPage() {
         <div className="hospital-landing-page-image-container">
           <img
             src={hospitalDetails?.hospitalImage}
-            alt={hospitalDetails?.hospitalName}
+            alt={hospitalDetails?.name}
             className="hospital-landing-page-hospital-image"
           />
         </div>

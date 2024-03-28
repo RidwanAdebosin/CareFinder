@@ -19,6 +19,11 @@ function SingleHospitalData({ hospitalsData }) {
           <Link to={`/hospital-list/${hospitalsData.fsq_id}`} className="hospital-name">
             <h3 className="hospital-name">{hospitalsData.name}</h3>
           </Link>
+          <span>
+          <em>{hospitalsData.location.address}, </em>
+          <em>{hospitalsData.location.country}</em>
+        
+          </span>
           <p className="hospital-intro">{hospitalsData.name} runs Pathology Services. Clinical pathologists in Africa are capable to connect the most appropriate diagnostic healthcare pathway. We offer wide range of clinical diagnosis from Haematology to Sonography.</p>
           <p className="hospital-proximity">
             <span>🏃🏻</span>
