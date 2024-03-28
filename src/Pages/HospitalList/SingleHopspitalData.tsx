@@ -26,7 +26,7 @@ function SingleHospitalData({ hospitalsData }) {
           <p className="hospital-intro">{hospitalsData.name} runs Pathology Services. Clinical pathologists in Africa are capable to connect the most appropriate diagnostic healthcare pathway. We offer wide range of clinical diagnosis from Haematology to Sonography.</p>
           <p className="hospital-proximity">
             <span>🏃🏻</span>
-            {hospitalsData.distance} Km
+            {hospitalsData.distance} Km away
           </p>
 
           <span className="hospital-socials">

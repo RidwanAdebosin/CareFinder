@@ -1,7 +1,6 @@
 import Navigation from "../../components/Navigation/Navigation";
 import Footer from "../../components/Footer/Footer";
-import { fetchHospitals } from "../../Data/hospitals";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./HospitalLandPage.css";
 import DepartmentImage1 from "./Frame 1000005648.jpg"
@@ -13,22 +12,28 @@ import ActiveDepartmentImage2 from "./gettyimages-1453876840-1024x1024 1.jpg"
 import ActiveDepartmentImage3 from "./gettyimages-1453876840-1024x1024 1.png"
 import ActiveDepartmentImage4 from "./gettyimages-157279602-612x612 1.jpg"
 import ActiveDepartmentImage5 from "./gettyimages-173799627-612x612 1.jpg"
+import hospitalImage from "../HospitalLandPage/gettyimages-173799627-612x612 1.jpg"
 
 
 function HospitalLandingPage({hospitalResult}) {
-  // const { hospitalResult.fsq_id } = useParams();
+  // destructuring the hospitalResult object to access its fsq_id
+  const { fsq_id } = useParams();
+  
+  // set a state for the expected hospitalDetails
   const [hospitalDetails, setHospitalDetails] = useState<{
     name?: string;
     hospitalIntro?: string;
     hospitalImage?: string;
   }>({});
-
+  
   useEffect(() => {
     const newHospitalsInfo = hospitalResult.find(
-      (hospital) => String(hospitalResult.fsq_id) == hospitalResult.fsq_id
+      (hospitalResult) => String(hospitalResult.fsq_id) === fsq_id
     );
     setHospitalDetails(newHospitalsInfo);
-  }, [hospitalResult.fsq_id]);
+  }, 
+  // including fsq_id and hospitalResult in my dependency array so that it updates when these values change
+  [fsq_id, hospitalResult]);
 
   return (
     <div>
@@ -36,8 +41,9 @@ function HospitalLandingPage({hospitalResult}) {
       <div className="hospital-landing-page-container">
         <div className="hospital-landing-page-image-container">
           <img
-            src={hospitalDetails?.hospitalImage}
-            alt={hospitalDetails?.name}
+            src={hospitalImage}
+            // alt={hospitalDetails?.name}
+            alt={hospitalResult.name}
             className="hospital-landing-page-hospital-image"
           />
         </div>
@@ -45,14 +51,15 @@ function HospitalLandingPage({hospitalResult}) {
           <div className="single-hospital-landing-page-info">
 
           <h3 className="hospital-landing-page-hospital-name">
-            {hospitalDetails?.name}
+            {/* {hospitalDetails?.name} */}
+            {hospitalResult.name}
           </h3>
           <p className="hospital-landing-page-hospital-intro">
             {hospitalDetails?.hospitalIntro}
           </p>
           </div>
 
-          <div    className="single-hospital-landing-page-department-images">
+          <div className="single-hospital-landing-page-department-images">
           <img src={DepartmentImage1} alt={"image showing a department in the hospital"}
           className="department-image"/>
           <img src={DepartmentImage2} alt={"image showing a department in the hospital"}
@@ -87,15 +94,19 @@ function HospitalLandingPage({hospitalResult}) {
           className="active-department-image"/> 
           <img src={ActiveDepartmentImage5} alt={"image showing active department in the hospital"}
           className="active-department-image"/> 
-<button className="btn">Get started now</button>
   </div>
-</div>
-<span title="take me back to the previous page">
-  &larr;
-</span>
-</div>
+      <span className="btn-container">
+        <button className="btn">Get started now</button>
+      </span>
+  </div>
+      <span className="arrow-back-container">
+        <Link to="/hospital-list" className="arrow-back" title="Take me back to the previous page">
+        &larr;
+        </Link>
+      </span>
+  </div>
       <Footer />
-    </div>
+  </div>
   );
 }
 
