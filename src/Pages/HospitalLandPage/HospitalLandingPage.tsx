@@ -1,6 +1,6 @@
 import Navigation from "../../components/Navigation/Navigation";
 import Footer from "../../components/Footer/Footer";
-// import { hospitalsInfo } from "../../Data/hospitals";
+import { fetchHospitals } from "../../Data/hospitals";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./HospitalLandPage.css";
@@ -16,19 +16,19 @@ import ActiveDepartmentImage5 from "./gettyimages-173799627-612x612 1.jpg"
 
 
 function HospitalLandingPage({hospitalResult}) {
-  const { hospitalId } = useParams();
+  // const { hospitalResult.fsq_id } = useParams();
   const [hospitalDetails, setHospitalDetails] = useState<{
-    hospitalName?: string;
+    name?: string;
     hospitalIntro?: string;
     hospitalImage?: string;
   }>({});
 
   useEffect(() => {
     const newHospitalsInfo = hospitalResult.find(
-      (hospital) => String(hospital.id) == hospitalId
+      (hospital) => String(hospitalResult.fsq_id) == hospitalResult.fsq_id
     );
     setHospitalDetails(newHospitalsInfo);
-  }, [hospitalId]);
+  }, [hospitalResult.fsq_id]);
 
   return (
     <div>
@@ -45,7 +45,7 @@ function HospitalLandingPage({hospitalResult}) {
           <div className="single-hospital-landing-page-info">
 
           <h3 className="hospital-landing-page-hospital-name">
-            {hospitalDetails?.hospitalName}
+            {hospitalDetails?.name}
           </h3>
           <p className="hospital-landing-page-hospital-intro">
             {hospitalDetails?.hospitalIntro}
@@ -69,7 +69,7 @@ function HospitalLandingPage({hospitalResult}) {
 <div className="hospital-department">
   <div className="hospital-active-departmments-intro">
   <h3>Some of our active departments</h3>
-  <p>Check out some of our functioning departments at <span>{hospitalDetails?.hospitalName}</span></p>
+  <p>Check out some of our functioning departments at <span>{hospitalDetails?.name}</span></p>
 
   </div>
 
@@ -90,6 +90,9 @@ function HospitalLandingPage({hospitalResult}) {
 <button className="btn">Get started now</button>
   </div>
 </div>
+<span title="take me back to the previous page">
+  &larr;
+</span>
 </div>
       <Footer />
     </div>

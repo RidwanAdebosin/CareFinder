@@ -19,8 +19,8 @@ import { useState } from "react";
 
 function App() {
 const [hospitalResult, setHospitalResult] = useState([]);
-  return (
-    <>
+return (
+  <>
     <BrowserRouter>
     <Navigation/>
        <Routes>
@@ -44,7 +44,7 @@ const [hospitalResult, setHospitalResult] = useState([]);
         </Route>
 
         <Route
-          path="hospital-list/:hospitalsData.fsq_id"
+          path="hospital-list/:hospitalId"
           element={<HospitalLandingPage hospitalResult={hospitalResult}/>}
         />
       </Routes>

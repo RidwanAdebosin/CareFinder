@@ -30,7 +30,6 @@ function HospitalList({hospitalResult}){
   const [loading, setLoading] = useState(true);
 
   const headers = [
-
     { label: "Hospital Name", key: "name"},
     { label: "Hospital Intro", key: "hospitalIntro"},
     { label: "Hospital Location", key: "geocodes.main"}
