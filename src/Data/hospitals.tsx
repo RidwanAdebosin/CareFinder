@@ -7,17 +7,26 @@ export const fetchHospitals = async(search) => {
     sort: 'DISTANCE'
   })
 
-  const response = await axios.get(`https://api.foursquare.com/v3/places/search?${searchParams}`,
+  try {const response = await axios.get(`https://api.foursquare.com/v3/places/search?${searchParams}`,
 
   {headers: {
     "Content-Type": 'application/json',
     Authorization: 'fsq32+urLJrVe9vIXAJyiXgkhxhmdEf8TsdndodPTEH8A90='
   }})
   
-  console.log(response.data.results)
-  return response.data.results
-}
+  // Map the response data to tally with what's in my firestore database
+  const hospitals = response.data.results.map(result => ({
+    name: result.name,
+    address: result.address,
+  }));
 
+  console.log(hospitals)
+  return hospitals
+} catch (error) {
+  console.error("Error fetching hospitals:", error);
+  throw error;
+}
+};
 
 
 

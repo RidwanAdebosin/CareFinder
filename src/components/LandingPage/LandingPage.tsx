@@ -11,7 +11,7 @@ import UserLocation from "../../Data/useGeolocation";
 import { useState } from "react";
 import { fetchHospitals } from "../../Data/hospitals";
 import {toast} from "react-toastify"
-import { colRef, getHospitalData } from "../../Data/FirebaseConfig";
+import { colRef } from "../../Data/FirebaseConfig";
 import { addDoc } from "firebase/firestore";
 
 
@@ -30,25 +30,33 @@ const handleInputChange = (e) => {
   setInputValue(e.target.value)
 };
 
+
 const handleSearchHospitals = async () => {
-  try{
-    if(!inputValue){
-    toast.error("Search field can't be empty")
-    } else{
-      setIsLoading(true)
-      const hospitalsfetched: HospitalsFetched[] = await fetchHospitals(inputValue);
-      setHospitalResult(hospitalsfetched);
-      addDoc(colRef, {
-        name: handleSearchHospitals.inputValue.name,
-        address: handleSearchHospitals.inputValue.address,
-      })
-      setIsLoading(false)
-      console.log(hospitalResult)
+  try {
+    if (!inputValue) {
+      toast.error("Search field can't be empty");
+    } else {
+      setIsLoading(true);
+      const hospitalsFetched: HospitalsFetched[] = await fetchHospitals(inputValue);
+      setHospitalResult(hospitalsFetched);
+      
+      // Loop through fetched hospitals and add them to Firestore
+      hospitalsFetched.forEach(async (hospital) => {
+        await addDoc(colRef, {
+          name: hospital.name,
+          address: hospital.address,
+          // Add other fields as needed
+        });
+      });
+      
+      setIsLoading(false);
+      console.log(hospitalResult);
     }
-  } catch(error){
-console.log(error)
+  } catch (error) {
+    console.log(error);
   }
-}
+};
+
 
 
   return (
