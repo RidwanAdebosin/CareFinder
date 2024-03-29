@@ -24,34 +24,5 @@ export const getSingleDoc = getDoc;
 export const trackDataInDB = onSnapshot;
 export default firebaseConfig;
 
-// onSnapshot(colRef, (snapshot) => {
-//   const hospitalList = []
-//   snapshot.docs.forEach((doc) => {
-//     hospitalList.push({...doc.data(), id: doc.id})
-//   })
-//   console.log(hospitalList)
-// })
 
-
-// export const getHospitalData = () => {
-//   trackDataInDB(colRef, (snapshot) => {
-//     const hospitalList = snapshot.docs.map((each) => {
-//       return {
-//         ...each.data(),
-//         id: each.id,
-//       };
-//     });
-//     console.log(hospitalList);
-//   });
-// };
-
-// getDocs(colRef){
-//   .then((snapshot) => {
-//     let hospitalList = []
-//     snapshot.docs.forEach((doc) => {
-//       hospitalList.push({...doc.data(), id: doc.fsq_id})
-//     })
-   
-//   })
-//  }
 

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { fetchHospitals } from './hospitals';
 
 function UserLocation() {
   const [location, setLocation] = useState(null);
-  const [weather, setWeather] = useState(null);
   const [hospitals, setHospitals] = useState([]);
 
   useEffect(() => {
@@ -26,14 +26,10 @@ function UserLocation() {
     setLocation({ latitude, longitude });
     console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
 
-    // Make API call to OpenWeatherMap
-    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=<YOUR_API_KEY>&units=metric`)
-      .then(response => response.json())
-      .then(data => {
-        setWeather(data);
-        console.log(data);
-      })
-      .catch(error => console.log(error));
+    // Fetch hospitals near the user's location
+    fetchHospitals({ latitude, longitude })
+      .then(hospitals => setHospitals(hospitals))
+      .catch(error => console.error("Error fetching hospitals:", error));
   }
 
   function error() {
