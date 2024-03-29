@@ -24,17 +24,26 @@ export const getSingleDoc = getDoc;
 export const trackDataInDB = onSnapshot;
 export default firebaseConfig;
 
-export const getHospitalData = () => {
-  trackDataInDB(colRef, (snapshot) => {
-    const hospitalList = snapshot.docs.map((each) => {
-      return {
-        ...each.data(),
-        id: each.id,
-      };
-    });
-    console.log(hospitalList);
-  });
-};
+// onSnapshot(colRef, (snapshot) => {
+//   const hospitalList = []
+//   snapshot.docs.forEach((doc) => {
+//     hospitalList.push({...doc.data(), id: doc.id})
+//   })
+//   console.log(hospitalList)
+// })
+
+
+// export const getHospitalData = () => {
+//   trackDataInDB(colRef, (snapshot) => {
+//     const hospitalList = snapshot.docs.map((each) => {
+//       return {
+//         ...each.data(),
+//         id: each.id,
+//       };
+//     });
+//     console.log(hospitalList);
+//   });
+// };
 
 // getDocs(colRef){
 //   .then((snapshot) => {
@@ -46,10 +55,3 @@ export const getHospitalData = () => {
 //   })
 //  }
 
-// onSnapshot(colRef, (snapshot) => {
-//   const hospitalList = []
-//   snapshot.docs.forEach((doc) => {
-//     hospitalList.push({...doc.data(), id: doc.fsq_id})
-//   })
-//   console.log(hospitalList)
-// })

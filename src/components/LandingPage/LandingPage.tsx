@@ -11,17 +11,12 @@ import UserLocation from "../../Data/useGeolocation";
 import { useState } from "react";
 import { fetchHospitals } from "../../Data/hospitals";
 import {toast} from "react-toastify"
-import { colRef } from "../../Data/FirebaseConfig";
-import { addDoc } from "firebase/firestore";
 
 
 export interface HospitalsFetched  {
 name: string,
 address: string,
 country: string,
-inputValue: string,
-data: string;
-results: object;
 }
 
 function LandingPage({hospitalResult, setHospitalResult}) {
@@ -40,24 +35,6 @@ const handleSearchHospitals = async () => {
       setIsLoading(true);
       const hospitalsFetched: HospitalsFetched[] = await fetchHospitals(inputValue);
       setHospitalResult(hospitalsFetched);
-      
-      // Loop through fetched hospitals and add them to Firestore
-      hospitalsFetched.forEach(async (hospital) => {
-        try {
-          if (hospital.address !== undefined) { // Check if address is defined
-            await addDoc(colRef, {
-              name: hospital.data.results.name,
-              address: hospital.data.results.address,
-              
-            });
-          } else {
-            console.warn("Skipping hospital with undefined address:", hospital);
-          }
-        } catch (error) {
-          console.error("Error adding hospital to Firestore:", error);
-        }
-      });
-      
       setIsLoading(false);
       console.log(hospitalResult);
     }
@@ -65,6 +42,39 @@ const handleSearchHospitals = async () => {
     console.log(error);
   }
 };
+
+// const handleUserLocation = async () => {
+//   try {
+//     setIsLoading(true);
+//     // Get user's current location
+//     const userLocation = await UserLocation();
+//     // Fetch hospitals near the user's location
+//     const hospitalsFetched: HospitalsFetched[] = await fetchHospitals(userLocation);
+//     setHospitalResult(hospitalsFetched);
+
+//     // Loop through fetched hospitals and add them to Firestore
+//     hospitalsFetched.forEach(async (hospital) => {
+//       try {
+//         if (hospital.name !== undefined && hospital.address !== undefined) {
+//           await addDoc(colRef, {
+//             name: hospital.name,
+//             address: hospital.address,
+//           });
+//         } else {
+//           console.warn("Skipping hospital with undefined address and name:", hospital);
+//         }
+//       } catch (error) {
+//         console.error("Error adding hospital to Firestore:", error);
+//       }
+//     });
+
+//     setIsLoading(false);
+//     console.log(hospitalResult);
+//     getHospitalData();
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
 
 
@@ -106,7 +116,8 @@ const handleSearchHospitals = async () => {
             </div>
             <p>- or </p>
          <span  
-                onClick={handleSearchHospitals}>
+                // onClick={handleUserLocation}
+                >
             <UserLocation />
           </span>
           </form>

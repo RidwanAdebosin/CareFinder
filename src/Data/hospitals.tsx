@@ -1,4 +1,9 @@
 import axios from 'axios';
+// import { onSnapshot } from 'firebase/firestore';
+import { colRef } from './FirebaseConfig';
+import { addDoc } from 'firebase/firestore';
+
+
 
 export const fetchHospitals = async (search) => {
   const searchParams = new URLSearchParams({
@@ -19,6 +24,19 @@ export const fetchHospitals = async (search) => {
     );
     
     console.log(response.data.results);
+
+    response.data.results.forEach(async (result) => {
+      try{
+        await addDoc(colRef, {
+          hospitalName: result.name, 
+          hospitalAdress: result.location.address,
+          // address: result.address,
+          
+        });
+      } catch(error) {
+        console.error("Error adding hospital to Firestore:", error);
+      }
+    })
     return response.data.results;
   } catch (error) {
     console.error("Error fetching hospitals:", error);
