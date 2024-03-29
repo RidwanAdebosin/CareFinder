@@ -24,6 +24,7 @@ function HospitalLandingPage({hospitalResult}) {
     name?: string;
     hospitalIntro?: string;
     hospitalImage?: string;
+    address?: string;
   }>({});
   
   useEffect(() => {

@@ -17,6 +17,7 @@ initializeApp(firebaseConfig);
 
 export const db = getFirestore();
 export const colRef = collection(db, "hospitalList");
+
 export const getAllData = getDocs;
 export const singleDoc = doc;
 export const getSingleDoc = getDoc;
@@ -34,3 +35,21 @@ export const getHospitalData = () => {
     console.log(hospitalList);
   });
 };
+
+// getDocs(colRef){
+//   .then((snapshot) => {
+//     let hospitalList = []
+//     snapshot.docs.forEach((doc) => {
+//       hospitalList.push({...doc.data(), id: doc.fsq_id})
+//     })
+   
+//   })
+//  }
+
+// onSnapshot(colRef, (snapshot) => {
+//   const hospitalList = []
+//   snapshot.docs.forEach((doc) => {
+//     hospitalList.push({...doc.data(), id: doc.fsq_id})
+//   })
+//   console.log(hospitalList)
+// })

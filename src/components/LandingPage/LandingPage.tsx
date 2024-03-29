@@ -11,13 +11,15 @@ import UserLocation from "../../Data/useGeolocation";
 import { useState } from "react";
 import { fetchHospitals } from "../../Data/hospitals";
 import {toast} from "react-toastify"
+import { colRef, getHospitalData } from "../../Data/FirebaseConfig";
+import { addDoc } from "firebase/firestore";
 
 
 export interface HospitalsFetched  {
 name: string,
 address: string,
 country: string,
-
+inputValue: string,
 }
 
 function LandingPage({hospitalResult, setHospitalResult}) {
@@ -36,6 +38,10 @@ const handleSearchHospitals = async () => {
       setIsLoading(true)
       const hospitalsfetched: HospitalsFetched[] = await fetchHospitals(inputValue);
       setHospitalResult(hospitalsfetched);
+      addDoc(colRef, {
+        name: handleSearchHospitals.inputValue.name,
+        address: handleSearchHospitals.inputValue.address,
+      })
       setIsLoading(false)
       console.log(hospitalResult)
     }
@@ -81,8 +87,10 @@ console.log(error)
               </NavLink>
             </div>
             <p>- or </p>
-        
-            <UserLocation/>
+         <span  
+                onClick={handleSearchHospitals}>
+            <UserLocation />
+          </span>
           </form>
         </div>
       </div>

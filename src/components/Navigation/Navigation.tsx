@@ -3,7 +3,7 @@ import { NavLink, Link } from "react-router-dom";
 import Hamburger from "hamburger-react";
 import { useNavigate } from "react-router-dom"
 import { getAuth} from "firebase/auth"
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import dropDownBtn from "./CaretDown.png";
 import "./Navigation.css";
 import {useAuthStatus} from "../../Pages/UserAuthentication/useAuthStatus";
@@ -13,23 +13,23 @@ function Navigation() {
   const {loggedIn, checkingStatus} = useAuthStatus();
   const [hamburgerIsOpen, sethamburgerIsOpen] = useState(false);
   // const [open, setOpen] = useState(false);
-  const menuRef = useRef();
+  // const menuRef = useRef();
   const navigate = useNavigate();
 
   //creating a side hook to close the dropdown whenever a suer clicked outside the box
-useEffect(() => {
-  const handleClickOutside = (event) => {
-    if (menuRef.current && !menuRef.current.contains(event.target)) {
-      sethamburgerIsOpen(false);
-    }
-  };
+// useEffect(() => {
+//   const handleClickOutside = (event) => {
+//     if (menuRef.current && !menuRef.current.contains(event.target)) {
+//       sethamburgerIsOpen(false);
+//     }
+//   };
 
-  document.addEventListener("mousedown", handleClickOutside);
+//   document.addEventListener("mousedown", handleClickOutside);
 
-  return () => {
-    document.removeEventListener("mousedown", handleClickOutside);
-  };
-}, [menuRef]);
+//   return () => {
+//     document.removeEventListener("mousedown", handleClickOutside);
+//   };
+// }, [menuRef]);
 
 
 //creating a function for toggling the nav on a smaller screen
@@ -56,7 +56,7 @@ const handleHamburgerToggle = () => {
 }
 
   return (
-    <div className="navBar" ref={menuRef}>
+    <div className="navBar" >
       <div className="navbar-carefinder-logo">
       <Link to="/">
         <img src={careFinderLogo} alt="CareFinder Logo" className="carefinder-logo"/>
