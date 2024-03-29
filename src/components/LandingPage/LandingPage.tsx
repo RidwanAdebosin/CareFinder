@@ -20,6 +20,8 @@ name: string,
 address: string,
 country: string,
 inputValue: string,
+data: string;
+results: object;
 }
 
 function LandingPage({hospitalResult, setHospitalResult}) {
@@ -29,7 +31,6 @@ const [isLoading, setIsLoading] = useState(false);
 const handleInputChange = (e) => {
   setInputValue(e.target.value)
 };
-
 
 const handleSearchHospitals = async () => {
   try {
@@ -42,11 +43,19 @@ const handleSearchHospitals = async () => {
       
       // Loop through fetched hospitals and add them to Firestore
       hospitalsFetched.forEach(async (hospital) => {
-        await addDoc(colRef, {
-          name: hospital.name,
-          address: hospital.address,
-          // Add other fields as needed
-        });
+        try {
+          if (hospital.address !== undefined) { // Check if address is defined
+            await addDoc(colRef, {
+              name: hospital.data.results.name,
+              address: hospital.data.results.address,
+              
+            });
+          } else {
+            console.warn("Skipping hospital with undefined address:", hospital);
+          }
+        } catch (error) {
+          console.error("Error adding hospital to Firestore:", error);
+        }
       });
       
       setIsLoading(false);
@@ -56,6 +65,7 @@ const handleSearchHospitals = async () => {
     console.log(error);
   }
 };
+
 
 
 
