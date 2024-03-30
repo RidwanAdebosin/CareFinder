@@ -11,7 +11,6 @@ import Pagination from "./Pagination";
 import Spinner from "../Spinner.tsx";
 import { CSVLink } from "react-csv";
 // import { HospitalsFetched } from "../../components/LandingPage/LandingPage.tsx";
-import firebase from 'firebase/app';
 import { dynamicLinks } from "../../Data/FirebaseConfig.tsx";
 
 interface Hospital {
@@ -83,19 +82,11 @@ function HospitalList({hospitalResult}: Props): JSX.Element {
 
   const shareHospitalsResult = () => {
     // Generating the dynamic link
-    firebase.dynamicLinks().buildShortLink({
-      link: 'https://care-finder-nu.vercel.app/hospital-list',
-      android: {
-        packageName: "care-finder-hospitalresult.android"
-      },
-      ios : {
-        bundleId: "care-finder-hospitalresult.android.ios"
-      }
-    }).then((shortLink) => {
+    dynamicLinks().buildShortLink().then((shortLink) => {
       // Creating a short link then sharing it
       const shareText = "Check out my results: " + shortLink;
       // Using Web Share API for sharing
-      if (navigator.share){
+      if (navigator.share) {
         navigator.share({
           title: "Share Results",
           text: shareText,
@@ -120,9 +111,8 @@ function HospitalList({hospitalResult}: Props): JSX.Element {
       // Error handling
       console.error('Error creating dynamic link:', error);
     });
-  }
+  };
   
-
   return (
     <>
       <Navigation />
