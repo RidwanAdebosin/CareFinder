@@ -1,8 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { collection, doc, getDoc, getDocs, getFirestore, onSnapshot } from "firebase/firestore";
-import "firebase/dynamic-links";
-// import { firebase} from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -17,7 +15,6 @@ const firebaseConfig = {
 // Initialize Firebase
 initializeApp(firebaseConfig);
 
-import firebase from "firebase/app";
 
 
 export const db = getFirestore();
@@ -29,20 +26,20 @@ export const trackDataInDB = onSnapshot;
 export default firebaseConfig;
 
 // Export Firebase Dynamic Links
-export const dynamicLinks = () => {
-  const buildShortLink = () => {
-    return firebase.dynamicLinks().buildShortLink({
-      link: 'https://care-finder-nu.vercel.app/hospital-list',
-      android: {
-        packageName: "care-finder-hospitalresult.android"
-      },
-      ios : {
-        bundleId: "care-finder-hospitalresult.android.ios"
-      }
-    });
-  };
+// export const dynamicLinks = () => {
+//   const buildShortLink = () => {
+//     return firebase.dynamicLinks().buildShortLink({
+//       link: 'https://care-finder-nu.vercel.app/hospital-list',
+//       android: {
+//         packageName: "care-finder-hospitalresult.android"
+//       },
+//       ios : {
+//         bundleId: "care-finder-hospitalresult.android.ios"
+//       }
+//     });
+//   };
   
-  return {
-    buildShortLink
-  };
-};
+//   return {
+//     buildShortLink
+//   };
+// };
