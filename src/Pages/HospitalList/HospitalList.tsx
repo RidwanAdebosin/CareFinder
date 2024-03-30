@@ -6,7 +6,6 @@ import SingleHospitalData from "./SingleHopspitalData.tsx";
 import { Link } from "react-router-dom";
 import "./HospitalList.css";
 import Footer from "../../components/Footer/Footer";
-// import  {hospitalResult}  from "../../Data/hospitals.tsx";
 import { useState } from "react";
 import Pagination from "./Pagination";
 import Spinner from "../Spinner.tsx";
@@ -67,6 +66,30 @@ function HospitalList({hospitalResult}){
   setTimeout(() => {
     setLoading(false);
   }, 2000);
+
+  const shareHospitalsResult = () => {
+    // Generating the dynamic link
+    const dynamicLink = firebase.dynamicLinks().buildShortLink({
+      link: 'https://care-finder-nu.vercel.app/hospital-list',
+      android: {
+        packageName: "care-finder-hospitalresult.android"
+      },
+      ios : {
+        bundleId: "care-finder-hospitalresult.android.ios"
+      }
+    }).then((shortLink) => {
+      // creating a shortlink then sharing it
+      const shareText = "Check out my results:" + shortLink;
+      // Using we share API for sharing
+      if (navigator.share){
+        navigator.share({
+          title: "Share Results",
+          text: shareText,
+          url: shortLink
+        })
+      }
+    })
+  }
 
   return (
     <>

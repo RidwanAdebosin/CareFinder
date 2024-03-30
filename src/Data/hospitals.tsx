@@ -26,6 +26,7 @@ export const fetchHospitals = async (search) => {
       }
     );
     
+    
     console.log(response.data.results);
 
     response.data.results.forEach(async (result) => {
@@ -45,6 +46,7 @@ export const fetchHospitals = async (search) => {
     console.error("Error fetching hospitals:", error);
     throw error; // Propagate the error to the caller
   }
+  
 };
 
 
