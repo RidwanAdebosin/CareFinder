@@ -11,12 +11,26 @@ import Pagination from "./Pagination";
 import Spinner from "../Spinner.tsx";
 import { CSVLink } from "react-csv";
 // import { HospitalsFetched } from "../../components/LandingPage/LandingPage.tsx";
+import firebase from 'firebase/app';
+import { dynamicLinks } from "../../Data/FirebaseConfig.tsx";
+
+interface Hospital {
+  fsq_id: string;
+  name: string;
+  hospitalIntro: string;
+  geocodes: {
+    main: string;
+  };
+  dynamicLinks: string
+}
+
+interface Props {
+  hospitalResult: Hospital[];
+}
 
 
 
-
-
-function HospitalList({hospitalResult}){
+function HospitalList({hospitalResult}: Props): JSX.Element {
   const [hospitalListPerPage] = useState(3);
   const [page, setPage] = useState(1);
   const indexOfLastHospital = page * hospitalListPerPage;
@@ -69,7 +83,7 @@ function HospitalList({hospitalResult}){
 
   const shareHospitalsResult = () => {
     // Generating the dynamic link
-    const dynamicLink = firebase.dynamicLinks().buildShortLink({
+    firebase.dynamicLinks().buildShortLink({
       link: 'https://care-finder-nu.vercel.app/hospital-list',
       android: {
         packageName: "care-finder-hospitalresult.android"
@@ -78,18 +92,36 @@ function HospitalList({hospitalResult}){
         bundleId: "care-finder-hospitalresult.android.ios"
       }
     }).then((shortLink) => {
-      // creating a shortlink then sharing it
-      const shareText = "Check out my results:" + shortLink;
-      // Using we share API for sharing
+      // Creating a short link then sharing it
+      const shareText = "Check out my results: " + shortLink;
+      // Using Web Share API for sharing
       if (navigator.share){
         navigator.share({
           title: "Share Results",
           text: shareText,
           url: shortLink
-        })
+        }).then(() => {
+          console.log("Shared Successfully");
+        }).catch((error) => {
+          console.error("Error sharing:", error);
+        });
+      } else {
+        // Fallback for platforms not supporting Web Share API
+        // Example: Copying the link to clipboard
+        const tempInput = document.createElement('input');
+        tempInput.value = shareText;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+        alert('Link copied to clipboard: ' + shareText);
       }
-    })
+    }).catch((error) => {
+      // Error handling
+      console.error('Error creating dynamic link:', error);
+    });
   }
+  
 
   return (
     <>
@@ -107,7 +139,7 @@ function HospitalList({hospitalResult}){
             </p>
             <div className="hospitals-found-logos">
               <FaFilter className="hospital-result-logo" />
-              <FaShareAlt className="hospital-result-logo" />
+              <FaShareAlt className="hospital-result-logo" onClick={shareHospitalsResult}/>
               <CSVLink {...csvReport}> 
                 <FaDownload className="hospital-result-logo" onClick={handleDownloadHospitalsData}/> 
               </CSVLink>

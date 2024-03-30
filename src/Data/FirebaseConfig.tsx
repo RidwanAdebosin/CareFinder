@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { collection, doc, getDoc, getDocs, getFirestore, onSnapshot } from "firebase/firestore";
+import "firebase/dynamic-links";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -17,12 +18,24 @@ initializeApp(firebaseConfig);
 
 export const db = getFirestore();
 export const colRef = collection(db, "hospitalList");
-
 export const getAllData = getDocs;
 export const singleDoc = doc;
 export const getSingleDoc = getDoc;
 export const trackDataInDB = onSnapshot;
 export default firebaseConfig;
 
+// Export Firebase Dynamic Links
+export const dynamicLinks = () => {
+  return {
+    buildShortLink: () => {
+      // Simulate building short link
+      return new Promise((resolve, reject) => {
+        // Replace this with actual implementation
+        const shortLink = 'https://example.com';
+        resolve(shortLink);
+      });
+    }
+  };
+};
 
 
