@@ -15,8 +15,6 @@ const firebaseConfig = {
 // Initialize Firebase
 initializeApp(firebaseConfig);
 
-
-
 export const db = getFirestore();
 export const colRef = collection(db, "hospitalList");
 export const getAllData = getDocs;

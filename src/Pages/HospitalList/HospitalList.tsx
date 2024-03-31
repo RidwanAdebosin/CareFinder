@@ -36,6 +36,7 @@ function HospitalList({hospitalResult}: Props): JSX.Element {
     indexOfFirstHospital,
     indexOfLastHospital
   );
+
   //Loading state to manage the spinner visibility
   const [loading, setLoading] = useState(true);
 
@@ -136,12 +137,11 @@ function HospitalList({hospitalResult}: Props): JSX.Element {
               </Link>
             </div>
           </div>
-{/* consitionally render the spinner while loading */}
-{loading ? (
-  <Spinner/>
-): (
 
-
+        {/* consitionally render the spinner while loading */}
+        {loading ? (
+          <Spinner/>
+        ): (
         <div className="hospital-list-container">
           <ul className="singlehospital-details">
             {currentHospitals.map((hospital) => (
@@ -161,7 +161,7 @@ function HospitalList({hospitalResult}: Props): JSX.Element {
           />
           <Footer />
         </div>
-        )}
+        )};
       </div>
     </>
   );

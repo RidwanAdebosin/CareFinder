@@ -1,70 +1,105 @@
-import React, { useState, useEffect } from 'react';
-import { fetchHospitals } from './hospitals';
+// import React, { useState, useEffect } from 'react';
+// import { fetchHospitals } from './hospitals';
 
-function UserLocation() {
-  const [location, setLocation] = useState(null);
-  const [hospitals, setHospitals] = useState([]);
+// function UserLocation() {
+//   const [location, setLocation] = useState(null);
+//   const [hospitals, setHospitals] = useState([]);
+
+//   useEffect(() => {
+//     if (location) {
+//       // Calculate hospital proximity when location is available
+//       updateHospitalProximity(location.latitude, location.longitude);
+//     }
+//   }, [location]);
+
+//   function handleLocationClick() {
+//     if (navigator.geolocation) {
+//       navigator.geolocation.getCurrentPosition(success, error);
+//     } else {
+//       console.log("Geolocation not supported");
+//     }
+//   }
+
+//   function success(position) {
+//     const latitude = position.coords.latitude;
+//     const longitude = position.coords.longitude;
+//     setLocation({ latitude, longitude });
+//     console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+   
+
+//     // Fetch hospitals near the user's location
+//     fetchHospitals({ latitude, longitude })
+//       .then(hospitals => setHospitals(hospitals))
+//       .catch(error => console.error("Error fetching hospitals:", error));
+//   }
+
+//   function error() {
+//     console.log("Unable to retrieve your location");
+//   }
+
+//   function updateHospitalProximity(userLat, userLon) {
+//     const updatedHospitals = hospitals.map(hospital => {
+//       const distance = calculateDistance(userLat, userLon, hospital.coordinates.latitude, hospital.coordinates.longitude);
+//       return {
+//         ...hospital,
+//         hospitalProximity: `${distance.toFixed(2)} km away`
+//       };
+//     });
+//     setHospitals(updatedHospitals);
+//   }
+
+//   // Function to calculate distance between two coordinates using Haversine formula
+//   function calculateDistance(lat1, lon1, lat2, lon2) {
+//     const R = 6371; // Radius of the Earth in kilometers
+//     const dLat = (lat2 - lat1) * (Math.PI / 180);
+//     const dLon = (lon2 - lon1) * (Math.PI / 180);
+//     const a =
+//       Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+//       Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+//     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+//     const distance = R * c; // Distance in kilometers
+//     return distance;
+//   }
+
+//   return (
+//     <div>
+//       {!location ? <a onClick={handleLocationClick}>use my location</a> : null}
+//     </div>
+//   );
+// }
+
+// export default UserLocation;
+
+// useGeolocation.tsx
+import { useState, useEffect } from "react";
+
+const useGeolocation = () => {
+  const [location, setLocation] = useState({ latitude: null, longitude: null });
 
   useEffect(() => {
-    if (location) {
-      // Calculate hospital proximity when location is available
-      updateHospitalProximity(location.latitude, location.longitude);
-    }
-  }, [location]);
+    const getLocation = () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            setLocation({
+              latitude: position.coords.latitude,
+              longitude: position.coords.longitude
+            });
+          },
+          (error) => {
+            console.error("Error getting geolocation:", error);
+          }
+        );
+      } else {
+        console.error("Geolocation is not supported by this browser.");
+      }
+    };
 
-  function handleLocationClick() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(success, error);
-    } else {
-      console.log("Geolocation not supported");
-    }
-  }
+    getLocation();
+  }, []); // Empty dependency array ensures this effect runs only once
 
-  function success(position) {
-    const latitude = position.coords.latitude;
-    const longitude = position.coords.longitude;
-    setLocation({ latitude, longitude });
-    console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+  return location;
+};
 
-    // Fetch hospitals near the user's location
-    fetchHospitals({ latitude, longitude })
-      .then(hospitals => setHospitals(hospitals))
-      .catch(error => console.error("Error fetching hospitals:", error));
-  }
+export default useGeolocation;
 
-  function error() {
-    console.log("Unable to retrieve your location");
-  }
-
-  function updateHospitalProximity(userLat, userLon) {
-    const updatedHospitals = hospitals.map(hospital => {
-      const distance = calculateDistance(userLat, userLon, hospital.coordinates.latitude, hospital.coordinates.longitude);
-      return {
-        ...hospital,
-        hospitalProximity: `${distance.toFixed(2)} km away`
-      };
-    });
-    setHospitals(updatedHospitals);
-  }
-
-  // Function to calculate distance between two coordinates using Haversine formula
-  function calculateDistance(lat1, lon1, lat2, lon2) {
-    const R = 6371; // Radius of the Earth in kilometers
-    const dLat = (lat2 - lat1) * (Math.PI / 180);
-    const dLon = (lon2 - lon1) * (Math.PI / 180);
-    const a =
-      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    const distance = R * c; // Distance in kilometers
-    return distance;
-  }
-
-  return (
-    <div>
-      {!location ? <a onClick={handleLocationClick}>use my location</a> : null}
-    </div>
-  );
-}
-
-export default UserLocation;

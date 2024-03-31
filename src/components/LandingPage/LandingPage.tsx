@@ -7,68 +7,64 @@ import Navigation from "../Navigation/Navigation";
 import Footer from "../Footer/Footer";
 import Map from "../../Data/Map";
 import { NavLink } from "react-router-dom";
-import UserLocation from "../../Data/useGeolocation";
 import { useState } from "react";
 import { fetchHospitals } from "../../Data/hospitals";
-import {toast} from "react-toastify"
+import { toast } from "react-toastify";
+import UserLocation from "../../Data/useGeolocation"; // Import the hook
 
-
-export interface HospitalsFetched  {
-name: string,
-address: string,
-country: string,
+export interface HospitalsFetched {
+  name: string;
+  address: string;
+  country: string;
 }
 
-function LandingPage({hospitalResult, setHospitalResult}) {
-const [inputValue, setInputValue] = useState("");
-const [isLoading, setIsLoading] = useState(false);
+function LandingPage({ hospitalResult, setHospitalResult }) {
+  console.log(hospitalResult);
+  const [inputValue, setInputValue] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-const handleInputChange = (e) => {
-  setInputValue(e.target.value)
-};
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value);
+  };
 
-const handleSearchHospitals = async () => {
-  try {
-    if (!inputValue) {
-      toast.error("Search field can't be empty");
-    } else {
+  const handleSearchHospitals = async () => {
+    try {
+      if (!inputValue) {
+        toast.error("Search field can't be empty");
+      } else {
+        setIsLoading(true);
+        const hospitalsFetched: HospitalsFetched[] = await fetchHospitals(
+          inputValue
+        );
+        setHospitalResult(hospitalsFetched);
+        setIsLoading(false);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleUserLocation = async () => {
+    try {
       setIsLoading(true);
-      const hospitalsFetched: HospitalsFetched[] = await fetchHospitals(inputValue);
+      const userLocation = UserLocation(); // Call the hook to get user's location
+      const hospitalsFetched: HospitalsFetched[] = await fetchHospitals(
+        userLocation
+      );
       setHospitalResult(hospitalsFetched);
       setIsLoading(false);
       console.log(hospitalResult);
+    } catch (error) {
+      console.log(error);
     }
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-const handleUserLocation = async () => {
-  try {
-    setIsLoading(true);
-    // Get user's current location
-    const userLocation = UserLocation();
-    // Fetch hospitals near the user's location
-    const hospitalsFetched: HospitalsFetched[] = await fetchHospitals(userLocation);
-    setHospitalResult(hospitalsFetched);
-
-    setIsLoading(false);
-    console.log(hospitalResult);
-
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-
-
+  };
 
   return (
     <>
       <Navigation />
       <div className="landingPage">
         <div className="map-container">
-          <Map/>
+          <Map />
         </div>
         <div className="searchingPage">
           <h1>Find Hospital close to your Residence</h1>
@@ -93,17 +89,21 @@ const handleUserLocation = async () => {
                   isActive ? { color: "blue" } : { color: "#fff" }
                 }
                 className="navigate"
-                to={!isLoading && inputValue ? '/hospital-list' : '/'}
+                to={!isLoading && inputValue ? "/hospital-list" : "/"}
               >
-                <button className="btn" onClick={handleSearchHospitals}>Search</button>
+                <button className="btn" onClick={handleSearchHospitals}>
+                  Search
+                </button>
               </NavLink>
             </div>
             <p>- or </p>
-         <span  
-                onClick={handleUserLocation}
-                >
-            <UserLocation />
-          </span>
+            {/* Render text to get user's location */}
+           <button
+              onClick={handleUserLocation}
+              disabled={isLoading} // Disable button when loading
+            >
+              {isLoading ? "Loading..." : "Use my location"}
+            </button>
           </form>
         </div>
       </div>
