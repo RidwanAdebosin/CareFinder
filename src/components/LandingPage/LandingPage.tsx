@@ -21,14 +21,16 @@ export interface HospitalsFetched {
 function LandingPage({ hospitalResult, setHospitalResult }) {
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-    // Get user's current location
-    const userLocation = UserLocation();
-
+   // Get user's current location
+   const userLocation = UserLocation();
+  
+  
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
-
+  
   const handleSearchHospitals = async () => {
+   
     try {
       // toast error if the input field is empty
       if (!inputValue) {
