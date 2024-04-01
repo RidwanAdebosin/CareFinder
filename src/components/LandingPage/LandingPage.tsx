@@ -21,6 +21,8 @@ export interface HospitalsFetched {
 function LandingPage({ hospitalResult, setHospitalResult }) {
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+    // Get user's current location
+    const userLocation = UserLocation();
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
@@ -45,11 +47,10 @@ function LandingPage({ hospitalResult, setHospitalResult }) {
     }
   };
 
+
   const handleUserLocation = async () => {
     try {
       setIsLoading(true);
-      // Get user's current location
-      const userLocation = UserLocation();
       // Fetch the hospitals near the user's location
       const hospitalsFetched: HospitalsFetched[] = await fetchHospitals(
         userLocation
