@@ -27,7 +27,7 @@ export const fetchHospitals = async (search) => {
     );
     
     
-    console.log(response.data.results);
+    // console.log(response.data.results);
 
     response.data.results.forEach(async (result) => {
       try{

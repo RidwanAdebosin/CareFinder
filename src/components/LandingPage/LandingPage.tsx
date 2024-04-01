@@ -19,7 +19,6 @@ export interface HospitalsFetched {
 }
 
 function LandingPage({ hospitalResult, setHospitalResult }) {
-  console.log(hospitalResult);
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -29,10 +28,12 @@ function LandingPage({ hospitalResult, setHospitalResult }) {
 
   const handleSearchHospitals = async () => {
     try {
+      // toast error if the input field is empty
       if (!inputValue) {
         toast.error("Search field can't be empty");
       } else {
         setIsLoading(true);
+        // fetch the hospitals according to the location user typed iside the input
         const hospitalsFetched: HospitalsFetched[] = await fetchHospitals(
           inputValue
         );
@@ -47,7 +48,9 @@ function LandingPage({ hospitalResult, setHospitalResult }) {
   const handleUserLocation = async () => {
     try {
       setIsLoading(true);
-      const userLocation = UserLocation(); // Call the hook to get user's location
+      // Get user's current location
+      const userLocation = UserLocation();
+      // Fetch the hospitals near the user's location
       const hospitalsFetched: HospitalsFetched[] = await fetchHospitals(
         userLocation
       );
@@ -100,9 +103,9 @@ function LandingPage({ hospitalResult, setHospitalResult }) {
             {/* Render text to get user's location */}
            <button
               onClick={handleUserLocation}
-              disabled={isLoading} // Disable button when loading
+              className="btn"
             >
-              {isLoading ? "Loading..." : "Use my location"}
+              <UserLocation/>
             </button>
           </form>
         </div>
