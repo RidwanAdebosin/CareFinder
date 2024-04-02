@@ -25,7 +25,6 @@ function UserLocation() {
     const longitude = position.coords.longitude;
     setLocation({ latitude, longitude });
     console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
-   
 
     // Fetch hospitals near the user's location
     fetchHospitals({ latitude, longitude })
@@ -63,43 +62,10 @@ function UserLocation() {
 
   return (
     <div>
-      {!location ? <a onClick={handleLocationClick}>use my location</a> : null}
+      {/* {!location ? <a onClick={handleLocationClick}>use my location</a> : null} */}
+      <a onClick={handleLocationClick}>use my location</a>
     </div>
   );
 }
 
 export default UserLocation;
-
-// useGeolocation.tsx
-// import { useState, useEffect } from "react";
-
-// const useGeolocation = () => {
-//   const [location, setLocation] = useState({ latitude: null, longitude: null });
-
-//   useEffect(() => {
-//     const getLocation = () => {
-//       if (navigator.geolocation) {
-//         navigator.geolocation.getCurrentPosition(
-//           (position) => {
-//             setLocation({
-//               latitude: position.coords.latitude,
-//               longitude: position.coords.longitude
-//             });
-//           },
-//           (error) => {
-//             console.error("Error getting geolocation:", error);
-//           }
-//         );
-//       } else {
-//         console.error("Geolocation is not supported by this browser.");
-//       }
-//     };
-
-//     getLocation();
-//   }, []); // Empty dependency array ensures this effect runs only once
-
-//   return location;
-// };
-
-// export default useGeolocation;
-

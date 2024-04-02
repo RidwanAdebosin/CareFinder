@@ -23,21 +23,19 @@ function LandingPage({ hospitalResult, setHospitalResult }) {
   const [isLoading, setIsLoading] = useState(false);
    // Get user's current location
    const userLocation = UserLocation();
-  
-  
+
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
-  
+
   const handleSearchHospitals = async () => {
-   
     try {
       // toast error if the input field is empty
       if (!inputValue) {
         toast.error("Search field can't be empty");
       } else {
         setIsLoading(true);
-        // fetch the hospitals according to the location user typed iside the input
+        // fetch the hospitals according to the location user typed
         const hospitalsFetched: HospitalsFetched[] = await fetchHospitals(
           inputValue
         );
@@ -49,10 +47,10 @@ function LandingPage({ hospitalResult, setHospitalResult }) {
     }
   };
 
-
   const handleUserLocation = async () => {
     try {
       setIsLoading(true);
+     
       // Fetch the hospitals near the user's location
       const hospitalsFetched: HospitalsFetched[] = await fetchHospitals(
         userLocation
@@ -104,12 +102,10 @@ function LandingPage({ hospitalResult, setHospitalResult }) {
             </div>
             <p>- or </p>
             {/* Render text to get user's location */}
-           <button
-              onClick={handleUserLocation}
-              className="btn"
-            >
+           
+           <span onClick={handleUserLocation}>
               <UserLocation/>
-            </button>
+           </span>
           </form>
         </div>
       </div>
