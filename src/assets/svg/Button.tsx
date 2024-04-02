@@ -1,9 +1,14 @@
-// creating a reuseable button component
+// adding a typescript to detect early error
+interface ButtonProps {
+    onClick: () => void;
+    children: React.ReactNode;
+}
 
-export function Button({ children, onClick }) {
-    return (
-      <button onClick={onClick} className="btn">
-        {children}
-      </button>
-    );
-  }
+// creating a reuseable button component
+export function Button({ children, onClick }: ButtonProps) {
+  return (
+    <button onClick={onClick} className="btn">
+      {children}
+    </button>
+  );
+}
