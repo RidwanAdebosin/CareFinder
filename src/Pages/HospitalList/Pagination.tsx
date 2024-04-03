@@ -1,5 +1,6 @@
 // import { hospitalsInfo } from "../../Data/hospitals.tsx";
 
+import { Button } from "../../assets/svg/Button";
 import "./Pagination.css";
 
 const Pagination = ({
@@ -14,19 +15,22 @@ const Pagination = ({
     setPage(pageNumber);
   };
   
- 
+ const prev = (() => pagination(page - 1))
 
 
   return (
     <div className="pagination-btn-container">
-      <button
-        disabled={page === 1}
-        aria-disabled={disabledPrev}
-        onClick={() => pagination(page - 1)}
-        className="pagination-btn"
-      >
-        Prev
-      </button>
+    //   <button
+    //     disabled={page === 1}
+    //     aria-disabled={disabledPrev}
+    //     onClick={() => pagination(page - 1)}
+    //     className="pagination-btn"
+    //   >
+    //     Prev
+    //   </button>
+    <Button onClick={prev}>
+      Prev
+    </Button>
 
       <span>{page}</span>
       <button
