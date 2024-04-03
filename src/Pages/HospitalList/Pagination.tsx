@@ -20,14 +20,14 @@ const Pagination = ({
 
   return (
     <div className="pagination-btn-container">
-    //   <button
+    {/* //   <button
     //     disabled={page === 1}
     //     aria-disabled={disabledPrev}
     //     onClick={() => pagination(page - 1)}
     //     className="pagination-btn"
     //   >
     //     Prev
-    //   </button>
+    //   </button> */}
     <Button onClick={prev}>
       Prev
     </Button>
