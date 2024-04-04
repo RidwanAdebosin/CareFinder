@@ -97,9 +97,11 @@ export async function fetchHospitals(search) {
         console.error("Error adding hospital to Firestore:", error);
       }
     })
+
     return response.data.results;
+    
   } catch (error) {
-    console.error("Error fetching hospitals:", error);
+      console.error("Error fetching hospitals:", error);
     throw error; // Propagate the error to the caller
   }
 }
