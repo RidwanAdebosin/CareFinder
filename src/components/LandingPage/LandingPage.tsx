@@ -12,7 +12,7 @@ import { fetchHospitals } from "../../Data/hospitals";
 import { toast } from "react-toastify";
 import UserLocation from "../../Data/useGeolocation"; // Import the hook
 import { Button } from "../../assets/svg/Button";
-const assert = require('assert');
+// const assert = require('assert');
 
 export interface HospitalsFetched {
   name: string;
@@ -48,26 +48,6 @@ function LandingPage({ hospitalResult, setHospitalResult }) {
       console.log(error);
     }
   };
-
-
-describe('Test', function(){
-    it("should fetch hospitals if there is a string searched inside the input box", async function (){
-        // Mocking setHospitalResults function
-        const setHospitalResults = jest.fn();
-        
-        // Mocking fetchHospitals function
-        const mockHospitals = [{ name: 'Hospital 1' }, { name: 'Hospital 2' }];
-        jest.mock('../../Data/hospitals', () => ({
-            fetchHospitals: jest.fn(() => Promise.resolve(mockHospitals))
-        }));
-        
-        // Invoke the function being tested
-        await handleSearchHospitals(setHospitalResults);
-        
-        // Assert that fetchHospitals is called
-        expect(fetchHospitals).toHaveBeenCalled();
-    });
-});
 
 
   const handleUserLocation = async () => {
