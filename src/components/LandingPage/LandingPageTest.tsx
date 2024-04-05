@@ -1,19 +1,29 @@
-// const handleSearchHospitals = async () => {
-//     try {
-//       // toast error if the input field is empty
-//       if (!inputValue) {
-//         toast.error("Search field can't be empty");
-//       } else {
-//         setIsLoading(true);
-//         // fetch the hospitals according to the location user typed
-//         const hospitalsFetched: HospitalsFetched[] = await fetchHospitals(
-//           inputValue
-//         );
-//         setHospitalResult(hospitalsFetched);
-//         setIsLoading(false);
-//       }
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
+import React from 'react';
+import { render, fireEvent, waitFor } from '@testing-library/react';
+import LandingPage from './LandingPage';
 
+jest.mock('../../Data/hospitals', () => ({
+  fetchHospitals: jest.fn(() => Promise.resolve([{ name: 'Hospital A' }, { name: 'Hospital B' }]))
+}));
+
+describe('LandingPage', () => {
+  it('fetches hospitals when search button is clicked', async () => {
+    const setHospitalResultMock = jest.fn();
+    const { getByText, getByPlaceholderText } = render(
+      <LandingPage hospitalResult={[]} setHospitalResult={setHospitalResultMock} />
+    );
+    
+    const searchInput = getByPlaceholderText('📍 Your location...');
+    const searchButton = getByText('Search');
+    
+    fireEvent.change(searchInput, { target: { value: 'New York' } });
+    fireEvent.click(searchButton);
+    
+    await waitFor(() => {
+      expect(setHospitalResultMock).toHaveBeenCalledWith([
+        { name: 'Hospital A' },
+        { name: 'Hospital B' }
+      ]);
+    });
+  });
+});

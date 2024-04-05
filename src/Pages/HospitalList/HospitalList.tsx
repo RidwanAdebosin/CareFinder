@@ -75,6 +75,7 @@ function HospitalList({hospitalResult}: Props): JSX.Element {
     document.body.removeChild(link);
   };
 
+  // setting a timeout for the spinner
   setTimeout(() => {
     setLoading(false);
   }, 2000);
