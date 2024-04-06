@@ -1,33 +1,17 @@
-// import React from 'react';
-// import { render, fireEvent, waitFor } from '@testing-library/react';
-// import LandingPage from '../LandingPage';
 
-// jest.mock('../../Data/hospitals', () => ({
-//   fetchHospitals: jest.fn(() => Promise.resolve([{ name: 'Hospital A' }, { name: 'Hospital B' }]))
-// }));
+import {render, screen} from '@testing-library/react';
+import LandingPage from '../LandingPage';
 
-// describe('LandingPage', () => {
-//   it('fetches hospitals when search button is clicked', async () => {
-//     const setHospitalResultMock = jest.fn();
-//     const { getByText, getByPlaceholderText } = render(
-//       <LandingPage hospitalResult={[]} setHospitalResult={setHospitalResultMock} />
-//     );
-    
-//     const searchInput = getByPlaceholderText('📍 Your location...');
-//     const searchButton = getByText('Search');
-    
-//     fireEvent.change(searchInput, { target: { value: 'New York' } });
-//     fireEvent.click(searchButton);
-    
-//     await waitFor(() => {
-//       expect(setHospitalResultMock).toHaveBeenCalledWith([
-//         { name: 'Hospital A' },
-//         { name: 'Hospital B' }
-//       ]);
-//     });
-//   });
-// });
+test('should render the landing page', () => {
+    // Mock the function for hospitalResult prop
+    const hospitalResultMock = jest.fn() ;
+    // Mock the function for hospitalResult prop
+    const setHospitalResultMock = jest.fn()
 
-test('test', () => {
-  expect(true).toBe(true);
-})
+    render(<LandingPage hospitalResult={hospitalResultMock} setHospitalResult={setHospitalResultMock} />);
+  
+    // get the element with the data-testid attribute
+    const LandingPageElemet = screen.getByTestId('landingpage-1');
+  
+    expect(LandingPageElemet).toBeInTheDocument();
+  });

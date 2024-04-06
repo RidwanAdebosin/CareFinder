@@ -12,7 +12,6 @@ import { fetchHospitals } from "../../Data/hospitals";
 import { toast } from "react-toastify";
 import UserLocation from "../../Data/useGeolocation"; // Import the hook
 import { Button } from "../../assets/svg/Button";
-// const assert = require('assert');
 
 export interface HospitalsFetched {
   name: string;
@@ -66,8 +65,9 @@ function LandingPage({ hospitalResult, setHospitalResult }) {
     }
   };
 
+
   return (
-    <>
+    <div data-testid="landingpage-1">
       <Navigation />
       <div className="landingPage">
         <div className="map-container">
@@ -117,7 +117,7 @@ function LandingPage({ hospitalResult, setHospitalResult }) {
       <ListingHospitalsSteps />
       <User />
       <Footer />
-    </>
+    </div>
   );
 }
 
