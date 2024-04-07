@@ -13,6 +13,12 @@ import { toast } from "react-toastify";
 import UserLocation from "../../Data/useGeolocation"; // Import the hook
 import { Button } from "../../assets/svg/Button";
 
+interface HospitalsFetched {
+  name: string;
+  address: string;
+  country: string;
+}
+
 function LandingPage({ hospitalResult, setHospitalResult }) {
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -27,7 +33,9 @@ function LandingPage({ hospitalResult, setHospitalResult }) {
         toast.error("Search field can't be empty");
       } else {
         setIsLoading(true);
-        const hospitalsFetched = await fetchHospitals(inputValue);
+        const hospitalsFetched: HospitalsFetched[] = await fetchHospitals(
+          inputValue
+        );
         setHospitalResult(hospitalsFetched);
         setIsLoading(false);
       }
@@ -39,7 +47,9 @@ function LandingPage({ hospitalResult, setHospitalResult }) {
   const handleUserLocation = async () => {
     try {
       setIsLoading(true);
-      const hospitalsFetched = await fetchHospitals(userLocation);
+      const hospitalsFetched: HospitalsFetched[] = await fetchHospitals(
+        location
+      );
       setHospitalResult(hospitalsFetched);
       setIsLoading(false);
       console.log(hospitalResult);
@@ -53,7 +63,7 @@ function LandingPage({ hospitalResult, setHospitalResult }) {
       <Navigation />
       <div className="landingPage">
         <div className="map-container">
-          <Map alt="Map showing hospital locations" />
+          <Map />
         </div>
         <div className="searchingPage">
           <h1>Find Hospital close to your Residence</h1>
