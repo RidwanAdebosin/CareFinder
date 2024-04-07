@@ -1,22 +1,25 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import LandingPage from "../src/components/LandingPage/LandingPage";
 
-test("should render the landing page", async () => {
-  // Mock the function for hospitalResult prop
-  const hospitalResultMock = vitest.fn();
-  // Mock the function for hospitalResult prop
-  const setHospitalResultMock = vitest.fn();
+import { describe, it } from "vitest";
 
-  render(
-    <LandingPage
-      hospitalResult={hospitalResultMock}
-      setHospitalResult={setHospitalResultMock}
-    />
-  );
+describe("should render the landing page", () => {
+  it("renders landingpage component", async () => {
+    // Mock the function for hospitalResult prop
+    const hospitalResultMock = vitest.fn();
+    // Mock the function for setHospitalResult prop
+    const setHospitalResultMock = vitest.fn();
 
-  // get the element with the data-testid attribute
-  await waitFor(() => {
-    const LandingPageElemet = screen.getByTestId("landingpage");
-    expect(LandingPageElemet).toBeInTheDocument();
+    render(
+      <LandingPage
+        hospitalResult={hospitalResultMock}
+        setHospitalResult={setHospitalResultMock}
+      />
+    );
+
+    await waitFor(() => {
+      const landingPageElement = screen.getByTestId("landingpage");
+      expect(landingPageElement).toBeInTheDocument();
+    });
   });
 });

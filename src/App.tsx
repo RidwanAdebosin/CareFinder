@@ -11,61 +11,65 @@ import Navigation from "./components/Navigation/Navigation";
 import SignIn from "./Pages/UserAuthentication/SignIn";
 import ForgotPassword from "./Pages/UserAuthentication/ForgotPassword";
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import Footer from "./components/Footer/Footer";
 import { useState } from "react";
-
-
+import { useNavigate } from "react-router-dom";
 
 function App() {
-const [hospitalResult, setHospitalResult] = useState([]);
-return (
-  <>
-    <BrowserRouter>
-    <Navigation/>
-       <Routes>
-        <Route path="/" element={<LandingPage hospitalResult={hospitalResult} setHospitalResult={setHospitalResult}/>} />
-        <Route path="footer" element={<Footer/>} />
-        <Route path="/profile" element={<PrivateRoute/>}>
-        <Route path="/profile" element={<Profile/>}/>
-        </Route>
-        <Route path="/hospital-list" element={<PrivateRoute/>}>
+  const [hospitalResult, setHospitalResult] = useState([]);
+  return (
+    <div>
+      <BrowserRouter>
+        <Navigation navigate={useNavigate} />
+        <Routes>
           <Route
-            path="/hospital-list"
-            element={<HospitalList hospitalResult={hospitalResult}/>}
+            path="/"
+            element={
+              <LandingPage
+                hospitalResult={hospitalResult}
+                setHospitalResult={setHospitalResult}
+              />
+            }
           />
-        </Route>
-        <Route path="sign-up" element={<SignUpForm />} />
-        <Route path="sign-in" element={<SignIn/>} />
-        <Route path="forgot-password" element={<ForgotPassword/>} />
-        <Route path="/add-hospitals" element={<PrivateRoute/>}>
-        <Route
-        path="/add-hospitals" element={<AddHospitals/>}/>
-        </Route>
+          <Route path="footer" element={<Footer />} />
+          <Route path="/profile" element={<PrivateRoute />}>
+            <Route path="/profile" element={<Profile />} />
+          </Route>
+          <Route path="/hospital-list" element={<PrivateRoute />}>
+            <Route
+              path="/hospital-list"
+              element={<HospitalList hospitalResult={hospitalResult} />}
+            />
+          </Route>
+          <Route path="sign-up" element={<SignUpForm />} />
+          <Route path="sign-in" element={<SignIn />} />
+          <Route path="forgot-password" element={<ForgotPassword />} />
+          <Route path="/add-hospitals" element={<PrivateRoute />}>
+            <Route path="/add-hospitals" element={<AddHospitals />} />
+          </Route>
 
-        <Route
-          path="hospital-list/:hospitalId"
-          element={<HospitalLandingPage hospitalResult={hospitalResult}/>}
-        />
-      </Routes>
-    </BrowserRouter> 
-  
+          <Route
+            path="hospital-list/:hospitalId"
+            element={<HospitalLandingPage hospitalResult={hospitalResult} />}
+          />
+        </Routes>
+      </BrowserRouter>
 
-    <ToastContainer
-      position="bottom-center"
-      autoClose={5000}
-      hideProgressBar={false}
-      newestOnTop={false}
-      closeOnClick
-      rtl={false}
-      pauseOnFocusLoss
-      draggable
-      pauseOnHover
-      theme="dark"
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
       />
-  </>
+    </div>
   );
 }
 
 export default App;
-
