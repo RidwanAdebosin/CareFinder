@@ -11,7 +11,7 @@ import { NavLink } from "react-router-dom";
 import { fetchHospitals } from "../../Data/hospitals";
 import { toast } from "react-toastify";
 import UserLocation from "../../Data/useGeolocation"; // Import the hook
-import { Button } from "../../assets/svg/Button";
+// import { Button } from "../../assets/svg/Button";
 
 interface HospitalsFetched {
   name: string;
@@ -89,7 +89,10 @@ function LandingPage({ hospitalResult, setHospitalResult }) {
                 className="navigate"
                 to={!isLoading && inputValue ? "/hospital-list" : "/"}
               >
-                <Button onClick={handleSearchHospitals}>Search</Button>
+                <button onClick={handleSearchHospitals} className="btn">
+                  Search
+                </button>
+                {/* <Button onClick={handleSearchHospitals}>Search</Button> */}
               </NavLink>
             </div>
             <p>- or </p>

@@ -1,11 +1,11 @@
 import { render, screen, waitFor } from "@testing-library/react";
-import LandingPage from "../../../components/LandingPage/LandingPage";
+import LandingPage from "../src/components/LandingPage/LandingPage";
 
 test("should render the landing page", async () => {
   // Mock the function for hospitalResult prop
-  const hospitalResultMock = jest.fn();
+  const hospitalResultMock = vitest.fn();
   // Mock the function for hospitalResult prop
-  const setHospitalResultMock = jest.fn();
+  const setHospitalResultMock = vitest.fn();
 
   render(
     <LandingPage
