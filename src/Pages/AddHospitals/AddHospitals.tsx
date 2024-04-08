@@ -7,7 +7,20 @@ import { useState } from "react";
 const md = new Remarkable();
 function AddHospitals() {
   const [markdowntext, setMarkdowntext] = useState("");
-  const [inputValue, setInputValue] = useState("");
+  const [hospitalName, setHospitalName] = useState("");
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log(e)
+    // if (!name || !image) return;
+    // const id = crypto.randomUUID();
+    // const newHospital = {
+    //   id,
+    //   name,
+    //   hospitalIntro,
+    //   hospitalImage: `${mage}?=${id}`,
+    };
+  }
   return (
     <>
       <div className="add-hospital-container">
@@ -28,7 +41,9 @@ function AddHospitals() {
             </p>
             <span className="add-hospital-btn">
               <button className="add-btn">Save as draft</button>
-              <button className="add-btn">Post to public</button>
+              <button className="add-btn" onSubmit={handleSubmit}>
+                Post to public
+              </button>
             </span>
           </main>
           <div className="add-hospital-details">
@@ -39,8 +54,8 @@ function AddHospitals() {
                   type="text"
                   placeholder="Type here"
                   className="add-hospital-input"
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
+                  value={hospitalName}
+                  onChange={(e) => setHospitalName(e.target.value)}
                 />
               </p>
 
@@ -50,8 +65,6 @@ function AddHospitals() {
                   type="text"
                   placeholder="Type here"
                   className="add-hospital-input"
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
                 />
               </p>
 
@@ -61,8 +74,6 @@ function AddHospitals() {
                   type="email"
                   placeholder="Type here"
                   className="add-hospital-input"
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
                 />
               </p>
 
