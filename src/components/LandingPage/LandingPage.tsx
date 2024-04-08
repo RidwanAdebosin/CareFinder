@@ -60,7 +60,7 @@ function LandingPage({ hospitalResult, setHospitalResult }) {
 
   return (
     <div data-testid="landingpage">
-      <Navigation />
+      <Navigation navigate="/" />
       <div className="landingPage">
         <div className="map-container">
           <Map />

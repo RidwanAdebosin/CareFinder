@@ -55,7 +55,7 @@ function Navigation({ navigate }) {
   }
 
   return (
-    <div className="navBar">
+    <header className="navBar">
       <div className="navbar-carefinder-logo">
         <Link to="/">
           <img
@@ -159,7 +159,7 @@ function Navigation({ navigate }) {
       >
         <Hamburger />
       </div>
-    </div>
+    </header>
   );
 }
 
