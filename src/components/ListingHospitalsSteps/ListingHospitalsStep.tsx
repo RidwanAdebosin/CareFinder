@@ -43,7 +43,7 @@ function ListingHospitalsSteps() {
           </div>
         </div>
         <Link to="/add-hospitals" className="link">
-        <button className="btn">Get started now &rarr;</button>
+          <button className="btn">Get started now &rarr;</button>
         </Link>
         <span className="timeout">
           <p>
