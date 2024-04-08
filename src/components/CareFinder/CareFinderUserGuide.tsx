@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function CareFinderUserGuide() {
   return (
-    <section className="user-guide" data-testid="Carefinder-User-Guide">
+    <div className="user-guide" data-testid="Carefinder-User-Guide">
       <div className="carefinder-usage-guide">
         <h1>The best method of finding quality hospitals in your region</h1>
         <p>
@@ -65,7 +65,7 @@ function CareFinderUserGuide() {
           className="doctor"
         />
       </div>
-    </section>
+    </div>
   );
 }
 
