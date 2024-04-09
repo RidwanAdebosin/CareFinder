@@ -8,17 +8,19 @@ const md = new Remarkable();
 function AddHospitals() {
   const [markdowntext, setMarkdowntext] = useState("");
   const [hospitalName, setHospitalName] = useState("");
+  const [hospitalPhoneNumber, setHospitalPhoneNumber] = useState("");
+  const [hospitalEmail, setHospitalEmail] = useState("");
+  const [hospitalImage, setHospitalImage] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(e)
-    // if (!name || !image) return;
-    // const id = crypto.randomUUID();
-    // const newHospital = {
-    //   id,
-    //   name,
-    //   hospitalIntro,
-    //   hospitalImage: `${mage}?=${id}`,
+    if (!hospitalName || !hospitalImage) return;
+    const id = crypto.randomUUID();
+    const newHospital = {
+      id,
+      hospitalName,
+      markdowntext,
+      hospitalImage: `${hospitalImage}?=${id}`,
     };
   }
   return (
@@ -65,6 +67,8 @@ function AddHospitals() {
                   type="text"
                   placeholder="Type here"
                   className="add-hospital-input"
+                  value={hospitalPhoneNumber}
+                  onChange={(e) => setHospitalPhoneNumber(e.target.value)}
                 />
               </p>
 
@@ -74,6 +78,8 @@ function AddHospitals() {
                   type="email"
                   placeholder="Type here"
                   className="add-hospital-input"
+                  value={hospitalEmail}
+                  onChange={(e) => setHospitalEmail(e.target.value)}
                 />
               </p>
 
@@ -95,11 +101,15 @@ function AddHospitals() {
                 type="file"
                 placeholder="Drag and drop file here or"
                 className="dropzone-input"
+                value={hospitalImage}
+                onChange={(e) => setHospitalImage(e.target.value)}
               />
             </div>
 
             <div
-              dangerouslySetInnerHTML={{ __html: md.render(markdowntext) }}
+              dangerouslySetInnerHTML={{
+                __html: md.render(markdowntext),
+              }}
             ></div>
           </div>
         </div>
