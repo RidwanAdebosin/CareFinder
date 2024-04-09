@@ -153,7 +153,7 @@ function AddHospitals() {
                       return;
                     }
                     // Set the selected file to the hospitaleImage state
-                    setHospitalImage(file);
+                    setHospitalImage(hospitalImage);
                   }
                 }}
               />

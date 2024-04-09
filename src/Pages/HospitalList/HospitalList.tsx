@@ -134,15 +134,24 @@ function HospitalList({ hospitalResult }: Props): JSX.Element {
             <FaFilter
               className="hospital-result-logo"
               onClick={handleFilterHospitals}
+              title="Filter hospitals in ascending alphabetical order"
             />
-            <FaShareAlt className="hospital-result-logo" />
+            <FaShareAlt
+              className="hospital-result-logo"
+              title="Share hospitals"
+            />
             <CSVLink {...csvReport}>
               <FaDownload
                 className="hospital-result-logo"
                 onClick={handleDownloadHospitalsData}
+                title="Download hospitals in CSV file"
               />
             </CSVLink>
-            <Link to="/add-hospitals" className="hospital-result-logo">
+            <Link
+              to="/add-hospitals"
+              className="hospital-result-logo"
+              title="Add your hospital"
+            >
               <FaPlus />
             </Link>
           </div>
