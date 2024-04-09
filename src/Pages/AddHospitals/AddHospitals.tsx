@@ -3,34 +3,63 @@ import "./AddHospitals.css";
 import { FaPen } from "react-icons/fa";
 import { Remarkable } from "remarkable";
 import { useState } from "react";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 const md = new Remarkable();
 function AddHospitals() {
   const [markdowntext, setMarkdowntext] = useState("");
   const [hospitalName, setHospitalName] = useState("");
-  const [hospitalPhoneNumber, setHospitalPhoneNumber] = useState("");
-  const [hospitalEmail, setHospitalEmail] = useState("");
+  const [hospitalAddress, setHospitalAddress] = useState("");
+  const [hospitalCountry, setHospitalCountry] = useState("");
   const [hospitalImage, setHospitalImage] = useState("");
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-    if (!hospitalName || !hospitalImage) return;
+    if (!hospitalName || !markdowntext) return;
 
     const id = crypto.randomUUID();
-    const newHospital = {
-      id,
-      hospitalName,
-      markdowntext,
-      hospitalImage: `${hospitalImage}?=${id}`,
-    };
-    console.log(hospitalName);
 
-    // Clear field after submission
-    setHospitalName("");
-    setHospitalPhoneNumber("");
-    setHospitalEmail("");
-    setMarkdowntext("");
-    setHospitalImage("");
+    // const newHospital = {
+    //   id,
+    //   hospitalName,
+    //   markdowntext,
+    //   hospitalImage: `${hospitalImage}?=${id}`,
+    // };
+
+    // Creating a FormData object for the new hospital
+    const formData = new FormData();
+    formData.append("id", id);
+    formData.append("hospitalName", hospitalName);
+    formData.append("hospitalAddress", hospitalAddress);
+    formData.append("hospitalCountry", hospitalCountry);
+    formData.append("markdowntext", markdowntext);
+    formData.append("hospitalImage", hospitalImage);
+
+    try {
+      // Send the formData response to server using axios
+      const response = await axios.post(
+        "fsq32+urLJrVe9vIXAJyiXgkhxhmdEf8TsdndodPTEH8A90=",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      // Clear field after submission
+      setHospitalName("");
+      setHospitalAddress("");
+      setHospitalCountry("");
+      setMarkdowntext("");
+      setHospitalImage("");
+
+      console.log("New Hospital submitted successfully:", response.data);
+    } catch (error) {
+      console.error("Error submitting hospital:", error);
+      toast.error("Failed to submit hospital");
+    }
   }
   return (
     <>
@@ -39,7 +68,7 @@ function AddHospitals() {
           <h2>List Hospital</h2>
           <p>
             Use the markdown to fill required sections before submitting. As
-            soon as we approve your hospital would appear in serach result
+            soon as we approve your hospital would appear in search result
           </p>
         </header>
         <div className="add-hospital-wrapper">
@@ -58,7 +87,11 @@ function AddHospitals() {
             </span>
           </main>
           <div className="add-hospital-details">
-            <form className="add-hospital-form" action="submit">
+            <form
+              className="add-hospital-form"
+              action="submit"
+              onSubmit={handleSubmit}
+            >
               <p className="full-width">
                 <label>Name of hospital</label>
                 <input
@@ -71,24 +104,24 @@ function AddHospitals() {
               </p>
 
               <p>
-                <label className="number-label">Phone Number</label>
+                <label className="number-label">Hospital Address</label>
                 <input
                   type="text"
                   placeholder="Type here"
                   className="add-hospital-input"
-                  value={hospitalPhoneNumber}
-                  onChange={(e) => setHospitalPhoneNumber(e.target.value)}
+                  value={hospitalAddress}
+                  onChange={(e) => setHospitalAddress(e.target.value)}
                 />
               </p>
 
               <p>
-                <label className="email-label">Company email</label>
+                <label className="email-label">Country</label>
                 <input
                   type="email"
                   placeholder="Type here"
                   className="add-hospital-input"
-                  value={hospitalEmail}
-                  onChange={(e) => setHospitalEmail(e.target.value)}
+                  value={hospitalCountry}
+                  onChange={(e) => setHospitalCountry(e.target.value)}
                 />
               </p>
 
@@ -110,19 +143,22 @@ function AddHospitals() {
                 type="file"
                 placeholder="Drag and drop file here or"
                 className="dropzone-input"
-                value={hospitalImage}
+                // value={hospitalImage}
                 onChange={(e) => {
                   const file = e.target.files[0];
-                  setHospitalImage(file);
+                  //   Check if a file has been selected
+                  if (file) {
+                    // Ensuring that just a file is selected
+                    if (e.target.files.length > 1) {
+                      toast("Please select only one image");
+                      return;
+                    }
+                    // Set the selected file to the hospitaleImage state
+                    setHospitalImage(file);
+                  }
                 }}
               />
             </div>
-
-            <div
-              dangerouslySetInnerHTML={{
-                __html: md.render(markdowntext),
-              }}
-            ></div>
           </div>
         </div>
       </div>

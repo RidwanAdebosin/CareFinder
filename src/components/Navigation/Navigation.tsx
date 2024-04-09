@@ -8,12 +8,13 @@ import dropDownBtn from "./CaretDown.png";
 import "./Navigation.css";
 import { useAuthStatus } from "../../Pages/UserAuthentication/useAuthStatus";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
-function Navigation({ navigate }) {
+function Navigation() {
   // const menuRef = useRef();
   const { loggedIn, checkingStatus } = useAuthStatus();
   const [hamburgerIsOpen, sethamburgerIsOpen] = useState(false);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   // const [open, setOpen] = useState(false);
 
   //creating a side hook to close the dropdown whenever a suer clicked outside the box
