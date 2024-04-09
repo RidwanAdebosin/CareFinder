@@ -18,16 +18,15 @@ interface Hospital {
   geocodes: {
     main: string;
   };
-  dynamicLinks: string
+  dynamicLinks: string;
+  distance: number;
 }
 
 interface Props {
   hospitalResult: Hospital[];
 }
 
-
-
-function HospitalList({hospitalResult}: Props): JSX.Element {
+function HospitalList({ hospitalResult }: Props): JSX.Element {
   const [hospitalListPerPage] = useState(3);
   const [page, setPage] = useState(1);
   const indexOfLastHospital = page * hospitalListPerPage;
@@ -36,40 +35,39 @@ function HospitalList({hospitalResult}: Props): JSX.Element {
     indexOfFirstHospital,
     indexOfLastHospital
   );
-
   //Loading state to manage the spinner visibility
   const [loading, setLoading] = useState(true);
 
   const headers = [
-    { label: "Hospital Name", key: "name"},
-    { label: "Hospital Intro", key: "hospitalIntro"},
-    { label: "Hospital Address", key: "results.address"}
+    { label: "Hospital Name", key: "name" },
+    { label: "Hospital Intro", key: "hospitalIntro" },
+    { label: "Hospital Address", key: "results.address" },
   ];
-  
+
   const csvReport = {
     data: hospitalResult,
     headers: headers,
-    filename: "Hospitals_Search_Report.csv"
-  }
+    filename: "Hospitals_Search_Report.csv",
+  };
 
   const handleDownloadHospitalsData = () => {
     // Creating a CSV file containing all hospitals information
-    const csvData = hospitalResult.map(hospital => ({
+    const csvData = hospitalResult.map((hospital) => ({
       hospitalName: hospital.name,
       hospitalIntro: hospital.hospitalIntro,
-      coordinates: hospital.geocodes.main
+      coordinates: hospital.geocodes.main,
     }));
 
     // Generate CSV file and trigger download
     const csvContent = [
-      headers.map(header => header.label).join(','),
-      ...csvData.map(row => Object.values(row).join(','))
-    ].join('\n');
+      headers.map((header) => header.label).join(","),
+      ...csvData.map((row) => Object.values(row).join(",")),
+    ].join("\n");
 
-    const encodedUri = encodeURI('data:text/csv;charset=utf-8,' + csvContent);
-    const link = document.createElement('a');
-    link.setAttribute('href', encodedUri);
-    link.setAttribute('download', csvReport.filename);
+    const encodedUri = encodeURI("data:text/csv;charset=utf-8," + csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", csvReport.filename);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -79,6 +77,12 @@ function HospitalList({hospitalResult}: Props): JSX.Element {
   setTimeout(() => {
     setLoading(false);
   }, 2000);
+
+  const handleFilterHospitals = (): void => {
+    hospitalResult.sort((a: Hospital, b: Hospital) => {
+      return a.name.localeCompare(b.name);
+    });
+  };
 
   // const shareHospitalsResult = () => {
   //   // Generating the dynamic link
@@ -112,7 +116,7 @@ function HospitalList({hospitalResult}: Props): JSX.Element {
   //     console.error('Error creating dynamic link:', error);
   //   });
   // };
-  
+
   return (
     <>
       <Navigation />
@@ -122,47 +126,52 @@ function HospitalList({hospitalResult}: Props): JSX.Element {
             <Map />
           </span>
         </div>
-       
-          <div className="no-of-hospitals-found">
-            <p>
-              <span>{hospitalResult.length}</span> facilities found
-            </p>
-            <div className="hospitals-found-logos">
-              <FaFilter className="hospital-result-logo" />
-              <FaShareAlt className="hospital-result-logo" />
-              <CSVLink {...csvReport}> 
-                <FaDownload className="hospital-result-logo" onClick={handleDownloadHospitalsData}/> 
-              </CSVLink>
-              <Link to="/add-hospitals" className="hospital-result-logo">
+        <div className="no-of-hospitals-found">
+          <p>
+            <span>{hospitalResult.length}</span> facilities found
+          </p>
+          <div className="hospitals-found-logos">
+            <FaFilter
+              className="hospital-result-logo"
+              onClick={handleFilterHospitals}
+            />
+            <FaShareAlt className="hospital-result-logo" />
+            <CSVLink {...csvReport}>
+              <FaDownload
+                className="hospital-result-logo"
+                onClick={handleDownloadHospitalsData}
+              />
+            </CSVLink>
+            <Link to="/add-hospitals" className="hospital-result-logo">
               <FaPlus />
-              </Link>
-            </div>
+            </Link>
           </div>
-
+        </div>
         {/* consitionally render the spinner while loading */}
         {loading ? (
-          <Spinner/>
-        ): (
-        <div className="hospital-list-container">
-          <ul className="singlehospital-details">
-            {currentHospitals.map((hospital) => (
-              <SingleHospitalData
-                hospitalsData={hospital}
-                key={hospital.fsq_id}
-              />
-            ))}
-          </ul>
-          <Pagination
-            disabledPrev={page === 1}
-            disabledNext={indexOfLastHospital === hospitalResult.length-1}
-            page={page}
-            setPage={setPage}
-            indexOfLastHospital={indexOfLastHospital}
-            hospitalResult={hospitalResult}
-          />
-          <Footer />
-        </div>
-        )};
+          <Spinner />
+        ) : (
+          <div className="hospital-list-container">
+            <ul className="singlehospital-details">
+              {currentHospitals.map((hospital) => (
+                <SingleHospitalData
+                  hospitalsData={hospital}
+                  key={hospital.fsq_id}
+                />
+              ))}
+            </ul>
+            <Pagination
+              disabledPrev={page === 1}
+              disabledNext={indexOfLastHospital === hospitalResult.length - 1}
+              page={page}
+              setPage={setPage}
+              indexOfLastHospital={indexOfLastHospital}
+              hospitalResult={hospitalResult}
+            />
+            <Footer />
+          </div>
+        )}
+        ;
       </div>
     </>
   );

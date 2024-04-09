@@ -1,12 +1,12 @@
 import Footer from "../../components/Footer/Footer";
 import "./AddHospitals.css";
 import { FaPen } from "react-icons/fa";
-import { Remarkable } from "remarkable";
+// import { Remarkable } from "remarkable";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
 
-const md = new Remarkable();
+// const md = new Remarkable();
 function AddHospitals() {
   const [markdowntext, setMarkdowntext] = useState("");
   const [hospitalName, setHospitalName] = useState("");
@@ -48,18 +48,17 @@ function AddHospitals() {
         }
       );
 
-      // Clear field after submission
-      setHospitalName("");
-      setHospitalAddress("");
-      setHospitalCountry("");
-      setMarkdowntext("");
-      setHospitalImage("");
-
       console.log("New Hospital submitted successfully:", response.data);
     } catch (error) {
       console.error("Error submitting hospital:", error);
       toast.error("Failed to submit hospital");
     }
+    // Clear field after submission
+    setHospitalName("");
+    setHospitalAddress("");
+    setHospitalCountry("");
+    setMarkdowntext("");
+    setHospitalImage("");
   }
   return (
     <>
@@ -104,7 +103,7 @@ function AddHospitals() {
               </p>
 
               <p>
-                <label className="number-label">Hospital Address</label>
+                <label className="address-label">Hospital Address</label>
                 <input
                   type="text"
                   placeholder="Type here"
@@ -118,7 +117,7 @@ function AddHospitals() {
                 <label className="email-label">Country</label>
                 <input
                   type="email"
-                  placeholder="Type here"
+                  placeholder="Enter your email here"
                   className="add-hospital-input"
                   value={hospitalCountry}
                   onChange={(e) => setHospitalCountry(e.target.value)}
