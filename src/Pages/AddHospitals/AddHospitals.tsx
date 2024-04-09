@@ -15,6 +15,7 @@ function AddHospitals() {
   function handleSubmit(e) {
     e.preventDefault();
     if (!hospitalName || !hospitalImage) return;
+
     const id = crypto.randomUUID();
     const newHospital = {
       id,
@@ -22,6 +23,14 @@ function AddHospitals() {
       markdowntext,
       hospitalImage: `${hospitalImage}?=${id}`,
     };
+    console.log(hospitalName);
+
+    // Clear field after submission
+    setHospitalName("");
+    setHospitalPhoneNumber("");
+    setHospitalEmail("");
+    setMarkdowntext("");
+    setHospitalImage("");
   }
   return (
     <>
@@ -43,7 +52,7 @@ function AddHospitals() {
             </p>
             <span className="add-hospital-btn">
               <button className="add-btn">Save as draft</button>
-              <button className="add-btn" onSubmit={handleSubmit}>
+              <button className="add-btn" onClick={handleSubmit}>
                 Post to public
               </button>
             </span>
@@ -102,7 +111,10 @@ function AddHospitals() {
                 placeholder="Drag and drop file here or"
                 className="dropzone-input"
                 value={hospitalImage}
-                onChange={(e) => setHospitalImage(e.target.value)}
+                onChange={(e) => {
+                  const file = e.target.files[0];
+                  setHospitalImage(file);
+                }}
               />
             </div>
 
