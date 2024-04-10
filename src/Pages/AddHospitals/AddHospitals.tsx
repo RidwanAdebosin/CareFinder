@@ -1,12 +1,16 @@
 import Footer from "../../components/Footer/Footer";
 import "./AddHospitals.css";
 import { FaPen } from "react-icons/fa";
-// import { Remarkable } from "remarkable";
+import Remarkable from "remarkable";
+import RemarkableReactRenderer from "remarkable-react";
+
 import { useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
 
-// const md = new Remarkable();
+const md = new Remarkable();
+md.renderer = new RemarkableReactRenderer();
+
 function AddHospitals() {
   const [markdowntext, setMarkdowntext] = useState("");
   const [hospitalName, setHospitalName] = useState("");

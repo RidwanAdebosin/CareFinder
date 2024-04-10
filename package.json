@@ -29,7 +29,8 @@
     "react-router-dom": "^6.22.2",
     "react-test-renderer": "^18.2.0",
     "react-toastify": "^10.0.5",
-    "remarkable": "^2.0.1"
+    "remarkable": "^2.0.1",
+    "remarkable-react": "^1.4.3"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.24.4",
