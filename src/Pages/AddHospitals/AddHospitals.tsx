@@ -1,15 +1,15 @@
 import Footer from "../../components/Footer/Footer";
 import "./AddHospitals.css";
 import { FaPen } from "react-icons/fa";
-import Remarkable from "remarkable";
-import RemarkableReactRenderer from "remarkable-react";
+// import Remarkable from "remarkable";
+// import RemarkableReactRenderer from "remarkable-react";
 
 import { useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
 
-const md = new Remarkable();
-md.renderer = new RemarkableReactRenderer();
+// const md = new Remarkable();
+// md.renderer = new RemarkableReactRenderer();
 
 function AddHospitals() {
   const [markdowntext, setMarkdowntext] = useState("");
@@ -133,7 +133,17 @@ function AddHospitals() {
                 <textarea
                   name="markdown"
                   id="markdown"
-                  placeholder="write a short bio about your facility here"
+                  placeholder="How to use Markdown
+                  Heading 1	#
+                  Heading 2	##
+                  Heading 3	###
+                  Italics	*italics*
+                  Bold	**Bold**
+                  Strike	~~insert text~~
+                  Block quote	>
+                  Links	[link name](link.com)
+                  Unordered list	* List item * List item
+                  Code Block	`insert code here`"
                   className="add-hospital-textarea"
                   value={markdowntext}
                   onChange={(e) => setMarkdowntext(e.target.value)}
