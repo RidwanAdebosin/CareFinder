@@ -50,6 +50,7 @@ function HospitalList({ hospitalResult }: Props): JSX.Element {
     filename: "Hospitals_Search_Report.csv",
   };
 
+  // function to download hospitals
   const handleDownloadHospitalsData = () => {
     // Creating a CSV file containing all hospitals information
     const csvData = hospitalResult.map((hospital) => ({
@@ -78,9 +79,10 @@ function HospitalList({ hospitalResult }: Props): JSX.Element {
     setLoading(false);
   }, 2000);
 
+  // function to filter hospital using distance
   const handleFilterHospitals = (): void => {
     hospitalResult.sort((a: Hospital, b: Hospital) => {
-      return a.name.localeCompare(b.name);
+      return a.distance - b.distance;
     });
   };
 
