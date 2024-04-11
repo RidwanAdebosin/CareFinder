@@ -28,6 +28,7 @@ interface Props {
 
 function HospitalList({ hospitalResult }: Props): JSX.Element {
   const [hospitalListPerPage] = useState(3);
+  const hospitalsFound = hospitalResult.length;
   const [page, setPage] = useState(1);
   const indexOfLastHospital = page * hospitalListPerPage;
   const indexOfFirstHospital = indexOfLastHospital - hospitalListPerPage;
@@ -130,7 +131,7 @@ function HospitalList({ hospitalResult }: Props): JSX.Element {
         </div>
         <div className="no-of-hospitals-found">
           <p>
-            <span>{hospitalResult.length}</span> facilities found
+            <span>{hospitalsFound}</span> facilities found
           </p>
           <div className="hospitals-found-logos">
             <FaFilter
