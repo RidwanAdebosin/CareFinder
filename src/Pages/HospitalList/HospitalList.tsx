@@ -82,7 +82,7 @@ function HospitalList({ hospitalResult }: Props): JSX.Element {
 
   // function to filter hospital using distance
   const handleFilterHospitals = (): void => {
-    hospitalResult.sort((a: Hospital, b: Hospital) => {
+    hospitalResult.slice().sort((a: Hospital, b: Hospital) => {
       return a.distance - b.distance;
     });
   };

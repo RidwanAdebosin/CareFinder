@@ -1,7 +1,6 @@
 import Footer from "../../components/Footer/Footer";
 import "./AddHospitals.css";
 import { FaPen } from "react-icons/fa";
-import { Button } from "../../assets/Button";
 // import Remarkable from "remarkable";
 // import RemarkableReactRenderer from "remarkable-react";
 
