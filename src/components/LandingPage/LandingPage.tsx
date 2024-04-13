@@ -12,6 +12,7 @@ import { fetchHospitals } from "../../Data/hospitals";
 import { toast } from "react-toastify";
 import { Button } from "../../assets/Button";
 import { handleLocationClick, success } from "../../Data/useGeolocation";
+import { useRef } from "react";
 
 interface HospitalsFetched {
   name: string;
@@ -24,6 +25,7 @@ function LandingPage({ hospitalResult, setHospitalResult }) {
   const [isLoading, setIsLoading] = useState(false);
   const [location, setLocation] = useState(null);
   const [hospitals, setHospitals] = useState([]);
+  const mapRef = useRef(null);
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
@@ -79,7 +81,7 @@ function LandingPage({ hospitalResult, setHospitalResult }) {
       <Navigation />
       <div className="landingPage">
         <div className="map-container">
-          <Map />
+          <Map mapRef={mapRef} />
         </div>
         <div className="searchingPage">
           <h1>Find Hospital close to your Residence</h1>
