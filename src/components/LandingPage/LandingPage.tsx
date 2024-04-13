@@ -10,8 +10,8 @@ import Map from "../../Data/Map";
 import { NavLink } from "react-router-dom";
 import { fetchHospitals } from "../../Data/hospitals";
 import { toast } from "react-toastify";
-import UserLocation from "../../Data/useGeolocation"; // Import the hook
 import { Button } from "../../assets/Button";
+import { handleLocationClick, success } from "../../Data/useGeolocation";
 
 interface HospitalsFetched {
   name: string;
@@ -22,6 +22,8 @@ interface HospitalsFetched {
 function LandingPage({ hospitalResult, setHospitalResult }) {
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [location, setLocation] = useState(null);
+  const [hospitals, setHospitals] = useState([]);
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
@@ -36,6 +38,7 @@ function LandingPage({ hospitalResult, setHospitalResult }) {
         const hospitalsFetched: HospitalsFetched[] = await fetchHospitals(
           inputValue
         );
+        // console.log(fetchHospitals(inputValue));
         setHospitalResult(hospitalsFetched);
         setIsLoading(false);
       }
@@ -44,23 +47,36 @@ function LandingPage({ hospitalResult, setHospitalResult }) {
     }
   };
 
-  const handleUserLocation = async () => {
-    try {
-      setIsLoading(true);
-      const hospitalsFetched: HospitalsFetched[] = await fetchHospitals(
-        location
-      );
-      setHospitalResult(hospitalsFetched);
-      setIsLoading(false);
-      console.log(hospitalResult);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // function success(position) {
+  //   const latitude = position.coords.latitude;
+  //   const longitude = position.coords.longitude;
+  //   setLocation({ latitude, longitude });
+  //   console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+
+  //   // Fetch hospitals near the user's location
+  //   fetchHospitals({ latitude, longitude })
+  //     .then((hospitals) => setHospitals(hospitals))
+  //     .catch((error) => console.error("Error fetching hospitals:", error));
+  // }
+
+  // const handleUserLocation = async () => {
+  //   try {
+  //     setIsLoading(true);
+  //     const hospitalsFetched: HospitalsFetched[] = await fetchHospitals(
+  //       location
+  //     );
+  //     setHospitalResult(hospitalsFetched);
+  //     setIsLoading(false);
+  //     console.log(hospitalResult);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+  handleLocationClick();
 
   return (
     <div data-testid="landingpage">
-      <Navigation navigate="/" />
+      <Navigation />
       <div className="landingPage">
         <div className="map-container">
           <Map />
@@ -93,8 +109,8 @@ function LandingPage({ hospitalResult, setHospitalResult }) {
               </NavLink>
             </div>
             <p>- or </p>
-            <span onClick={handleUserLocation}>
-              <UserLocation />
+            <span onClick={success}>
+              <a>use my location</a>
             </span>
           </form>
         </div>

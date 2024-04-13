@@ -9,8 +9,6 @@
 //   location: number | string;
 // }
 
-
-
 // export async function fetchHospitals(latitude: number, longitude: number, search: string): Promise<Hospital[]> {
 //   // const latitude = result.location.main.latitude;
 //   // const longitude = result.location.main.longitude;
@@ -31,15 +29,14 @@
 //         }
 //       }
 //     );
-    
-    
+
 //     console.log(response.data.results);
 
 //     response.data.results.forEach(async (result) => {
 //       try{
 //         // using addDoc save the hospitals fetched from the API into your firestore
 //         await addDoc(colRef, {
-//           name: result.name, 
+//           name: result.name,
 //           distance: result.distance,
 //           location: result.location,
 //         });
@@ -54,20 +51,18 @@
 //   }
 // }
 
-
-
-import axios from 'axios';
+import axios from "axios";
 // import { onSnapshot } from 'firebase/firestore';
-import { colRef } from './FirebaseConfig';
-import { addDoc } from 'firebase/firestore';
+import { colRef } from "./FirebaseConfig";
+import { addDoc } from "firebase/firestore";
 
 export async function fetchHospitals(search) {
   // const latitude = result.location.main.latitude;
   // const longitude = result.location.main.longitude;
   const searchParams = new URLSearchParams({
     near: search,
-    categories: '15014',
-    sort: 'DISTANCE',
+    categories: "15014",
+    sort: "DISTANCE",
     // ll: `${latitude}, ${longitude}`,
   });
 
@@ -76,49 +71,30 @@ export async function fetchHospitals(search) {
       `https://api.foursquare.com/v3/places/search?${searchParams}`,
       {
         headers: {
-          "Content-Type": 'application/json',
-          Authorization: 'fsq32+urLJrVe9vIXAJyiXgkhxhmdEf8TsdndodPTEH8A90='
-        }
+          "Content-Type": "application/json",
+          Authorization: "fsq32+urLJrVe9vIXAJyiXgkhxhmdEf8TsdndodPTEH8A90=",
+        },
       }
     );
-    
-    
+
     // console.log(response.data.results);
 
     response.data.results.forEach(async (result) => {
-      try{
+      try {
         // using addDoc save the hospitals fetched from the API into your firestore
         await addDoc(colRef, {
-          name: result.name, 
+          name: result.name,
           distance: result.distance,
           location: result.location,
         });
-      } catch(error) {
+      } catch (error) {
         console.error("Error adding hospital to Firestore:", error);
       }
-    })
+    });
 
     return response.data.results;
-    
   } catch (error) {
-      console.error("Error fetching hospitals:", error);
+    console.error("Error fetching hospitals:", error);
     throw error; // Propagate the error to the caller
   }
 }
-
-
-
-
-
-
-  
-
-
-  
-
-
-
-  
-
-
-  
