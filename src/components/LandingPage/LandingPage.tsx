@@ -23,8 +23,8 @@ interface HospitalsFetched {
 function LandingPage({ hospitalResult, setHospitalResult }) {
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [location, setLocation] = useState(null);
-  const [hospitals, setHospitals] = useState([]);
+  // const [location, setLocation] = useState(null);
+  // const [hospitals, setHospitals] = useState([]);
   const mapRef = useRef(null);
 
   const handleInputChange = (e) => {
@@ -74,33 +74,34 @@ function LandingPage({ hospitalResult, setHospitalResult }) {
   //     console.log(error);
   //   }
   // };
-  handleLocationClick();
-  function getResultsUsingLocation() {
-    const options = {
-      method: "Get",
-      headrs: {
-        accepts: "application/json",
-        Authorization: "fsq32+urLJrVe9vIXAJyiXgkhxhmdEf8TsdndodPTEH8A90=",
-      },
-    };
+  // handleLocationClick();
+  // function getResultsUsingLocation() {
+  //   const options = {
+  //     method: "Get",
+  //     headrs: {
+  //       accepts: "application/json",
+  //       Authorization: "fsq32+urLJrVe9vIXAJyiXgkhxhmdEf8TsdndodPTEH8A90=",
+  //     },
+  //   };
 
-    fetch(
-      "https://api.foursquare.com/v3/places/search?ll=12.34%2C56.78&categories=15014&sort=DISTANCE",
-      options
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        const locations = response.results;
+  //   fetch(
+  //     "https://api.foursquare.com/v3/places/search?ll=12.34%2C56.78&categories=15014&sort=DISTANCE",
+  //     options
+  //   )
+  //     .then((response) => response.json())
+  //     .then((response) => {
+  //       const locations = response.results;
 
-        const map = new google.maps.Map(document.getElementById(mapRef));
-      });
-  }
+  //       const map = new google.maps.Map(document.getElementById(mapRef));
+  //     });
+  // }
 
   return (
     <div data-testid="landingpage">
       <Navigation />
       <div className="landingPage">
         <div className="map-container">
+          {/* <Map mapRef={mapRef} /> */}
           <Map mapRef={mapRef} />
         </div>
         <div className="searchingPage">
