@@ -13,9 +13,6 @@ const Pagination = ({
   const pagination = (pageNumber) => {
     setPage(pageNumber);
   };
-  
- 
-
 
   return (
     <div className="pagination-btn-container">
@@ -29,7 +26,7 @@ const Pagination = ({
       </button>
 
       <span>{page}</span>
-      
+
       <button
         disabled={indexOfLastHospital >= hospitalResult.length}
         aria-disabled={disabledNext}

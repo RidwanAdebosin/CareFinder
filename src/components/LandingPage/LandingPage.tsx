@@ -75,6 +75,26 @@ function LandingPage({ hospitalResult, setHospitalResult }) {
   //   }
   // };
   handleLocationClick();
+  function getResultsUsingLocation() {
+    const options = {
+      method: "Get",
+      headrs: {
+        accepts: "application/json",
+        Authorization: "fsq32+urLJrVe9vIXAJyiXgkhxhmdEf8TsdndodPTEH8A90=",
+      },
+    };
+
+    fetch(
+      "https://api.foursquare.com/v3/places/search?ll=12.34%2C56.78&categories=15014&sort=DISTANCE",
+      options
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        const locations = response.results;
+
+        const map = new google.maps.Map(document.getElementById(mapRef));
+      });
+  }
 
   return (
     <div data-testid="landingpage">
