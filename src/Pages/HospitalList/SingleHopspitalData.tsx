@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-import { FaEnvelope, FaInstagram, FaLinkedin } from "react-icons/fa";
-import hospitalImage from "../HospitalLandPage/gettyimages-173799627-612x612 1.jpg";
+import { FaEnvelope, FaInstagram, FaLinkedin }
+ from "react-icons/fa";
+
 
 function SingleHospitalData({ hospitalsData }) {
   return (
@@ -8,44 +9,40 @@ function SingleHospitalData({ hospitalsData }) {
       <div className="single-hospital-wrapper">
         <div className="hospital-image-container">
           <img
-            src={hospitalImage}
-            alt={hospitalsData.name}
+            src={hospitalsData.hospitalImage}
+            alt={hospitalsData.hospitalName}
             className="hospital-image"
           />
         </div>
         <div className="single-hospital-details">
-          <Link
-            to={`/hospital-list/${hospitalsData.fsq_id}`}
-            className="hospital-name"
-          >
-            <h3 className="hospital-name">{hospitalsData.name}</h3>
+          <Link to={`/hospital-list/${hospitalsData.id}`}>
+            <h3 className="hospital-name">{hospitalsData.hospitalName}</h3>
           </Link>
-          <span>
-            <em>{hospitalsData.location.address}, </em>
-            <em>{hospitalsData.location.country}</em>
-          </span>
-          <p className="hospital-intro">
-            {hospitalsData.name} runs Pathology Services. Clinical pathologists
-            in Africa are capable to connect the most appropriate diagnostic
-            healthcare pathway. We offer wide range of clinical diagnosis from
-            Haematology to Sonography.
-          </p>
+          <p className="hospital-intro">{hospitalsData.hospitalIntro}</p>
           <p className="hospital-proximity">
             <span>🏃🏻</span>
-            {hospitalsData.distance} Km away
+            {hospitalsData.hospitalProximity}
           </p>
 
           <span className="hospital-socials">
-            <a>
-              <FaInstagram />
-            </a>
-            <a>
-              <FaEnvelope />
-            </a>
-            <a>
-              <FaLinkedin />
-            </a>
+            {hospitalsData.hospitalSocials.instagram && (
+              <a href={hospitalsData.hospitalSocials.instagram}>
+                <FaInstagram />
+              </a>
+            )}
+            {hospitalsData.hospitalSocials.email && (
+              <a href={hospitalsData.hospitalSocials.email}>
+                <FaEnvelope />
+              </a>
+            )}
+            {hospitalsData.hospitalSocials.linkedin && (
+              <a href={hospitalsData.hospitalSocials.linkedin}>
+                <FaLinkedin />
+              </a>
+            )}
           </span>
+
+
         </div>
       </div>
     </div>

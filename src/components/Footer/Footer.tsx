@@ -4,7 +4,7 @@ import "./Footer.css";
 
 function Footer() {
   return (
-    <footer className="footer" data-testid="footer">
+    <footer className="footer">
       <div className="carefinder-logo">
         <img src={careFinderLogo} alt="CareFinder Logo" />
       </div>

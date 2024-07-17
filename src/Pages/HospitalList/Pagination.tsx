@@ -1,9 +1,8 @@
-// import { hospitalsInfo } from "../../Data/hospitals.tsx";
+import { hospitalsInfo } from "../../Data/hospitals.tsx";
 
 import "./Pagination.css";
 
 const Pagination = ({
-  hospitalResult,
   disabledPrev,
   disabledNext,
   page,
@@ -13,6 +12,9 @@ const Pagination = ({
   const pagination = (pageNumber) => {
     setPage(pageNumber);
   };
+  
+ 
+
 
   return (
     <div className="pagination-btn-container">
@@ -26,9 +28,8 @@ const Pagination = ({
       </button>
 
       <span>{page}</span>
-
       <button
-        disabled={indexOfLastHospital >= hospitalResult.length}
+        disabled={indexOfLastHospital >= hospitalsInfo.length}
         aria-disabled={disabledNext}
         onClick={() => pagination(page + 1)}
         // onClick={handleNextButton}

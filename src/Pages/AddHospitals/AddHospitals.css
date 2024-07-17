@@ -1,6 +1,5 @@
 .add-hospital-container {
   padding-top: 100px;
-  width: 100%;
 }
 
 header {
@@ -11,7 +10,6 @@ header {
 }
 
 .add-hospital-wrapper {
-  width: 100%;
   background-color: #1f1f1f;
   margin-block-end: 5rem;
   padding: 2rem 1rem;
@@ -66,25 +64,23 @@ main {
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
   display: flex;
 }
-
 .add-hospital-details > * {
   padding: 1em;
 }
 
 .add-hospital-form {
   inline-size: 50%;
-  padding-inline: 1rem;
 }
 
 input:focus,
 textarea:focus {
-  outline: 3px solid blue;
+  outline: 3px solid gold;
 }
 
 .add-hospital-input,
 .add-hospital-textarea {
   width: 100%;
-  color: white;
+  /* border: 1px solid #000; */
 }
 
 .add-hospital-form {
@@ -92,12 +88,9 @@ textarea:focus {
   grid-template-columns: 1fr 1fr;
   grid-gap: 20px;
 }
-
 .add-hospital-form label {
   display: block;
-  margin-block-end: 0.2rem;
 }
-
 .add-hospital-form p {
   margin: 0;
 }
@@ -123,27 +116,20 @@ textarea {
   border-radius: 4px;
   background-color: transparent;
   resize: none;
-  color: white;
 }
 
-.add-hospital-span {
-  inline-size: 50%;
-}
-
-.dropzone-input {
-  width: 100%;
-}
 .add-hospital-drop-zone {
   inline-size: 50%;
   border-radius: 5px;
   border: 2px dashed #ccc;
+  padding: 20px;
   text-align: center;
   cursor: pointer;
 }
 
-/* .add-hospital-drop-zone p {
-  display: flex;
-} */
+.add-hospital-drop-zone p {
+  margin: 0;
+}
 
 .avatar {
   vertical-align: middle;
@@ -155,31 +141,21 @@ textarea {
   border-style: outset;
 }
 
-@media (max-width: 820px) {
+@media (max-width: 700px) {
   .add-hospital-details {
-    inline-size: 100%;
-    display: flex;
-    flex-direction: column;
-    padding-inline: 0;
+    display: grid;
   }
-
   .add-hospital-details > * {
-    padding-top: 0;
+    padding: 2em 2em;
   }
 
   .add-hospital-form {
     width: 100%;
+    padding-inline: 0;
+    padding-top: 0;
   }
 
   .add-hospital-drop-zone {
-    width: 100%;
-    padding: 25px;
-    inline-size: 95%;
-    display: flex;
-    margin: 0 auto;
-  }
-
-  .dropzone-input {
     width: 100%;
   }
 }

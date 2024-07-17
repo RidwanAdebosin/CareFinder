@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import Ellipse1 from "./Ellipse1.png";
 import Ellipse2 from "./Ellipse2.png";
 import Ellipse3 from "./Ellipse3.png";
@@ -42,9 +41,7 @@ function ListingHospitalsSteps() {
             </p>
           </div>
         </div>
-        <Link to="/add-hospitals" className="link">
-          <button className="btn">Get started now &rarr;</button>
-        </Link>
+        <button className="btn">Get started now &rarr;</button>
         <span className="timeout">
           <p>
             <span>&#128337;</span>

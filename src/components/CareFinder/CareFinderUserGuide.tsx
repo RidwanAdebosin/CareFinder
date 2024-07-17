@@ -1,10 +1,9 @@
 import FrameImage from "./Frame 1000005594.png";
 import "./CareFinder.css";
-import { Link } from "react-router-dom";
 
 function CareFinderUserGuide() {
   return (
-    <div className="user-guide" data-testid="Carefinder-User-Guide">
+    <div className="user-guide">
       <div className="carefinder-usage-guide">
         <h1>The best method of finding quality hospitals in your region</h1>
         <p>
@@ -54,9 +53,7 @@ function CareFinderUserGuide() {
             </p>
           </div>
         </div>
-        <Link to="/sign-up" className="link">
-          <button className="btn">Try it now &rarr; </button>
-        </Link>
+        <button className="btn">Try it now &rarr;</button>
       </div>
       <div className="frame">
         <img
@@ -64,6 +61,7 @@ function CareFinderUserGuide() {
           alt={"A doctor taking a baby away from her sittng mother"}
           className="doctor"
         />
+      
       </div>
     </div>
   );

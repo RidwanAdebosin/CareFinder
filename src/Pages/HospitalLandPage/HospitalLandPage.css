@@ -55,52 +55,6 @@
   border-radius: 5px;
 }
 
-.btn-container {
-  display: flex;
-  justify-content: center;
-  margin-block-end: 3rem;
-}
-
-span[title] {
-  position: relative;
-}
-
-span[title]:hover::after {
-  content: attr(title);
-  position: absolute;
-  background-color: blue;
-  color: white;
-  padding: 15px;
-  border-radius: 5px;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
-  z-index: 1;
-}
-
-.arrow-back-container {
-  display: flex;
-  justify-content: end;
-}
-
-.arrow-back {
-  text-decoration: none;
-  border: 3px solid blue;
-  padding: 0.5rem;
-  border-radius: 50%;
-  color: white;
-  font-size: larger;
-  font-weight: bold;
-}
-
-.arrow-back:hover {
-  background-color: blue;
-  font-size: larger;
-  font-weight: bolder;
-  transition: 0.3s ease-in-out;
-}
-
 @media (max-width: 820px) {
   .hospital-landing-page-hospital-image {
     width: 100%;
